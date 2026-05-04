@@ -1,6 +1,15 @@
 import React from 'react';
 
-const Button = ({ children, variant = 'primary', className = '', ...props }) => {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  variant?: 'primary' | 'secondary' | 'outline';
+}
+
+const Button: React.FC<ButtonProps> = ({ 
+  children, 
+  variant = 'primary', 
+  className = '', 
+  ...props 
+}) => {
   const baseStyles = "px-6 py-3 text-sm font-medium transition-all duration-300 ease-in-out rounded-[4px] uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variants = {

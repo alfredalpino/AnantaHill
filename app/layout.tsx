@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -13,12 +14,16 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Ananta - By The Hill | Luxury Resort",
   description: "Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-cream text-text-primary antialiased flex flex-col min-h-screen">
