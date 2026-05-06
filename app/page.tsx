@@ -47,7 +47,7 @@ export default function Home() {
 
         <motion.div 
           style={{ opacity }}
-          className="container mx-auto px-6 relative z-20 text-center"
+          className="container mx-auto px-6 relative z-20 text-center -mt-20 md:-mt-32"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -57,7 +57,7 @@ export default function Home() {
           >
             <div className="h-[1px] w-12 bg-primary/50" />
             <span className="uppercase tracking-[0.5em] text-[10px] md:text-xs font-bold text-ivory/90">
-              Beyond the Horizon
+              Where Time Stands Still
             </span>
             <div className="h-[1px] w-12 bg-primary/50" />
           </motion.div>
@@ -73,11 +73,20 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5, delay: 1, ease: [0.19, 1, 0.22, 1] }}
-              className="italic font-light text-primary text-5xl md:text-8xl tracking-normal mt-4 block"
+              className="italic font-light text-[#D4B887] text-5xl md:text-8xl tracking-normal mt-4 block"
             >
               Luxury Resort
             </motion.span>
           </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5, delay: 1.2 }}
+            className="text-ivory/60 text-sm md:text-lg italic mb-12 max-w-2xl mx-auto font-light tracking-wide"
+          >
+            Experience the quiet majesty of Canary Hill, where heritage meets the infinite calm of nature.
+          </motion.p>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
