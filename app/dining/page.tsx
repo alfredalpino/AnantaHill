@@ -6,6 +6,7 @@ import SectionHeader from '@/components/SectionHeader';
 import TableReservationModal from '@/components/TableReservationModal';
 import DiningCart from '@/components/DiningCart';
 import { Utensils, Leaf, Wine, Coffee, Search, ShoppingBag, ChevronDown } from 'lucide-react';
+import CustomSelect from '@/components/CustomSelect';
 
 const dishImg = "/images/food.webp";
 
@@ -98,40 +99,10 @@ export default function Dining() {
   };
 
   return (
-    <div className="pt-32 bg-ivory min-h-screen">
-      {/* Hero */}
-      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden p-0 bg-cream border-b border-border">
-        <div className="absolute inset-0 bg-[url('/images/restaurant.webp')] bg-cover bg-center opacity-10" />
-        <div className="container mx-auto px-6 relative z-20 text-center">
-          <motion.span 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="uppercase tracking-[0.4em] text-xs font-bold text-primary mb-6 block"
-          >
-            Culinary Art
-          </motion.span>
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-serif text-secondary mb-8"
-          >
-            Farm-to-Table <br /> <span className="italic font-light">Excellence</span>
-          </motion.h1>
-          <motion.button 
-            onClick={() => setIsModalOpen(true)}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="luxury-button"
-          >
-            Reserve a Table
-          </motion.button>
-        </div>
-      </section>
+    <div className="min-h-screen">
 
       {/* Menu Filter & List */}
-      <section className="section-padding bg-cream">
+      <section className="section-padding">
         <div className="container mx-auto px-6">
           <SectionHeader 
             subtitle="The Signature"
@@ -140,33 +111,28 @@ export default function Dining() {
 
           {/* Search & Categories */}
           {/* Sticky Search & Categories */}
-          <div className="sticky top-20 z-40 bg-cream/80 backdrop-blur-lg py-6 -mx-6 px-6 mb-16 flex flex-col md:flex-row gap-6 justify-between items-center border-b border-border/50 shadow-sm">
-            <div className="relative w-full md:w-64">
-              <select 
-                value={activeCategory}
-                onChange={(e) => setActiveCategory(e.target.value)}
-                className="w-full bg-ivory border border-border px-8 py-3 rounded-full focus:outline-none focus:border-primary text-xs uppercase tracking-widest appearance-none shadow-soft cursor-pointer font-bold text-secondary"
-              >
-                {categories.map(cat => (
-                  <option key={cat} value={cat}>{cat === "All" ? "All Categories" : cat}</option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-6 top-1/2 -translate-y-1/2 text-primary pointer-events-none" size={16} />
-            </div>
+          <div className="sticky bg-ivory top-20 z-40 py-6 -mx-6 px-6 mb-16 flex flex-col md:flex-row md:gap-6 gap-4 justify-between items-center border-b border-border">
+            <CustomSelect 
+              value={activeCategory}
+              onChange={(e) => setActiveCategory(e.target.value)}
+              options={categories.map(cat => ({ label: cat === "All" ? "All Categories" : cat, value: cat }))}
+              variant="full"
+              className="w-full md:w-64"
+            />
             
-            <div className="relative w-full md:w-80">
+            <div className="relative w-full md:w-96">
               <input 
                 type="text" 
                 placeholder="Search dishes..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-ivory border border-border px-6 py-3 pl-12 rounded-full focus:outline-none focus:border-primary text-sm shadow-soft"
+                className="w-full bg-ivory border border-border px-6 py-3 pl-12 rounded-full focus:outline-none focus:border-primary shadow-soft"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40" size={18} />
             </div>
           </div>
 
-          <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <motion.div layout className="grid md:grid-cols-3 lg:grid-cols-4 gap-10">
             <AnimatePresence mode="wait">
               {filteredDishes.length > 0 ? (
                 filteredDishes.map((dish) => (

@@ -41,7 +41,7 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
             {/* Left: Image */}
             <div className="w-full md:w-1/2 h-64 md:h-auto relative">
               <img 
-                src="https://images.unsplash.com/photo-1582719478250-c89cae4df85b?auto=format&fit=crop&q=80&w=1200" 
+                src="/images/room.jpg" 
                 alt={room.name} 
                 className="w-full h-full object-cover" 
               />

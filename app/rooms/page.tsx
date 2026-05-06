@@ -1,58 +1,183 @@
-import Button from "@/components/ui/Button";
-import Card from "@/components/ui/Card";
+"use client";
 
-export default function Rooms() {
-  const rooms = [
-    {
-      title: "Hill View Suite",
-      description: "Elegant suites featuring floor-to-ceiling windows with panoramic views of the hills.",
-      image: "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&q=80&w=800",
-      price: "INR 25,000"
-    },
-    {
-      title: "Heritage Villa",
-      description: "Private villas inspired by local architecture, offering ultimate privacy and luxury.",
-      image: "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80&w=800",
-      price: "INR 45,000"
-    },
-    {
-      title: "Royal Penthouse",
-      description: "Our most exclusive accommodation with a private terrace and personal butler service.",
-      image: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80&w=800",
-      price: "INR 85,000"
-    }
-  ];
+import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import SectionHeader from '@/components/SectionHeader';
+import { Wifi, Coffee, Wind, Tv, Users, Maximize } from 'lucide-react';
+import { useState } from 'react';
+import RoomDetailsModal from '@/components/RoomDetailsModal';
+
+const roomImg = "/images/room.jpg";
+
+const rooms = [
+  {
+    id: 1,
+    category: "Suites",
+    name: "The Royal Ananta Suite",
+    desc: "Our flagship suite offering panoramic views of the hills with a private balcony and a colonial-style living area.",
+    price: "25,000",
+    size: "850 sq ft",
+    occupancy: "2 Adults",
+    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />, <Tv key="t" />]
+  },
+  {
+    id: 2,
+    category: "Deluxe",
+    name: "Hill View Deluxe",
+    desc: "Elegant and spacious rooms featuring large windows that frame the majestic peaks of Canary Hill.",
+    price: "12,000",
+    size: "450 sq ft",
+    occupancy: "2 Adults",
+    amenities: [<Wifi key="w" />, <Wind key="wi" />, <Tv key="t" />]
+  },
+  {
+    id: 3,
+    category: "Cottages",
+    name: "Garden Cottage",
+    desc: "Tucked away in our private orchards, these cottages offer ultimate privacy and a rustic-luxe vibe.",
+    price: "15,000",
+    size: "550 sq ft",
+    occupancy: "2 Adults",
+    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />]
+  },
+  {
+    id: 4,
+    category: "Deluxe",
+    name: "Heritage Twin Room",
+    desc: "Perfect for friends or small families, blending traditional craftsmanship with modern amenities.",
+    price: "10,500",
+    size: "400 sq ft",
+    occupancy: "2 Adults, 1 Child",
+    amenities: [<Wifi key="w" />, <Tv key="t" />]
+  },
+  {
+    id: 5,
+    category: "Suites",
+    name: "Executive Suite",
+    desc: "A perfect blend of luxury and functionality for the modern traveler.",
+    price: "18,500",
+    size: "600 sq ft",
+    occupancy: "2 Adults",
+    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Tv key="t" />]
+  },
+  {
+    id: 6,
+    category: "Cottages",
+    name: "Stone Cottage",
+    desc: "Rugged exterior with a plush, warm interior for an authentic mountain stay.",
+    price: "14,000",
+    size: "500 sq ft",
+    occupancy: "2 Adults",
+    amenities: [<Wifi key="w" />, <Wind key="wi" />]
+  }
+];
+
+export default function Accommodations() {
+  const [filter, setFilter] = useState("All");
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [selectedRoomData, setSelectedRoomData] = useState<any>(null);
+  const categories = ["All", "Suites", "Cottages", "Deluxe"];
+
+  const openDetails = (room: any) => {
+    setSelectedRoomData(room);
+    setIsDetailsOpen(true);
+  };
+
+  const filteredRooms = filter === "All" 
+    ? rooms 
+    : rooms.filter(room => room.category === filter);
 
   return (
-    <div className="pt-32 pb-20">
-      <div className="container-custom">
-        <div className="mb-20 text-center">
-          <span className="text-gold uppercase tracking-[0.3em] text-sm mb-4 block">Accommodations</span>
-          <h1>Rooms & Suites</h1>
-          <p className="text-text-secondary mt-6 max-w-2xl mx-auto">
-            Each room at Ananta is a blend of comfort and style, designed to provide a serene escape from the world.
-          </p>
+    <div className="pt-32 pb-20 bg-ivory min-h-screen">
+      <div className="container mx-auto px-6">
+        <SectionHeader 
+          subtitle="Accommodations"
+          title="Sanctuaries of Rest"
+        />
+
+        {/* Filter Bar */}
+        <div className="sticky top-[80px] z-40 flex overflow-x-auto no-scrollbar gap-4 py-8 mb-16 bg-ivory border-b border-border -mx-6 px-6 scroll-smooth">
+          <div className="flex gap-4 mx-auto">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setFilter(cat)}
+                className={`px-8 py-2 rounded-full text-xs uppercase tracking-widest transition-all whitespace-nowrap ${
+                  filter === cat 
+                    ? "bg-primary text-ivory shadow-luxury" 
+                    : "bg-cream text-secondary hover:bg-border"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid gap-20">
-          {rooms.map((room, index) => (
-            <div key={index} className={`grid md:grid-cols-2 gap-10 items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}>
-              <div className={index % 2 !== 0 ? 'md:order-2' : ''}>
-                <img src={room.image} alt={room.title} className="w-full h-[500px]" />
-              </div>
-              <div className={index % 2 !== 0 ? 'md:order-1' : ''}>
-                <h2 className="mb-6">{room.title}</h2>
-                <p className="text-text-secondary mb-8 leading-relaxed">{room.description}</p>
-                <div className="mb-10">
-                  <span className="text-sm uppercase tracking-widest text-gold block mb-2">Starting from</span>
-                  <span className="text-2xl font-serif">{room.price} / Night</span>
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          <AnimatePresence mode="popLayout">
+            {filteredRooms.map((room) => (
+              <motion.div 
+                layout
+                key={room.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.5 }}
+                className="bg-cream rounded-[32px] overflow-hidden shadow-soft flex flex-col group h-full"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img src={roomImg} alt={room.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
+                  <div className="absolute inset-0 bg-black/20" />
+                  
+                  {/* Price Tag */}
+                  <div className="absolute top-6 left-6 bg-ivory/90 backdrop-blur-md px-4 py-2 rounded-full shadow-soft z-10">
+                    <span className="text-primary font-bold text-xs">₹{room.price} <small className="text-secondary/60 font-normal">/ night</small></span>
+                  </div>
+
+                  {/* Category Tag */}
+                  <div className="absolute top-6 right-6 bg-primary text-ivory text-[10px] uppercase font-bold px-3 py-1 rounded-full">
+                    {room.category}
+                  </div>
+
+                  {/* Occupancy Tag - Right Bottom */}
+                  <div className="absolute bottom-6 right-6 bg-ivory/90 backdrop-blur-md px-3 py-1.5 rounded-full shadow-soft flex items-center gap-2">
+                    <Users size={12} className="text-primary" />
+                    <span className="text-[10px] font-bold text-secondary uppercase tracking-widest">{room.occupancy}</span>
+                  </div>
                 </div>
-                <Button variant="primary">View Details</Button>
-              </div>
-            </div>
-          ))}
-        </div>
+
+                <div className="p-8 flex flex-col flex-1">
+                  <h3 className="text-2xl font-serif text-secondary mb-4">{room.name}</h3>
+                  {/* <p className="text-secondary/70 text-sm leading-relaxed mb-8 flex-1 italic line-clamp-3">{room.desc}</p> */}
+                  
+                  <div className="flex flex-col gap-4">
+                    <div className="flex gap-3 text-primary/60 mb-2">
+                      {room.amenities.map((amenity, index) => (
+                        <div key={index} className="w-8 h-8 rounded-full bg-ivory border border-border flex items-center justify-center scale-90">
+                          {amenity}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <button onClick={() => openDetails(room)} className="luxury-button-outline w-full py-4 text-[10px]">View Details</button>
+                      <Link href={`/booking?room=${room.name}`} className="luxury-button w-full py-4 text-[10px] flex items-center justify-center">Book Now</Link>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
+      
+
+      <RoomDetailsModal 
+        isOpen={isDetailsOpen} 
+        onClose={() => setIsDetailsOpen(false)} 
+        room={selectedRoomData}
+      />
     </div>
   );
 }

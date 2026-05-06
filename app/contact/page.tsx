@@ -5,9 +5,11 @@ import SectionHeader from '@/components/SectionHeader';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa';
 import { useState } from 'react';
+import CustomSelect from '@/components/CustomSelect';
 
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [subject, setSubject] = useState("General Enquiry");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -117,15 +119,13 @@ export default function Contact() {
                           <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Email Address</label>
                           <input required type="email" placeholder="john@example.com" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
                         </div>
-                        <div className="space-y-2">
-                          <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Subject</label>
-                          <select className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm">
-                            <option>General Enquiry</option>
-                            <option>Room Booking</option>
-                            <option>Wedding Celebration</option>
-                            <option>Corporate Event</option>
-                          </select>
-                        </div>
+                        <CustomSelect 
+                          label="Subject"
+                          value={subject}
+                          onChange={(e) => setSubject(e.target.value)}
+                          options={["General Enquiry", "Room Booking", "Wedding Celebration", "Corporate Event"]}
+                          className="w-full"
+                        />
                       </div>
 
                       <div className="space-y-2">

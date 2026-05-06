@@ -4,11 +4,13 @@ import { useState } from 'react';
 import { Calendar, Users, Home, ChevronDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import CustomSelect from './CustomSelect';
+import GuestCounter from './GuestCounter';
 
 const BookingWidget = () => {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
-  const [guests, setGuests] = useState("2 Adults");
+  const [guests, setGuests] = useState(2);
   const [roomType, setRoomType] = useState("All Rooms");
 
   return (
@@ -47,44 +49,21 @@ const BookingWidget = () => {
           />
         </div>
 
-        {/* Guests */}
-        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10">
-          <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
-            <Users size={12} className="text-primary" />
-            Guests
-          </label>
-          <select 
-            value={guests}
-            onChange={(e) => setGuests(e.target.value)}
-            className="bg-transparent text-sm text-secondary font-bold focus:outline-none w-full cursor-pointer appearance-none mt-1"
-          >
-            <option>1 Adult</option>
-            <option>2 Adults</option>
-            <option>3 Adults</option>
-            <option>2 Adults, 1 Child</option>
-            <option>4 Adults</option>
-          </select>
-          <ChevronDown size={14} className="absolute right-4 bottom-5 text-primary pointer-events-none opacity-50" />
-        </div>
+        <GuestCounter 
+          value={guests}
+          onChange={setGuests}
+          className="flex-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10"
+        />
 
-        {/* Room Type */}
-        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10">
-          <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
-            <Home size={12} className="text-primary" />
-            Category
-          </label>
-          <select 
-            value={roomType}
-            onChange={(e) => setRoomType(e.target.value)}
-            className="bg-transparent text-sm text-secondary font-bold focus:outline-none w-full cursor-pointer appearance-none mt-1"
-          >
-            <option>All Rooms</option>
-            <option>Suites</option>
-            <option>Deluxe</option>
-            <option>Cottages</option>
-          </select>
-          <ChevronDown size={14} className="absolute right-4 bottom-5 text-primary pointer-events-none opacity-50" />
-        </div>
+        <CustomSelect 
+          label="Category"
+          icon={<Home size={12} className="text-primary" />}
+          value={roomType}
+          onChange={(e) => setRoomType(e.target.value)}
+          options={["All Rooms", "Suites", "Deluxe", "Cottages"]}
+          className="flex-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10"
+          variant="rounded"
+        />
       </div>
 
       <Link 

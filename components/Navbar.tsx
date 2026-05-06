@@ -30,10 +30,10 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   const navLinks = [
-    { name: 'About', href: '/about' },
-    { name: 'Accommodations', href: '/accommodations' },
+    { name: 'Rooms', href: '/rooms' },
     { name: 'Dining', href: '/dining' },
     { name: 'Events', href: '/events' },
+    { name: 'Our Story', href: '/our-story' },
     { name: 'Contact', href: '/contact' },
   ];
 
@@ -44,7 +44,7 @@ const Navbar = () => {
           ? "bg-ivory shadow-none py-4" 
           : (isScrolled 
               ? "bg-ivory/95 backdrop-blur-md py-3 shadow-soft border-b border-border" 
-              : "bg-transparent py-6")
+              : `bg-transparent ${!isHome ? 'border-b border-border/75 py-2' : 'py-6'}`)
       }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -56,11 +56,11 @@ const Navbar = () => {
             transition={{ duration: 0.8 }}
           >
             <Image 
-              src="/logo.png" 
+              src="/nav-logo.png" 
               alt="Ananta Logo" 
               width={160} 
               height={50} 
-              className={`w-auto transition-all duration-500 ${isScrolled ? "h-12 brightness-100" : (isHome ? "h-16 brightness-0 invert" : "h-16 brightness-100")} object-contain`}
+              className={`w-auto transition-all duration-500 ${isScrolled ? "md:h-16 h-12" : (isHome ? "md:h-20 h-16" : "md:h-20 h-16")} object-contain`}
               priority
             />
           </motion.div>
@@ -80,7 +80,7 @@ const Navbar = () => {
                 className={`text-sm uppercase tracking-luxury font-medium transition-colors ${
                   isScrolled 
                     ? "text-secondary hover:text-primary" 
-                    : (isHome ? "text-ivory hover:text-primary" : "text-primary hover:text-secondary")
+                    : (isHome ? "text-ivory hover:text-primary" : "text-secondary hover:text-primary")
                 }`}
               >
                 {link.name}
@@ -104,12 +104,9 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <div className="md:hidden flex items-center gap-4">
-          <a href="tel:+919942631802" className={`${isScrolled ? "text-primary" : (isHome ? "text-ivory" : "text-primary")}`}>
-            <Phone size={20} />
-          </a>
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`z-[110] transition-colors ${isMobileMenuOpen ? "text-secondary" : (isScrolled ? "text-secondary" : (isHome ? "text-ivory" : "text-primary"))}`}
+            className={`z-[130] transition-colors ${isMobileMenuOpen ? "text-secondary" : (isScrolled ? "text-secondary" : (isHome ? "text-ivory" : "text-secondary"))}`}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
@@ -120,11 +117,11 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-0 bg-ivory z-[90] flex flex-col items-center justify-center gap-8 md:hidden"
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+            className="fixed top-0 right-0 w-full h-full bg-ivory z-[120] flex flex-col items-center justify-center gap-8 md:hidden"
           >
             {navLinks.map((link) => (
               <Link 

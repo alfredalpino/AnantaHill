@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Calendar, Users, ChevronLeft, ShieldCheck, CreditCard, Info } from 'lucide-react';
 import Link from 'next/link';
 import { useState, Suspense } from 'react';
+import CustomSelect from '@/components/CustomSelect';
+import GuestCounter from '@/components/GuestCounter';
 
 const roomData: Record<string, any> = {
   "The Royal Ananta Suite": {
@@ -33,6 +35,7 @@ const BookingContent = () => {
   const room = roomData[roomName] || roomData["The Royal Ananta Suite"];
   
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [guests, setGuests] = useState(2);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,7 +64,7 @@ const BookingContent = () => {
   return (
     <div className="min-h-screen bg-ivory pt-32 pb-20">
       <div className="container mx-auto px-6">
-        <Link href="/accommodations" className="inline-flex items-center gap-2 text-secondary/40 hover:text-primary transition-colors mb-12 uppercase tracking-widest text-[10px] font-bold">
+        <Link href="/rooms" className="inline-flex items-center gap-2 text-secondary/40 hover:text-primary transition-colors mb-12 uppercase tracking-widest text-[10px] font-bold">
           <ChevronLeft size={16} /> Back to Accommodations
         </Link>
 
@@ -88,7 +91,7 @@ const BookingContent = () => {
 
               <section>
                 <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Stay Information</h3>
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid md:grid-cols-2 gap-8 mb-8">
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Check-in Date</label>
                     <div className="relative">
@@ -97,17 +100,19 @@ const BookingContent = () => {
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Guests</label>
+                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Check-out Date</label>
                     <div className="relative">
-                      <select className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm shadow-soft transition-all appearance-none">
-                        <option>2 Adults</option>
-                        <option>1 Adult</option>
-                        <option>2 Adults, 1 Child</option>
-                        <option>3 Adults</option>
-                      </select>
-                      <Users className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
+                      <input type="date" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm shadow-soft transition-all appearance-none" />
+                      <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
                     </div>
                   </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-8">
+                  <GuestCounter 
+                    value={guests}
+                    onChange={setGuests}
+                    className="w-full"
+                  />
                 </div>
               </section>
 
@@ -143,15 +148,6 @@ const BookingContent = () => {
               <div className="p-10">
                 <h2 className="text-3xl font-serif text-secondary mb-4">{roomName}</h2>
                 <p className="text-secondary/60 text-sm leading-relaxed mb-8 italic">{room.desc}</p>
-                
-                <div className="space-y-4 mb-10">
-                  {room.amenities.map((amenity: string) => (
-                    <div key={amenity} className="flex items-center gap-3 text-secondary/70 text-xs uppercase tracking-widest">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                      {amenity}
-                    </div>
-                  ))}
-                </div>
 
                 <div className="border-t border-border pt-8 space-y-4">
                   <div className="flex justify-between items-center">
@@ -183,7 +179,7 @@ const BookingContent = () => {
 
 export default function BookingPage() {
   return (
-    <Suspense fallback={<div className="h-screen bg-ivory flex items-center justify-center text-primary italic">Loading Sanctuary...</div>}>
+    <Suspense fallback={<div className="h-screen bg-ivory flex items-center justify-center text-primary italic">Preparing Your Retreat...</div>}>
       <BookingContent />
     </Suspense>
   );

@@ -13,9 +13,9 @@ const Footer = () => {
             <Image 
               src="/logo.png" 
               alt="Ananta Logo" 
-              width={180} 
-              height={60} 
-              className="h-12 w-auto object-contain"
+              width={240} 
+              height={80} 
+              className="h-18 object-contain"
             />
             <p className="text-secondary leading-relaxed max-w-xs">
               Ananta - By The Hill is a sanctuary of peace and luxury, where the beauty of nature meets the elegance of heritage.
@@ -37,7 +37,7 @@ const Footer = () => {
           <div>
             <h4 className="font-serif text-xl mb-6">Explore</h4>
             <ul className="flex flex-col gap-4">
-              <li><Link href="/accommodations" className="text-secondary hover:text-primary transition-colors">Accommodations</Link></li>
+              <li><Link href="/rooms" className="text-secondary hover:text-primary transition-colors">Rooms</Link></li>
               <li><Link href="/dining" className="text-secondary hover:text-primary transition-colors">Dining Experience</Link></li>
               <li><Link href="/events" className="text-secondary hover:text-primary transition-colors">Weddings & Events</Link></li>
               <li><Link href="/contact" className="text-secondary hover:text-primary transition-colors">Contact Us</Link></li>
