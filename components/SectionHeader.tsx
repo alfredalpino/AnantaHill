@@ -17,7 +17,7 @@ const SectionHeader = ({ title, subtitle, centered = true, light = false }: Sect
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className={`uppercase tracking-luxury text-xs font-bold mb-4 block ${light ? 'text-ivory/80' : 'text-primary'}`}
+        className={`uppercase tracking-luxury text-xs font-bold mb-4 block ${light ? 'text-ivory' : 'text-primary'}`}
       >
         {subtitle}
       </motion.span>

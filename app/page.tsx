@@ -32,7 +32,7 @@ export default function Home() {
           style={{ y, scale }}
           className="absolute inset-0 z-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/90 z-10" />
           {/* Grain Overlay */}
           <div className="absolute inset-0 opacity-[0.03] z-20 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
           <motion.img 
@@ -56,7 +56,7 @@ export default function Home() {
             className="flex items-center justify-center gap-4 mb-8"
           >
             <div className="h-[1px] w-12 bg-primary/50" />
-            <span className="uppercase tracking-[0.5em] text-[10px] md:text-xs font-bold text-ivory/90">
+            <span className="uppercase tracking-[0.5em] text-[10px] md:text-xs font-bold text-ivory">
               Where Time Stands Still
             </span>
             <div className="h-[1px] w-12 bg-primary/50" />
@@ -78,35 +78,28 @@ export default function Home() {
               By The Hill
             </motion.span>
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 1.2 }}
-            className="text-ivory/60 text-sm md:text-lg italic mb-12 max-w-2xl mx-auto font-light tracking-wide"
-          >
-            Experience the quiet majesty of Canary Hill, where heritage meets the infinite calm of nature.
-          </motion.p>
           
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
-            className="flex flex-col md:flex-row items-center justify-center gap-10"
+            className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full px-6 md:px-0"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className="w-full md:w-auto"
             >
-              <Link href="/accommodations" className="luxury-button min-w-[220px] py-5 flex items-center justify-center">
+              <Link href="/accommodations" className="luxury-button w-full md:min-w-[240px] py-5 flex items-center justify-center">
                 Explore Sanctuary
               </Link>
             </motion.div>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              className="w-full md:w-auto"
             >
-              <Link href="/about" className="luxury-button-outline min-w-[220px] py-5 border-ivory/30 text-ivory hover:bg-ivory hover:text-secondary group flex items-center justify-center gap-3">
+              <Link href="/about" className="luxury-button-outline w-full md:min-w-[240px] py-5 border-ivory/75 text-ivory hover:bg-ivory hover:text-secondary group flex items-center justify-center gap-3">
                 Discover Our Story
                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
               </Link>
@@ -136,10 +129,10 @@ export default function Home() {
                 subtitle="Our Story"
                 title="Timeless Elegance in Nature's Lap"
               />
-              <p className="text-secondary text-lg leading-relaxed mb-8">
+              <p className="text-secondary text-lg leading-relaxed mb-6">
                 Perched gracefully on the serene slopes of Canary Hill, Ananta is more than just a destination; it's a whisper of the hills, a breath of fresh air, and a tribute to refined living.
               </p>
-              <p className="text-secondary/70 leading-relaxed mb-10">
+              <p className="text-secondary text-lg leading-relaxed mb-10">
                 Inspired by the heritage of grand estates and the simplicity of nature, we have crafted a space where every corner tells a story of luxury, comfort, and peace.
               </p>
               <Link href="/about" className="luxury-button-outline group">
@@ -171,20 +164,23 @@ export default function Home() {
             title="Curated Experiences"
           />
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-10">
             {[
               { 
-                title: "Farm-to-Table Dining", 
+                title: "Farm-to-Table", 
+                subtitle: "Dining Experience",
                 desc: "Savor the freshest organic produce harvested directly from our hill-side farms.",
                 img: "/images/food.webp"
               },
               { 
-                title: "Hill-Top Wellness", 
+                title: "Wellness Retreat", 
+                subtitle: "Hill-Top Serenity",
                 desc: "Rejuvenate your spirit with our signature spa treatments and mountain yoga sessions.",
                 img: "/images/mountain-view.webp"
               },
               { 
-                title: "Starlit Evenings", 
+                title: "Starlit Dinners", 
+                subtitle: "Private Evenings",
                 desc: "Private dinners under the vast mountain sky, illuminated by bonfires and starlight.",
                 img: "/images/night-pool.webp"
               }
@@ -195,15 +191,38 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="group cursor-pointer"
+                className="group relative h-[500px] rounded-[40px] overflow-hidden shadow-luxury cursor-pointer"
               >
-                <div className="overflow-hidden rounded-[32px] mb-6 shadow-soft h-[350px] relative">
-                  <img src={exp.img} alt={exp.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors" />
+                <img 
+                  src={exp.img} 
+                  alt={exp.title} 
+                  className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                
+                <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                  <div className="overflow-hidden">
+                    <motion.span 
+                      initial={{ y: 20, opacity: 0 }}
+                      whileInView={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="text-primary text-[10px] uppercase tracking-[0.4em] font-bold mb-3 block"
+                    >
+                      {exp.subtitle}
+                    </motion.span>
+                  </div>
+                  
+                  <h3 className="text-3xl font-serif text-ivory mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{exp.title}</h3>
+                  
+                  <div className="max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100 transition-all duration-700 ease-in-out">
+                    <p className="text-ivory/90 text-sm leading-relaxed mb-8 italic font-medium">
+                      {exp.desc}
+                    </p>
+                    <Link href="/dining" className="inline-flex items-center gap-2 text-primary text-[10px] uppercase tracking-luxury font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all">
+                      Explore Experience <ArrowRight size={12} />
+                    </Link>
+                  </div>
                 </div>
-                <h3 className="text-2xl font-serif mb-3 group-hover:text-primary transition-colors">{exp.title}</h3>
-                <p className="text-secondary/70 text-sm leading-relaxed mb-4 italic">{exp.desc}</p>
-                <Link href="/dining" className="text-primary text-[10px] uppercase tracking-widest font-bold border-b border-primary/20 pb-1 hover:border-primary transition-all">Explore Experience</Link>
               </motion.div>
             ))}
           </div>
@@ -232,7 +251,7 @@ export default function Home() {
             >
               <img src={roomImg} alt="Royal Suite" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10 md:p-16">
-                <span className="text-ivory/80 text-xs uppercase tracking-luxury mb-2">Heritage Experience</span>
+                <span className="text-ivory text-xs uppercase tracking-luxury mb-2 font-bold">Heritage Experience</span>
                 <h3 className="text-3xl md:text-5xl text-ivory font-serif mb-6">The Royal Ananta Suite</h3>
                 
                 <div className="flex items-center gap-10">
@@ -256,7 +275,7 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 p-8 flex flex-col justify-end pointer-events-none">
                   <h3 className="text-2xl text-ivory font-serif">Hill View Deluxe</h3>
-                  <p className="text-ivory/80 text-xs mt-2 uppercase tracking-luxury">Starting from ₹12,000</p>
+                  <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from ₹12,000</p>
                   
                 </div>
               </motion.div>
@@ -274,7 +293,7 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 p-8 flex flex-col justify-end pointer-events-none">
                   <h3 className="text-2xl text-ivory font-serif">Garden Cottage</h3>
-                  <p className="text-ivory/80 text-xs mt-2 uppercase tracking-luxury">Starting from ₹15,000</p>
+                  <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from ₹15,000</p>
                   
                 </div>
               </motion.div>
@@ -296,11 +315,11 @@ export default function Home() {
             <div className="w-full lg:w-1/2 order-1 lg:order-2">
               <SectionHeader 
                 centered={false}
-                subtitle="Culinary Experience"
-                title="The Orchid Garden Restaurant"
+                subtitle="Culinary Excellence"
+                title="The Orchid Garden Restaurant & Bar"
               />
               <p className="text-secondary text-lg leading-relaxed mb-8 italic">
-                Savor the flavors of the hills with our authentic farm-to-table dining experience.
+                Experience a symphony of flavors in a setting of modern sophistication and warm, golden light.
               </p>
               <div className="space-y-6 mb-10">
                 <div className="flex items-start gap-4">
@@ -308,17 +327,17 @@ export default function Home() {
                     <Utensils size={18} />
                   </div>
                   <div>
-                    <h4 className="text-lg font-serif mb-1">Local Delicacies</h4>
-                    <p className="text-secondary/60 text-sm">Experience the traditional tastes of Jharkhand, prepared with a modern touch.</p>
+                    <h4 className="text-lg font-serif mb-1">Fine Dining</h4>
+                    <p className="text-secondary/80 text-sm font-medium">A curated menu of local and international delicacies, served in an atmosphere of refined elegance.</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-full bg-ivory flex items-center justify-center text-primary shrink-0 shadow-soft">
-                    <Coffee size={18} />
+                    <Sparkles size={18} />
                   </div>
                   <div>
-                    <h4 className="text-lg font-serif mb-1">Organic Harvest</h4>
-                    <p className="text-secondary/60 text-sm">Ingredients sourced directly from our private orchards and local hill-side farms.</p>
+                    <h4 className="text-lg font-serif mb-1">The Signature Bar</h4>
+                    <p className="text-secondary/80 text-sm font-medium">Enjoy a premium selection of spirits and artisanal cocktails at our sophisticated mirrored bar.</p>
                   </div>
                 </div>
               </div>
@@ -411,7 +430,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="text-ivory/60 text-lg mb-12 italic max-w-xl"
+              className="text-ivory/90 text-lg mb-12 italic max-w-xl font-medium"
             >
               Whether it's a weekend getaway or a month-long retreat, find your sanctuary in the heart of Canary Hill. Your story begins at Ananta.
             </motion.p>
