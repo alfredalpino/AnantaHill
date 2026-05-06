@@ -15,7 +15,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Ananta - By The Hill | Luxury Resort & Farm",
+  title: "Ananta - By The Hill",
   description: "Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.",
 };
 

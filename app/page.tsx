@@ -47,7 +47,7 @@ export default function Home() {
 
         <motion.div 
           style={{ opacity }}
-          className="container mx-auto px-6 relative z-20 text-center -mt-20 md:-mt-32"
+          className="container mx-auto px-6 relative z-20 text-center"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -75,7 +75,7 @@ export default function Home() {
               transition={{ duration: 1.5, delay: 1, ease: [0.19, 1, 0.22, 1] }}
               className="italic font-light text-[#D4B887] text-5xl md:text-8xl tracking-normal mt-4 block"
             >
-              Luxury Resort
+              By The Hill
             </motion.span>
           </motion.h1>
 
