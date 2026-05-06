@@ -11,21 +11,21 @@ export default function Events() {
       title: "Royal Weddings",
       subtitle: "Begin Your Forever",
       desc: "Exchange vows against the backdrop of majestic hills. Our sprawling lawns and heritage-inspired ballrooms provide the perfect stage for your dream wedding.",
-      img: "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1200",
+      img: "/images/lawn.webp",
       icon: <Heart />
     },
     {
       title: "Corporate Retreats",
       subtitle: "Inspire Excellence",
       desc: "Foster innovation and team spirit in a setting that breathes tranquility. Our modern conference facilities are equipped for productivity and rejuvenation.",
-      img: "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200",
+      img: "/images/lounge-view.webp",
       icon: <Briefcase />
     },
     {
       title: "Private Celebrations",
       subtitle: "Moments of Joy",
       desc: "From milestone birthdays to intimate anniversaries, celebrate your life's special moments in our exclusive private dining spaces and garden decks.",
-      img: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1200",
+      img: "/images/night-pool.webp",
       icon: <PartyPopper />
     }
   ];
@@ -92,10 +92,10 @@ export default function Events() {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { name: "The Grand Ballroom", cap: "500 Guests", img: "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800" },
-              { name: "Hillside Meadows", cap: "1000 Guests", img: "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=800" },
-              { name: "The Heritage Deck", cap: "150 Guests", img: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=800" },
-              { name: "Orchard Pavilion", cap: "80 Guests", img: "https://images.unsplash.com/photo-1524824267900-2fa9cbf7a506?auto=format&fit=crop&q=80&w=800" }
+              { name: "The Grand Ballroom", cap: "500 Guests", img: "/images/restaurant.webp" },
+              { name: "Hillside Meadows", cap: "1000 Guests", img: "/images/lawn-2.webp" },
+              { name: "The Heritage Deck", cap: "150 Guests", img: "/images/pool.webp" },
+              { name: "Orchard Pavilion", cap: "80 Guests", img: "/images/main.webp" }
             ].map((venue, i) => (
               <motion.div 
                 key={i}

@@ -19,6 +19,7 @@ export default function About() {
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative h-[60vh] flex items-center justify-center overflow-hidden p-0 bg-cream border-b border-border">
+        <div className="absolute inset-0 bg-[url('/images/mountain-view.webp')] bg-cover bg-center opacity-10" />
         <div className="container mx-auto px-6 relative z-10 text-center">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
@@ -73,7 +74,7 @@ export default function About() {
 
             <div className="relative">
               <div className="rounded-[40px] overflow-hidden shadow-luxury h-[500px]">
-                <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=1200" alt="About Ananta" className="w-full h-full object-cover" />
+                <img src="/images/lawn.webp" alt="About Ananta" className="w-full h-full object-cover" />
               </div>
               <div className="absolute -bottom-10 -left-10 bg-primary p-10 rounded-[32px] hidden md:block shadow-luxury">
                 <p className="text-ivory font-serif text-2xl italic">"Where the hills <br /> find their home."</p>

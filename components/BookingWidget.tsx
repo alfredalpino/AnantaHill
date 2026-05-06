@@ -16,11 +16,11 @@ const BookingWidget = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-full max-w-6xl mx-auto bg-ivory rounded-[32px] p-4 md:p-2 flex flex-col md:flex-row items-stretch gap-2 shadow-luxury mt-[-80px] relative z-30 border border-border/50"
+      className="w-full max-w-6xl mx-auto bg-ivory/80 backdrop-blur-2xl rounded-[32px] p-4 md:p-3 flex flex-col md:flex-row items-stretch gap-2 shadow-luxury mt-[-100px] relative z-30 border border-ivory/20"
     >
       <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
         {/* Check In */}
-        <div className="flex flex-col gap-1 p-4 hover:bg-cream rounded-2xl transition-colors cursor-pointer relative group">
+        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group">
           <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
             <Calendar size={12} className="text-primary" />
             Check In
@@ -34,7 +34,7 @@ const BookingWidget = () => {
         </div>
 
         {/* Check Out */}
-        <div className="flex flex-col gap-1 p-4 hover:bg-cream rounded-2xl transition-colors cursor-pointer relative group border-t sm:border-t-0 sm:border-l border-border/30">
+        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t sm:border-t-0 sm:border-l border-ivory/10">
           <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
             <Calendar size={12} className="text-primary" />
             Check Out
@@ -48,7 +48,7 @@ const BookingWidget = () => {
         </div>
 
         {/* Guests */}
-        <div className="flex flex-col gap-1 p-4 hover:bg-cream rounded-2xl transition-colors cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-border/30">
+        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10">
           <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
             <Users size={12} className="text-primary" />
             Guests
@@ -68,7 +68,7 @@ const BookingWidget = () => {
         </div>
 
         {/* Room Type */}
-        <div className="flex flex-col gap-1 p-4 hover:bg-cream rounded-2xl transition-colors cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-border/30">
+        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-2xl transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10">
           <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
             <Home size={12} className="text-primary" />
             Category

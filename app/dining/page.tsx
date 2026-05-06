@@ -7,7 +7,7 @@ import TableReservationModal from '@/components/TableReservationModal';
 import DiningCart from '@/components/DiningCart';
 import { Utensils, Leaf, Wine, Coffee, Search, ShoppingBag, ChevronDown } from 'lucide-react';
 
-const dishImg = "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&q=80&w=800";
+const dishImg = "/images/food.webp";
 
 const dishes = [
   { 
@@ -101,6 +101,7 @@ export default function Dining() {
     <div className="pt-32 bg-ivory min-h-screen">
       {/* Hero */}
       <section className="relative h-[40vh] flex items-center justify-center overflow-hidden p-0 bg-cream border-b border-border">
+        <div className="absolute inset-0 bg-[url('/images/restaurant.webp')] bg-cover bg-center opacity-10" />
         <div className="container mx-auto px-6 relative z-20 text-center">
           <motion.span 
             initial={{ opacity: 0, y: 20 }}
