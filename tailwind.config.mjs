@@ -8,33 +8,31 @@ export default {
   theme: {
     extend: {
       colors: {
-        black: "#0B0B0B",
-        charcoal: "#121212",
-        gold: {
-          DEFAULT: "#C8A96A",
-          hover: "#D4AF37",
-        },
+        primary: "#96743A", // Rich Dark Gold
+        secondary: "#5C5242", // Muted Bronze/Brown
+        accent: "#7D5F2E", // Burnished Gold
+        ivory: "#FDFAF5",
         cream: "#F5F2EB",
         beige: "#EFE8DC",
-        green: "#1F3D2B",
-        text: {
-          primary: "#0B0B0B",
-          secondary: "#6B6B6B",
-          light: "#FFFFFF",
-        },
+        background: "#FDFAF5", // Default background (ivory)
+        foreground: "#1A1A1A", // Dark charcoal for text, not pure black
+        border: "rgba(200, 169, 106, 0.2)",
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "serif"],
-        sans: ["var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-outfit)", "sans-serif"],
       },
       boxShadow: {
-        soft: "0 4px 20px rgba(0,0,0,0.05)",
-        medium: "0 8px 30px rgba(0,0,0,0.08)",
+        soft: "0 4px 30px rgba(0, 0, 0, 0.03)",
+        luxury: "0 10px 40px rgba(92, 82, 66, 0.05)",
       },
       borderRadius: {
-        none: "0",
-        sm: "4px",
+        '2xl': '1rem',
+        '3xl': '1.5rem',
       },
+      letterSpacing: {
+        luxury: "0.2em",
+      }
     },
   },
   plugins: [],

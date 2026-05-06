@@ -1,0 +1,190 @@
+"use client";
+
+import { motion, AnimatePresence } from 'framer-motion';
+import SectionHeader from '@/components/SectionHeader';
+import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
+import { useState } from 'react';
+
+export default function Contact() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitted(true);
+    // Reset after some time if needed, or just stay as success
+  };
+
+  return (
+    <div className="bg-ivory pt-32 pb-20 min-h-screen">
+      <div className="container mx-auto px-6">
+        <SectionHeader 
+          subtitle="Contact Us"
+          title="Begin Your Journey"
+        />
+
+        <div className="grid lg:grid-cols-3 gap-12">
+          {/* Contact Info */}
+          <div className="lg:col-span-1 space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-cream p-10 rounded-[32px] border border-border shadow-soft"
+            >
+              <h3 className="text-2xl font-serif mb-8">Reach Out</h3>
+              
+              <div className="space-y-8">
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-ivory border border-border flex items-center justify-center text-primary shrink-0">
+                    <Phone size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-secondary mb-1">Call Us</h4>
+                    <p className="text-secondary font-medium">+91 9942631802</p>
+                    <p className="text-secondary/60 text-xs">Mon - Sun, 24/7</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-ivory border border-border flex items-center justify-center text-primary shrink-0">
+                    <Mail size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-secondary mb-1">Email Us</h4>
+                    <p className="text-secondary font-medium">reservations@ananta.com</p>
+                    <p className="text-secondary/60 text-xs">support@ananta.com</p>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-full bg-ivory border border-border flex items-center justify-center text-primary shrink-0">
+                    <MapPin size={20} />
+                  </div>
+                  <div>
+                    <h4 className="text-[10px] uppercase tracking-widest font-bold text-secondary mb-1">Visit Us</h4>
+                    <p className="text-secondary font-medium leading-relaxed">
+                      Canary Hill Rd, Hirabaug, <br />
+                      Hazaribagh, Jharkhand 825301
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-12 pt-10 border-t border-border">
+                <a 
+                  href="https://wa.me/919942631802" 
+                  className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-full font-bold text-sm hover:opacity-90 transition-opacity shadow-lg"
+                >
+                  <FaWhatsapp size={20} />
+                  Chat on WhatsApp
+                </a>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-ivory p-8 md:p-12 rounded-[40px] border border-border shadow-luxury h-full"
+            >
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <motion.div
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                  >
+                    <h3 className="text-3xl font-serif mb-8 text-secondary">Send an Enquiry</h3>
+                    <form onSubmit={handleSubmit} className="space-y-6">
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">First Name</label>
+                          <input required type="text" placeholder="John" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Last Name</label>
+                          <input required type="text" placeholder="Doe" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
+                        </div>
+                      </div>
+
+                      <div className="grid md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Email Address</label>
+                          <input required type="email" placeholder="john@example.com" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
+                        </div>
+                        <div className="space-y-2">
+                          <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Subject</label>
+                          <select className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm">
+                            <option>General Enquiry</option>
+                            <option>Room Booking</option>
+                            <option>Wedding Celebration</option>
+                            <option>Corporate Event</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Your Message</label>
+                        <textarea rows={6} placeholder="Tell us about your requirements..." className="w-full bg-cream border border-border px-6 py-6 rounded-2xl focus:outline-none focus:border-primary text-sm resize-none"></textarea>
+                      </div>
+
+                      <button type="submit" className="luxury-button w-full md:w-auto px-12 gap-3">
+                        Send Message <Send size={16} />
+                      </button>
+                    </form>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center text-center h-full py-20"
+                  >
+                    <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-8">
+                      <CheckCircle2 size={48} />
+                    </div>
+                    <h3 className="text-3xl font-serif text-secondary mb-4">Message Sent Successfully</h3>
+                    <p className="text-secondary/60 max-w-sm mb-10 italic">
+                      Thank you for reaching out. Our team will get back to you within the next 24 hours.
+                    </p>
+                    <button 
+                      onClick={() => setIsSubmitted(false)}
+                      className="text-primary text-[10px] uppercase tracking-luxury font-bold border-b border-primary pb-1"
+                    >
+                      Send Another Message
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Map Section */}
+        <section className="mt-20">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="rounded-[40px] overflow-hidden h-[500px] shadow-luxury border border-border"
+          >
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14594.394143497148!2d85.3789069!3d23.9930869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49c0000000000%3A0x0!2sCanary%20Hill!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
+              width="100%" 
+              height="100%" 
+              style={{ border: 0, filter: 'grayscale(1) contrast(1.2) opacity(0.8)' }} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </motion.div>
+        </section>
+      </div>
+    </div>
+  );
+}
