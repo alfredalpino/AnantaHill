@@ -37,7 +37,7 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[120] flex justify-end">
+        <div className="fixed inset-0 z-[140] flex justify-end">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -58,8 +58,8 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                 <ShoppingBag className="text-primary" size={24} />
                 <h2 className="text-xl font-serif text-secondary">Your Order</h2>
               </div>
-              <button onClick={onClose} className="p-2 hover:bg-ivory rounded-full transition-colors">
-                <X size={20} className="text-secondary" />
+              <button onClick={onClose} className="p-2 hover:bg-border rounded-full transition-colors group" aria-label="Close cart">
+                <X size={24} className="text-secondary group-hover:text-primary transition-colors" />
               </button>
             </div>
 
@@ -98,10 +98,16 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                     ))}
                   </div>
                 ) : (
-                  <div className="h-full flex flex-col items-center justify-center text-center opacity-40 py-20">
-                    <ShoppingBag size={48} className="mb-4" />
-                    <p className="font-serif">Your cart is empty</p>
-                    <p className="text-xs uppercase tracking-widest mt-2">Add some delicacies to start</p>
+                  <div className="h-full flex flex-col items-center justify-center text-center opacity-60 py-20">
+                    <ShoppingBag size={48} className="mb-4 text-secondary/20" />
+                    <p className="font-serif text-lg text-secondary">Your cart is empty</p>
+                    <p className="text-xs uppercase tracking-widest mt-2 text-secondary/40">Add some delicacies to start</p>
+                    <button 
+                      onClick={onClose}
+                      className="mt-10 luxury-button-outline !px-10 !py-4 text-[10px] opacity-100"
+                    >
+                      Close Cart
+                    </button>
                   </div>
                 )
               ) : (
