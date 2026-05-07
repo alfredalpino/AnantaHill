@@ -44,8 +44,8 @@ const Navbar = () => {
           isMobileMenuOpen 
             ? "bg-white shadow-none py-4" 
             : (isScrolled 
-                ? "bg-white/95 backdrop-blur-md py-4 shadow-sm border-b border-accent/5" 
-                : `bg-transparent ${!isHome ? 'border-b border-accent/10 py-5' : 'py-8'}`)
+                ? "bg-white/95 backdrop-blur-md py-2.5 shadow-sm border-b border-accent/5" 
+                : `bg-transparent ${!isHome ? 'border-b border-accent/10 py-4' : 'py-6'}`)
         }`}
       >
         <div className="container-custom flex justify-between items-center">
@@ -61,7 +61,7 @@ const Navbar = () => {
                 alt="Ananta Logo" 
                 width={140} 
                 height={40} 
-                className={`w-auto transition-all duration-700 ${isScrolled || isMobileMenuOpen ? "h-10 md:h-12" : (isHome ? "h-12 md:h-16" : "h-12 md:h-16")} object-contain`}
+                className={`w-auto transition-all duration-700 ${isScrolled || isMobileMenuOpen ? "h-14 md:h-16" : (isHome ? "h-16 md:h-18" : "h-16 md:h-18")} object-contain`}
                 priority
               />
             </motion.div>
@@ -107,7 +107,15 @@ const Navbar = () => {
           <div className="lg:hidden flex items-center gap-4">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`z-[150] transition-colors ${isMobileMenuOpen ? "text-accent" : "text-accent"}`}
+              className={`z-[150] transition-all duration-300 border rounded-md p-2 ${
+                isMobileMenuOpen 
+                  ? "text-accent border-transparent bg-transparent" 
+                  : (isScrolled 
+                      ? "text-accent border-transparent bg-transparent" 
+                      : (isHome 
+                          ? "text-white border-white/40 bg-white/10 backdrop-blur-sm" 
+                          : "text-accent border-transparent bg-transparent"))
+              }`}
               aria-label="Toggle Menu"
             >
               {isMobileMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
@@ -123,7 +131,7 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed top-0 right-0 w-full h-full bg-white z-[120] flex flex-col items-center justify-center gap-12 lg:hidden"
+            className="fixed top-0 right-0 w-full h-full bg-white/90 backdrop-blur-xl z-[120] flex flex-col items-center justify-center gap-12 lg:hidden"
           >
             <div className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => (

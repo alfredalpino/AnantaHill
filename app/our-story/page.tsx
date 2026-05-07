@@ -26,9 +26,9 @@ export default function OurStory() {
             className="max-w-4xl mx-auto text-center"
           >
             <span className="uppercase tracking-[0.5em] text-xs font-bold text-primary mb-4 block">Est. 2018</span>
-            <h1 className="text-5xl md:text-7xl font-serif text-secondary mb-12 tracking-tighter">
+            <h1 className="text-5xl md:text-7xl font-serif text-secondary mb-12 tracking-tighter leading-[1.2]">
               A Legacy of <br />
-              <span className="italic font-light text-primary">Hillside Tranquility</span>
+              <span className="text-primary font-normal">Hillside Tranquility</span>
             </h1>
             <p className="text-secondary/70 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto font-light italic">
               "Ananta" translates to infinity—a reflection of the boundless peace and timeless beauty that defines our hillside retreat.
@@ -81,7 +81,7 @@ export default function OurStory() {
             </motion.div>
 
             <div className="relative">
-              <div className="rounded-md overflow-hidden shadow-luxury h-[600px] relative">
+              <div className="rounded-md overflow-hidden shadow-luxury h-[400px] md:h-[600px] relative">
                 <img src="/images/lawn.webp" alt="About Ananta" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-secondary/10" />
               </div>

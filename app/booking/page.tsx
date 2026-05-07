@@ -1,33 +1,13 @@
 "use client";
 
 import { useSearchParams } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { Calendar, Users, ChevronLeft, ShieldCheck, CreditCard, Info } from 'lucide-react';
+import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useState, Suspense } from 'react';
-import CustomSelect from '@/components/CustomSelect';
-import GuestCounter from '@/components/GuestCounter';
-
-const roomData: Record<string, any> = {
-  "The Royal Ananta Suite": {
-    price: 25000,
-    image: "/images/room.jpg",
-    desc: "Our most prestigious suite offering unparalleled views and heritage luxury.",
-    amenities: ["Private Balcony", "Butler Service", "Mini Bar", "Mountain View"]
-  },
-  "Hill View Deluxe": {
-    price: 12000,
-    image: "/images/room.jpg",
-    desc: "Wake up to the breathtaking sight of Canary Hill every morning.",
-    amenities: ["King Bed", "Rain Shower", "Work Desk", "WiFi"]
-  },
-  "Garden Cottage": {
-    price: 15000,
-    image: "/images/room.jpg",
-    desc: "A cozy retreat nestled in our private orchards, perfect for privacy.",
-    amenities: ["Private Entrance", "Garden View", "Lounge Area", "Teak Furniture"]
-  }
-};
+import { roomData } from '@/constants/rooms';
+import BookingSuccess from '@/components/booking/BookingSuccess';
+import BookingForm from '@/components/booking/BookingForm';
+import BookingSummary from '@/components/booking/BookingSummary';
 
 const BookingContent = () => {
   const searchParams = useSearchParams();
@@ -43,22 +23,7 @@ const BookingContent = () => {
   };
 
   if (isSubmitted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-ivory p-6">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full bg-cream p-12 rounded-md shadow-luxury text-center border border-border"
-        >
-          <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-8 text-3xl">✓</div>
-          <h2 className="text-3xl font-semibold text-secondary mb-4">Reservation Sent</h2>
-          <p className="text-secondary/60 mb-10 italic">
-            Thank you for choosing Ananta. Our concierge will contact you within 30 minutes to finalize your stay in the {roomName}.
-          </p>
-          <Link href="/" className="luxury-button inline-block">Return Home</Link>
-        </motion.div>
-      </div>
-    );
+    return <BookingSuccess roomName={roomName} />;
   }
 
   return (
@@ -73,103 +38,17 @@ const BookingContent = () => {
           <div className="w-full lg:w-3/5">
             <h1 className="text-4xl md:text-5xl font-semibold text-secondary mb-4">Confirm Reservation</h1>
             <p className="text-secondary/60 mb-12 italic">Please provide your details to finalize the booking process.</p>
-
-            <form onSubmit={handleSubmit} className="space-y-10">
-              <section>
-                <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Personal Details</h3>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all" />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Email Address</label>
-                    <input type="email" placeholder="john@example.com" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all" />
-                  </div>
-                </div>
-              </section>
-
-              <section>
-                <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Stay Information</h3>
-                <div className="grid md:grid-cols-2 gap-8 mb-8">
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Check-in Date</label>
-                    <div className="relative">
-                      <input type="date" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all appearance-none" />
-                      <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Check-out Date</label>
-                    <div className="relative">
-                      <input type="date" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all appearance-none" />
-                      <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
-                    </div>
-                  </div>
-                </div>
-                <div className="grid md:grid-cols-2 gap-8">
-                  <GuestCounter 
-                    value={guests}
-                    onChange={setGuests}
-                    className="w-full"
-                  />
-                </div>
-              </section>
-
-              <section>
-                <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Additional Requests</h3>
-                <div className="space-y-2">
-                  <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Message (Optional)</label>
-                  <textarea rows={4} placeholder="Any specific requirements for your stay?" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all resize-none"></textarea>
-                </div>
-              </section>
-
-              <div className="pt-4">
-                <button type="submit" className="luxury-button w-full py-6 text-sm flex items-center justify-center gap-3">
-                  <ShieldCheck size={20} /> Complete Reservation
-                </button>
-                <p className="text-[10px] text-center text-secondary/40 italic mt-6 flex items-center justify-center gap-2">
-                  <Info size={12} /> This is a secure booking request. No payment is required right now.
-                </p>
-              </div>
-            </form>
+            
+            <BookingForm 
+              onSubmit={handleSubmit}
+              guests={guests}
+              onGuestsChange={setGuests}
+            />
           </div>
 
           {/* Right Side: Summary */}
           <div className="w-full lg:w-2/5 lg:sticky lg:top-32">
-            <div className="bg-cream rounded-md overflow-hidden shadow-luxury border border-border">
-              <div className="h-64 relative">
-                <img src={room.image} alt={roomName} className="w-full h-full object-cover" />
-                <div className="absolute top-6 right-6 bg-ivory/90 backdrop-blur-md px-4 py-2 rounded-full border border-ivory/20 shadow-soft">
-                  <span className="text-[10px] font-bold text-primary uppercase tracking-widest">Active Choice</span>
-                </div>
-              </div>
-              
-              <div className="p-10">
-                <h2 className="text-3xl font-semibold text-secondary mb-4">{roomName}</h2>
-                <p className="text-secondary/60 text-sm leading-relaxed mb-8 italic">{room.desc}</p>
-
-                <div className="border-t border-border pt-8 space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-secondary/40 text-xs uppercase tracking-widest font-bold">Standard Rate</span>
-                    <span className="text-secondary font-bold">Rs. {room.price.toLocaleString()} / night</span>
-                  </div>
-                  <div className="flex justify-between items-center text-primary font-bold">
-                    <span className="text-xs uppercase tracking-widest">Taxes & Fees</span>
-                    <span>Included</span>
-                  </div>
-                  <div className="flex justify-between items-center pt-4">
-                    <span className="text-xl font-semibold text-secondary">Total Estimate</span>
-                    <span className="text-3xl font-bold text-primary font-semibold">Rs. {room.price.toLocaleString()}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-transparent border-t border-border p-8 flex items-center justify-center gap-4">
-                <CreditCard className="text-secondary/30" size={20} />
-                <p className="text-secondary/50 text-[10px] uppercase tracking-widest font-bold">Pay upon arrival or secure checkout later</p>
-              </div>
-            </div>
+            <BookingSummary room={room} roomName={roomName} />
           </div>
         </div>
       </div>

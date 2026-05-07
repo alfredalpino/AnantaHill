@@ -5,13 +5,16 @@ import { motion } from 'framer-motion';
 interface SectionHeaderProps {
   title: string;
   subtitle?: string;
-  centered?: boolean;
+  centered?: boolean | 'responsive';
   light?: boolean;
 }
 
 const SectionHeader = ({ title, subtitle, centered = true, light = false }: SectionHeaderProps) => {
+  const isCentered = centered === true;
+  const isResponsive = centered === 'responsive';
+
   return (
-    <div className={`sm:mb-16 mb-10 ${centered ? 'text-center' : 'text-left'}`}>
+    <div className={`sm:mb-16 mb-10 ${isResponsive ? 'text-left md:text-center' : isCentered ? 'text-center' : 'text-left'}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +38,7 @@ const SectionHeader = ({ title, subtitle, centered = true, light = false }: Sect
         whileInView={{ width: 60 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.3 }}
-        className={`h-px mt-8 ${centered ? 'mx-auto' : ''} ${light ? 'bg-ivory/30' : 'bg-primary/40'}`}
+        className={`h-px mt-8 ${isResponsive ? 'md:mx-auto' : isCentered ? 'mx-auto' : ''} ${light ? 'bg-ivory/30' : 'bg-primary/40'}`}
       />
     </div>
   );

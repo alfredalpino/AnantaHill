@@ -1,0 +1,87 @@
+"use client";
+
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
+import Link from 'next/link';
+
+interface HeroProps {
+  onReserveTable: () => void;
+}
+
+const Hero = ({ onReserveTable }: HeroProps) => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  return (
+    <section ref={heroRef} className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black">
+      {/* Cinematic Image Layer */}
+      <motion.div 
+        style={{ y, scale }}
+        className="absolute inset-0 z-0 overflow-hidden"
+      >
+        <div className="absolute inset-0 bg-black/50 z-10" />
+        <motion.img
+          initial={{ scale: 1.15, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 2.5, ease: [0.19, 1, 0.22, 1] }}
+          src="/images/hero-bg.webp"
+          alt="Ananta Resort"
+          className="w-full h-full object-cover"
+        />
+      </motion.div>
+
+      {/* Content Layer */}
+      <div className="container-custom relative z-30 w-full">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
+            className="text-6xl md:text-[6rem] font-serif text-primary mb-8 tracking-tight"
+          >
+            Ananta <br className='md:hidden block' />
+            <motion.span
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.5, delay: 1.2, ease: [0.19, 1, 0.22, 1] }}
+              className="text-white"
+            >
+               By The Hill
+            </motion.span>
+          </motion.h1>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 1.5 }}
+            className="max-w-lg mx-auto sm:space-y-12 space-y-6"
+          >
+            <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed">
+              Boutique hillside retreat crafted for calm stays, private celebrations, and unforgettable escapes.
+            </p>
+            
+            <div className="flex flex-wrap items-center justify-center md:gap-8 gap-4">
+              <Link href="/rooms" className="luxury-button px-14 sm:px-10 text-xs !bg-white !text-accent hover:!bg-primary hover:!text-white min-w-[200px] text-center">
+                Explore Stay
+              </Link>
+              <button 
+                onClick={onReserveTable}
+                className="px-14 sm:px-10 py-5 border border-white/70 text-white text-xs uppercase tracking-[0.3em] font-medium transition-all hover:bg-white hover:text-accent self-center bg-white/10 backdrop-blur-sm min-w-[200px]"
+              >
+                Reserve Table
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
