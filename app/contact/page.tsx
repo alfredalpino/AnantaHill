@@ -19,7 +19,7 @@ export default function Contact() {
 
   return (
     <div className="bg-ivory sm:pt-40 pt-32 sm:pb-20 pb-12 min-h-screen">
-      <div className="container mx-auto px-6">
+      <div className="container-custom">
         <SectionHeader 
           subtitle="Contact Us"
           title="Begin Your Journey"
@@ -32,9 +32,9 @@ export default function Contact() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-cream sm:p-10 p-8 rounded-[32px] border border-border shadow-soft"
+              className="bg-cream sm:p-10 p-8 rounded-md border border-border shadow-soft"
             >
-              <h3 className="text-2xl font-serif mb-8">Reach Out</h3>
+              <h3 className="text-2xl font-semibold mb-8">Reach Out</h3>
               
               <div className="space-y-8">
                 <div className="flex gap-4">
@@ -76,7 +76,7 @@ export default function Contact() {
               <div className="mt-12 pt-10 border-t border-border">
                 <a 
                   href="https://wa.me/919942631802" 
-                  className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-full font-bold text-sm hover:opacity-90 transition-opacity shadow-lg"
+                  className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] text-white rounded-md font-bold text-sm hover:opacity-90 transition-opacity shadow-lg"
                 >
                   <FaWhatsapp size={20} />
                   Chat on WhatsApp
@@ -91,7 +91,7 @@ export default function Contact() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="bg-ivory p-8 md:p-12 rounded-[40px] border border-border shadow-luxury h-full"
+              className="bg-ivory p-8 md:p-12 rounded-md border border-border shadow-luxury h-full"
             >
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
@@ -101,23 +101,23 @@ export default function Contact() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                   >
-                    <h3 className="text-3xl font-serif mb-8 text-secondary">Send an Enquiry</h3>
+                    <h3 className="text-3xl font-semibold mb-8 text-secondary">Send an Enquiry</h3>
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">First Name</label>
-                          <input required type="text" placeholder="John" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
+                          <input required type="text" placeholder="John" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm" />
                         </div>
                         <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Last Name</label>
-                          <input required type="text" placeholder="Doe" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
+                          <input required type="text" placeholder="Doe" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm" />
                         </div>
                       </div>
 
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Email Address</label>
-                          <input required type="email" placeholder="john@example.com" className="w-full bg-cream border border-border px-6 py-4 rounded-2xl focus:outline-none focus:border-primary text-sm" />
+                          <input required type="email" placeholder="john@example.com" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm" />
                         </div>
                         <CustomSelect 
                           label="Subject"
@@ -130,7 +130,7 @@ export default function Contact() {
 
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Your Message</label>
-                        <textarea rows={6} placeholder="Tell us about your requirements..." className="w-full bg-cream border border-border px-6 py-6 rounded-2xl focus:outline-none focus:border-primary text-sm resize-none"></textarea>
+                        <textarea rows={6} placeholder="Tell us about your requirements..." className="w-full bg-cream border border-border px-6 py-6 rounded-md focus:outline-none focus:border-primary text-sm resize-none"></textarea>
                       </div>
 
                       <button type="submit" className="luxury-button w-full md:w-auto px-12 gap-3">
@@ -148,7 +148,7 @@ export default function Contact() {
                     <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-8">
                       <CheckCircle2 size={48} />
                     </div>
-                    <h3 className="text-3xl font-serif text-secondary mb-4">Message Sent Successfully</h3>
+                    <h3 className="text-3xl font-semibold text-secondary mb-4">Message Sent Successfully</h3>
                     <p className="text-secondary/60 max-w-sm mb-10 italic">
                       Thank you for reaching out. Our team will get back to you within the next 24 hours.
                     </p>
@@ -171,7 +171,7 @@ export default function Contact() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="rounded-[40px] overflow-hidden h-[500px] shadow-luxury border border-border"
+            className="rounded-md overflow-hidden h-[500px] shadow-luxury border border-border"
           >
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2070274789867!2d85.38901109999999!3d24.0121705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49dd5046726e3%3A0x4a5e87ccee39e142!2sAnanta%20By%20The%20Hill!5e1!3m2!1sen!2sin!4v1778131316538!5m2!1sen!2sin" 

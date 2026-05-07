@@ -6,7 +6,7 @@ import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
 const Footer = () => {
   return (
     <footer className="bg-cream border-t border-border pt-20 pb-10">
-      <div className="container mx-auto px-6">
+      <div className="container-custom">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
           {/* Brand Column */}
           <div className="flex flex-col gap-6 items-start">
@@ -47,15 +47,15 @@ const Footer = () => {
             <h4 className="font-serif text-xl mb-6">Get in Touch</h4>
             <ul className="flex flex-col gap-4">
               <li className="flex gap-3 text-secondary">
-                <MapPin size={20} className="text-primary shrink-0" />
+                <MapPin size={20} className="text-primary shrink-0 mt-1.5" />
                 <span>Canary Hill Rd, Hirabaug, Hazaribagh, Jharkhand 825301</span>
               </li>
               <li className="flex gap-3 text-secondary">
-                <Phone size={20} className="text-primary shrink-0" />
+                <Phone size={20} className="text-primary shrink-0 mt-1.5" />
                 <a href="tel:+919942631802" className="hover:text-primary transition-colors">+91 9942631802</a>
               </li>
               <li className="flex gap-3 text-secondary">
-                <Mail size={20} className="text-primary shrink-0" />
+                <Mail size={20} className="text-primary shrink-0 mt-1.5" />
                 <a href="mailto:reservations@ananta.com" className="hover:text-primary transition-colors">reservations@ananta.com</a>
               </li>
             </ul>
@@ -64,7 +64,7 @@ const Footer = () => {
         </div>
 
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-secondary uppercase tracking-widest">
-          <p>&copy; {new Date().getFullYear()} Ananta - By The Hill. All rights reserved.</p>
+          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Ananta. All rights reserved.</p>
           <div className="flex gap-8">
             <Link href="/privacy" className="hover:text-primary link-underline pb-1">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-primary link-underline pb-1">Terms & Conditions</Link>

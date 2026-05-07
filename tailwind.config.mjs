@@ -8,18 +8,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#96743A", // Rich Dark Gold
-        secondary: "#5C5242", // Muted Bronze/Brown
-        accent: "#7D5F2E", // Burnished Gold
-        ivory: "#FDFAF5",
-        cream: "#F5F2EB",
-        beige: "#EFE8DC",
-        background: "#FDFAF5", // Default background (ivory)
-        foreground: "#1A1A1A", // Dark charcoal for text, not pure black
-        border: "rgba(200, 169, 106, 0.2)",
+        primary: "#C5A059", // Muted Gold
+        secondary: "#3C2F2F", // Dark Coffee Brown
+        accent: "#1A1A1A", // Deep Black
+        ivory: "#FAF9F6",
+        white: "#FFFFFF",
+        border: "rgba(60, 47, 47, 0.05)",
       },
       fontFamily: {
-        serif: ["var(--font-playfair)", "serif"],
+        serif: ["var(--font-outfit)", "sans-serif"],
         sans: ["var(--font-outfit)", "sans-serif"],
       },
       boxShadow: {

@@ -16,7 +16,7 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -29,7 +29,7 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative bg-ivory w-full max-w-4xl rounded-[40px] shadow-luxury overflow-hidden flex flex-col md:flex-row h-auto max-h-[90vh]"
+            className="relative bg-ivory w-full max-w-4xl rounded-md shadow-luxury overflow-hidden flex flex-col md:flex-row h-auto max-h-[90vh]"
           >
             <button 
               onClick={onClose}
@@ -45,21 +45,16 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
                 alt={room.name} 
                 className="w-full h-full object-cover" 
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="absolute bottom-8 left-8 text-ivory">
-                <span className="text-[10px] uppercase tracking-luxury font-bold bg-primary px-3 py-1 rounded-full mb-2 inline-block">
-                  {room.category}
-                </span>
-                <h2 className="text-3xl font-serif">{room.name}</h2>
-              </div>
             </div>
 
             {/* Right: Details */}
             <div className="w-full md:w-1/2 p-8 md:p-12 overflow-y-auto">
-              <div className="flex justify-between items-start mb-8">
-                <div>
-                  <p className="text-primary font-bold text-2xl">₹{room.price} <small className="text-secondary/40 font-normal text-sm">/ night</small></p>
-                </div>
+              <div className="mb-8">
+                <span className="text-[10px] uppercase tracking-luxury font-bold text-primary mb-2 block">
+                  {room.category}
+                </span>
+                <h2 className="text-3xl font-serif text-secondary mb-4">{room.name}</h2>
+                <p className="text-primary font-bold text-2xl">Rs. {room.price} <small className="text-secondary/40 font-normal text-sm">/ night</small></p>
               </div>
 
               <div className="space-y-8">

@@ -146,7 +146,7 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                   
                   <div className="flex justify-between items-center pt-2">
                     <span className="text-secondary/60 text-sm">Total Amount</span>
-                    <span className="text-xl font-bold text-primary font-serif">₹{total.toLocaleString()}</span>
+                    <span className="text-xl font-bold text-primary font-semibold">Rs. {total.toLocaleString()}</span>
                   </div>
 
                   <button 

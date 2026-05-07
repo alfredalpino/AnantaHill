@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import { useRef, useState } from 'react';
 import BookingWidget from '@/components/BookingWidget';
 import SectionHeader from '@/components/SectionHeader';
-import { ArrowRight, Star, Quote, CheckCircle2, MapPin, Wind, Waves, Coffee, Sparkles, Utensils } from 'lucide-react';
+import { ArrowRight, Star, Quote, CheckCircle2, MapPin, Wind, Waves, Coffee, Sparkles, Utensils, Leaf } from 'lucide-react';
 import TableReservationModal from '@/components/TableReservationModal';
 
 const roomImg = "/images/room.jpg";
@@ -28,16 +28,15 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden p-0">
-        <motion.div
+      <section ref={heroRef} className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black">
+        {/* Cinematic Image Layer */}
+        <motion.div 
           style={{ y, scale }}
-          className="absolute inset-0 z-0"
+          className="absolute inset-0 z-0 overflow-hidden"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70 z-10" />
-          {/* Grain Overlay */}
-          <div className="absolute inset-0 opacity-[0.03] z-20 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
+          <div className="absolute inset-0 bg-black/50 z-10" />
           <motion.img
-            initial={{ scale: 1.2, opacity: 0 }}
+            initial={{ scale: 1.15, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 2.5, ease: [0.19, 1, 0.22, 1] }}
             src="/images/hero-bg.webp"
@@ -46,67 +45,52 @@ export default function Home() {
           />
         </motion.div>
 
-        <motion.div
-          style={{ opacity }}
-          className="container mx-auto px-6 relative z-20 text-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="flex items-center justify-center gap-4 mb-8"
-          >
-            <div className="h-[1px] w-12 bg-primary/50" />
-            <span className="uppercase tracking-[0.5em] text-[10px] md:text-xs font-bold text-ivory">
-              Where Time Stands Still
-            </span>
-            <div className="h-[1px] w-12 bg-primary/50" />
-          </motion.div>
+        {/* Content Layer */}
+        <div className="container-custom relative z-30 w-full">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.5, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
+              className="text-6xl md:text-[6rem] font-serif text-primary mb-8 tracking-tight"
+            >
+              Ananta <br className='md:hidden block' />
+              <motion.span
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1.5, delay: 1.2, ease: [0.19, 1, 0.22, 1] }}
+                className="text-white"
+              >
+                 By The Hill
+              </motion.span>
+            </motion.h1>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 0.4, ease: [0.19, 1, 0.22, 1] }}
-            className="text-7xl md:text-[11rem] font-serif text-ivory mb-12 leading-[0.8] tracking-tighter"
-          >
-            Ananta <br />
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 1, ease: [0.19, 1, 0.22, 1] }}
-              className="italic font-light text-[#D4B887] text-5xl md:text-8xl tracking-normal mt-4 block"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 1.5 }}
+              className="max-w-lg mx-auto sm:space-y-12 space-y-6"
             >
-              By The Hill
-            </motion.span>
-          </motion.h1>
+              <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed">
+                Boutique hillside retreat crafted for calm stays, private celebrations, and unforgettable escapes.
+              </p>
+              
+              <div className="flex flex-wrap items-center justify-center md:gap-8 gap-4">
+                <Link href="/rooms" className="luxury-button px-14 sm:px-10 text-xs !bg-white !text-accent hover:!bg-primary hover:!text-white">
+                  Explore Stay
+                </Link>
+                <button 
+                  onClick={() => setIsTableModalOpen(true)}
+                  className="px-14 sm:px-10 py-5 border border-white/70 text-white text-xs uppercase tracking-[0.3em] font-medium transition-all hover:bg-white hover:text-accent self-center bg-white/10 backdrop-blur-sm"
+                >
+                  Reserve Table
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.2, ease: "easeOut" }}
-            className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-10 w-full px-6 md:px-0"
-          >
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto"
-            >
-              <Link href="/rooms" className="luxury-button w-full md:min-w-[240px] py-5 flex items-center justify-center">
-                Explore Rooms
-              </Link>
-            </motion.div>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-full md:w-auto"
-            >
-              <Link href="/our-story" className="luxury-button-outline w-full md:min-w-[240px] py-5 border-ivory/75 text-ivory hover:bg-ivory hover:text-secondary group flex items-center justify-center gap-3">
-                Discover Our Story
-                <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-              </Link>
-            </motion.div>
-          </motion.div>
-        </motion.div>
+
       </section>
 
       {/* Booking Section Hidden for now
@@ -117,7 +101,7 @@ export default function Home() {
 
       {/* About/Story Section */}
       <section className="section-padding bg-ivory">
-        <div className="container mx-auto px-6">
+        <div className="container-custom">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -147,7 +131,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1 }}
-                className="rounded-[40px] overflow-hidden shadow-luxury h-full"
+                className="rounded-md overflow-hidden shadow-luxury h-full"
               >
                 <img src="/images/main.webp" alt="Ananta Resort" className="w-full h-full object-cover" />
               </motion.div>
@@ -159,7 +143,7 @@ export default function Home() {
 
       {/* Curated Experiences */}
       <section className="section-padding bg-ivory">
-        <div className="container mx-auto px-6">
+        <div className="container-custom">
           <SectionHeader
             subtitle="Memories in the Making"
             title="Curated Experiences"
@@ -192,34 +176,32 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="group relative h-[500px] rounded-[40px] overflow-hidden shadow-luxury cursor-pointer"
+                className="group relative h-[500px] rounded-md overflow-hidden shadow-luxury cursor-pointer border border-border/50"
               >
                 <img
                   src={exp.img}
                   alt={exp.title}
                   className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
 
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className="overflow-hidden">
-                    <motion.span 
-                      initial={{ y: 20, opacity: 0 }}
-                      whileInView={{ y: 0, opacity: 1 }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
-                      className="text-primary text-xs uppercase tracking-[0.4em] font-bold mb-3 block drop-shadow-md"
-                    >
-                      {exp.subtitle}
-                    </motion.span>
-                  </div>
+                <div className="absolute inset-0 p-8 flex flex-col justify-end z-20">
+                  <motion.span 
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3 }}
+                    className="text-primary text-xs uppercase tracking-[0.4em] font-bold mb-3 block drop-shadow-md"
+                  >
+                    {exp.subtitle}
+                  </motion.span>
                   
-                  <h3 className="text-3xl font-serif text-ivory mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 drop-shadow-lg">{exp.title}</h3>
+                  <h3 className="text-3xl font-serif text-ivory mb-4 drop-shadow-lg">{exp.title}</h3>
                   
-                  <div className="max-h-0 opacity-0 group-hover:max-h-32 group-hover:opacity-100 transition-all duration-700 ease-in-out">
-                    <p className="text-ivory/90 text-sm leading-relaxed mb-8 italic font-medium drop-shadow-sm">
+                  <div className="opacity-100 transition-all duration-700 ease-in-out">
+                    <p className="text-ivory/80 text-sm leading-relaxed mb-8 font-light drop-shadow-sm">
                       {exp.desc}
                     </p>
-                    <Link href="/dining" className="inline-flex items-center gap-2 text-primary text-xs uppercase tracking-luxury font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all drop-shadow-sm">
+                    <Link href="/dining" className="inline-flex items-center gap-2 text-primary text-[10px] uppercase tracking-luxury font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all drop-shadow-sm">
                       Explore Experience <ArrowRight size={12} />
                     </Link>
                   </div>
@@ -232,7 +214,7 @@ export default function Home() {
 
       {/* Featured Rooms */}
       <section className="section-padding bg-ivory">
-        <div className="container mx-auto px-6">
+        <div className="container-custom">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
             <div className="text-left">
               <span className="uppercase tracking-luxury text-xs font-bold text-primary mb-4 block">Stay with Us</span>
@@ -248,7 +230,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative rounded-[40px] overflow-hidden h-[500px] lg:h-[600px] group shadow-luxury"
+              className="relative rounded-md overflow-hidden h-[500px] lg:h-[600px] group shadow-luxury border border-border/50"
             >
               <img src={roomImg} alt="Royal Suite" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-10 md:p-16">
@@ -256,7 +238,7 @@ export default function Home() {
                 <h3 className="text-3xl md:text-5xl text-ivory font-serif mb-6">The Royal Ananta Suite</h3>
 
                 <div className="flex items-center gap-10">
-                  <span className="text-ivory font-bold">₹25,000 / night</span>
+                  <span className="text-ivory font-bold">Rs. 25,000 / night</span>
                   <Link href="/booking?room=The Royal Ananta Suite" className="text-ivory text-xs uppercase tracking-widest border-b border-ivory pb-1 hover:text-primary hover:border-primary transition-all">Book Now</Link>
                 </div>
               </div>
@@ -268,7 +250,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="relative rounded-[32px] overflow-hidden group shadow-luxury md:h-[280px] h-[320px]"
+                className="relative rounded-md overflow-hidden group shadow-luxury md:h-[280px] h-[320px] border border-border/50"
               >
                 <img src={roomImg} alt="Hill View" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors cursor-pointer">
@@ -276,7 +258,7 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 p-8 flex flex-col justify-end pointer-events-none">
                   <h3 className="text-2xl text-ivory font-serif">Hill View Deluxe</h3>
-                  <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from ₹12,000</p>
+                  <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from Rs. 12,000</p>
 
                 </div>
               </motion.div>
@@ -286,7 +268,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 }}
-                className="relative rounded-[32px] overflow-hidden group shadow-luxury md:h-[280px] h-[320px]"
+                className="relative rounded-md overflow-hidden group shadow-luxury md:h-[280px] h-[320px] border border-border/50"
               >
                 <img src={roomImg} alt="Garden Cottage" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
                 <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors cursor-pointer">
@@ -294,7 +276,7 @@ export default function Home() {
                 </div>
                 <div className="absolute inset-0 p-8 flex flex-col justify-end pointer-events-none">
                   <h3 className="text-2xl text-ivory font-serif">Garden Cottage</h3>
-                  <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from ₹15,000</p>
+                  <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from Rs. 15,000</p>
 
                 </div>
               </motion.div>
@@ -304,47 +286,65 @@ export default function Home() {
       </section>
 
       {/* Restaurant Section */}
-      <section className="section-padding bg-cream">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
-            <div className="w-full lg:w-1/2 order-2 lg:order-1">
-              <div className="relative rounded-[40px] overflow-hidden shadow-luxury h-[500px]">
-                <img src="/images/restaurant.webp" alt="Restaurant" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-black/10" />
-              </div>
+      <section className="section-padding bg-cream/30 overflow-hidden">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-12 gap-20 items-center">
+            {/* Visual Side */}
+            <div className="lg:col-span-5 order-2 lg:order-1 relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2 }}
+                className="relative rounded-md overflow-hidden shadow-luxury h-[500px] md:h-[650px] w-full"
+              >
+                <img src="/images/restaurant.webp" alt="The Ananta Dining Room" className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]" />
+                <div className="absolute inset-0 bg-black/5" />
+              </motion.div>
             </div>
-            <div className="w-full lg:w-1/2 order-1 lg:order-2">
-              <SectionHeader
-                centered={false}
-                subtitle="Culinary Excellence"
-                title="The Ananta Dining Room"
-              />
-              <p className="text-secondary text-lg leading-relaxed mb-8 italic">
-                Savor a symphony of exquisite flavors within a setting of unparalleled indoor sophistication, where warm, golden lighting and mirrored elegance combine to create an atmosphere of timeless luxury and refined taste.
-              </p>
-              <div className="space-y-6 mb-10">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-ivory flex items-center justify-center text-primary shrink-0 shadow-soft">
-                    <Utensils size={18} />
+
+            {/* Content Side */}
+            <div className="lg:col-span-7 order-1 lg:order-2 space-y-12">
+              <div>
+                <SectionHeader
+                  centered={false}
+                  subtitle="Culinary Narrative"
+                  title="A Symphony of Hillside Flavors"
+                />
+                <p className="text-secondary text-lg leading-relaxed font-light italic">
+                  "At Ananta, every meal is a tribute to the land. Our kitchen celebrates the rugged beauty of Canary Hill through refined heritage recipes and the freshest harvests from our organic gardens."
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 gap-8">
+                <div className="flex gap-6 group">
+                  <div className="w-12 h-12 rounded-md bg-white flex items-center justify-center text-primary shrink-0 shadow-soft group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    <Utensils size={20} />
                   </div>
                   <div>
-                    <h4 className="text-lg font-serif mb-1">Fine Dining</h4>
-                    <p className="text-secondary/80 text-sm font-medium">A curated selection of signature dishes, served in an atmosphere of quiet luxury and comfort.</p>
+                    <h4 className="text-xl font-semibold mb-2">Heritage Fine Dining</h4>
+                    <p className="text-secondary/70 text-sm leading-relaxed">A curated fusion of local heritage flavors and global culinary techniques.</p>
                   </div>
                 </div>
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-ivory flex items-center justify-center text-primary shrink-0 shadow-soft">
-                    <Waves size={18} />
+
+                <div className="flex gap-6 group">
+                  <div className="w-12 h-12 rounded-md bg-white flex items-center justify-center text-primary shrink-0 shadow-soft group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                    <Sparkles size={20} />
                   </div>
                   <div>
-                    <h4 className="text-lg font-serif mb-1">Polished Ambiance</h4>
-                    <p className="text-secondary/80 text-sm font-medium">Experience the perfect blend of modern architecture and traditional hospitality in our grand dining hall.</p>
+                    <h4 className="text-xl font-semibold mb-2">The Mirrored Hall</h4>
+                  <p className="text-secondary/70 text-sm leading-relaxed">Dine amidst golden reflections and soft evening glows for an immersive sensory escape.</p>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-4">
-                <button onClick={() => setIsTableModalOpen(true)} className="luxury-button">Reserve a Table</button>
-                <Link href="/dining" className="luxury-button-outline">View Full Menu</Link>
+
+              <div className="flex flex-wrap gap-6">
+                <button onClick={() => setIsTableModalOpen(true)} className="luxury-button text-xs">
+                  Reserve a Table
+                </button>
+                <Link href="/dining" className="luxury-button-outline text-xs">
+                  Explore The Menu
+                </Link>
               </div>
             </div>
           </div>
@@ -353,7 +353,7 @@ export default function Home() {
 
       {/* Feedback Section */}
       <section className="section-padding bg-ivory overflow-hidden">
-        <div className="container mx-auto px-6">
+        <div className="container-custom">
           <SectionHeader
             subtitle="Testimonials"
             title="Guest Experiences"
@@ -383,7 +383,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.2 }}
-                className="bg-cream p-10 rounded-[40px] shadow-soft hover:shadow-luxury transition-all relative group border border-border/50"
+                className="bg-cream p-10 rounded-md shadow-soft hover:shadow-luxury transition-all relative group border border-border/50"
               >
                 <Quote className="text-primary/20 absolute top-8 right-8 group-hover:text-primary/40 transition-colors" size={40} />
                 <div className="flex gap-1 mb-6 text-primary">
@@ -403,11 +403,8 @@ export default function Home() {
       </section>
 
       {/* Modern CTA Section */}
-      <section className="relative py-32 overflow-hidden bg-secondary">
-        <div className="absolute inset-0 bg-[url('/images/main.webp')] bg-cover bg-center opacity-20 scale-105" />
-        <div className="absolute inset-0 bg-secondary/80 z-10" />
-
-        <div className="container mx-auto px-6 relative z-20 text-center">
+      <section className="relative section-padding overflow-hidden bg-secondary">
+        <div className="container-custom relative z-20 text-center">
           <div className="max-w-4xl mx-auto">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -422,16 +419,16 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-5xl md:text-7xl font-serif text-ivory mb-8 leading-tight"
+              className="text-5xl md:text-7xl font-sans text-ivory mb-8 leading-tight"
             >
-              Discover the <br /> <span className="italic font-light text-primary">Infinite Calm</span>
+              Discover the <br /> <span className="text-primary">Infinite Calm</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="text-ivory/90 text-lg mb-12 italic max-w-2xl mx-auto font-medium"
+              className="text-ivory/90 text-lg mb-12 max-w-2xl mx-auto font-normal"
             >
               Whether it's a weekend getaway or a month-long retreat, find your sanctuary in the heart of Canary Hill. Your story begins at Ananta.
             </motion.p>
@@ -443,10 +440,10 @@ export default function Home() {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap justify-center gap-6"
             >
-              <Link href="/booking" className="bg-primary text-ivory px-10 py-5 rounded-full text-xs uppercase tracking-luxury font-bold hover:bg-ivory hover:text-secondary transition-all shadow-luxury min-w-[240px]">
+              <Link href="/booking" className="bg-primary text-ivory px-10 py-5 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-ivory hover:text-secondary transition-all shadow-luxury min-w-[240px]">
                 Book Your Stay
               </Link>
-              <Link href="/contact" className="border border-ivory/30 text-ivory px-10 py-5 rounded-full text-xs uppercase tracking-luxury font-bold hover:bg-ivory hover:text-secondary transition-all min-w-[240px]">
+              <Link href="/contact" className="border border-ivory/30 text-ivory px-10 py-5 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-ivory hover:text-secondary transition-all min-w-[240px]">
                 Plan An Event
               </Link>
             </motion.div>

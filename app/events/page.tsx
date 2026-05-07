@@ -31,8 +31,8 @@ export default function Events() {
   ];
 
   return (
-    <div className="bg-ivory sm:pt-40 pt-32 sm:pb-20 pb-12">
-      <div className="container mx-auto px-6">
+    <div className="bg-ivory pt-32 sm:pb-20 pb-12">
+      <div className="container-custom">
         <SectionHeader 
           subtitle="Occasions"
           title="Celebrations at the Hill"
@@ -50,7 +50,7 @@ export default function Events() {
             >
               <div className="w-full md:w-1/2 relative">
                 <div className="absolute -top-10 -left-10 w-40 h-40 bg-cream rounded-full -z-10 blur-3xl opacity-50" />
-                <div className="rounded-[40px] overflow-hidden shadow-luxury h-[450px] md:h-[550px] group relative">
+                <div className="rounded-md overflow-hidden shadow-luxury h-[450px] md:h-[550px] group relative">
                   <img src={type.img} alt={type.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
                 </div>
@@ -63,7 +63,7 @@ export default function Events() {
                   </div>
                   <span className="uppercase tracking-widest text-[10px] font-bold text-primary">{type.subtitle}</span>
                 </div>
-                <h3 className="text-4xl md:text-5xl font-serif text-secondary mb-8">{type.title}</h3>
+                <h3 className="text-4xl md:text-5xl font-semibold text-secondary mb-8">{type.title}</h3>
                 <p className="text-secondary/70 text-lg leading-relaxed mb-10">
                   {type.desc}
                 </p>
@@ -103,11 +103,11 @@ export default function Events() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="group relative h-[300px] rounded-2xl overflow-hidden shadow-soft cursor-pointer"
+                className="group relative h-[300px] rounded-md overflow-hidden shadow-soft cursor-pointer"
               >
                 <img src={venue.img} alt={venue.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
-                  <h4 className="text-ivory font-serif text-xl">{venue.name}</h4>
+                  <h4 className="text-ivory font-semibold text-xl">{venue.name}</h4>
                   <p className="text-ivory/70 text-[10px] uppercase tracking-luxury mt-1">{venue.cap}</p>
                 </div>
               </motion.div>

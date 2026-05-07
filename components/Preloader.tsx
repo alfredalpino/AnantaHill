@@ -42,17 +42,17 @@ const Preloader = () => {
             </motion.div>
             
             {/* Loading Bar Container */}
-            <div className="w-48 h-[1px] bg-primary/10 relative overflow-hidden mx-auto">
+            <div className="w-64 h-[1px] bg-accent/5 relative overflow-hidden mx-auto">
               {/* Progress Line */}
               <motion.div
                 initial={{ left: "-100%" }}
                 animate={{ left: "100%" }}
                 transition={{ 
-                  duration: 1.5, 
+                  duration: 2, 
                   repeat: Infinity, 
-                  ease: "easeInOut" 
+                  ease: [0.19, 1, 0.22, 1] 
                 }}
-                className="absolute top-0 bottom-0 w-24 bg-primary"
+                className="absolute top-0 bottom-0 w-32 bg-primary"
               />
             </div>
             
@@ -60,9 +60,9 @@ const Preloader = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="mt-6 text-xs uppercase tracking-[0.5em] text-primary/80 font-bold text-center"
+              className="mt-8 text-[10px] uppercase tracking-[0.4em] text-accent/40 font-medium text-center"
             >
-              Where Time Stands Still
+              NATURE • RETREAT • EXPERIENCES
             </motion.p>
           </div>
         </motion.div>

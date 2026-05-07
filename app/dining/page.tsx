@@ -36,21 +36,21 @@ const dishes = [
     id: 4,
     category: "Main Course",
     title: "Wild Mushroom Risotto", 
-    price: "₹1,250", 
+    price: "Rs. 1,250", 
     desc: "Foraged mushrooms from the hills, creamy arborio rice, and truffle oil."
   },
   { 
     id: 5,
     category: "Traditional",
     title: "Canary Hill Chicken Curry", 
-    price: "₹950", 
+    price: "Rs. 950", 
     desc: "Country chicken prepared with stone-ground spices and served with steamed red rice."
   },
   { 
     id: 6,
     category: "Healthy",
     title: "Himalayan Trout", 
-    price: "₹1,650", 
+    price: "Rs. 1,650", 
     desc: "Pan-seared trout with lemon butter sauce and seasonal farm vegetables."
   }
 ];
@@ -99,11 +99,11 @@ export default function Dining() {
   };
 
   return (
-    <div className="min-h-screen pt-8">
+    <div className="min-h-screen sm:pt-8 pt-16">
 
       {/* Menu Filter & List */}
       <section className="section-padding">
-        <div className="container mx-auto px-6">
+        <div className="container-custom">
           <SectionHeader 
             subtitle="The Signature"
             title="Culinary Highlights"
@@ -117,7 +117,7 @@ export default function Dining() {
           >
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="bg-primary text-ivory px-10 py-4 rounded-full text-xs uppercase tracking-luxury font-bold hover:bg-accent transition-all shadow-luxury flex items-center gap-3"
+              className="bg-primary text-ivory px-10 py-4 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-accent transition-all shadow-luxury flex items-center gap-3"
             >
               <Utensils size={16} />
               Reserve a Table
@@ -141,7 +141,7 @@ export default function Dining() {
                 placeholder="Search dishes..." 
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-ivory border border-border px-6 py-3 pl-12 rounded-full focus:outline-none focus:border-primary shadow-soft"
+                className="w-full bg-ivory border border-border px-6 py-3 pl-12 rounded-md focus:outline-none focus:border-primary shadow-soft"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-secondary/40" size={18} />
             </div>
@@ -158,7 +158,7 @@ export default function Dining() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.9 }}
                     transition={{ duration: 0.4 }}
-                    className="bg-ivory rounded-3xl overflow-hidden shadow-soft group h-full flex flex-col"
+                    className="bg-ivory rounded-md overflow-hidden shadow-soft group h-full flex flex-col border border-border/50"
                   >
                     <div className="h-64 overflow-hidden relative">
                       <img src={dishImg} alt={dish.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
@@ -168,7 +168,7 @@ export default function Dining() {
                       </div>
                     </div>
                     <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="text-xl font-serif text-secondary mb-4">{dish.title}</h3>
+                      <h3 className="text-xl font-semibold text-secondary mb-4">{dish.title}</h3>
                       <div className="mt-auto flex justify-between items-center">
                         <button 
                           onClick={() => addToCart(dish)} 
@@ -176,7 +176,7 @@ export default function Dining() {
                         >
                           Add to Cart
                         </button>
-                        <span className="text-primary font-bold text-lg">{dish.price}</span>
+                        <span className="text-primary font-bold text-lg">{"Rs. " + dish.price.substring(1)}</span>
                       </div>
                     </div>
                   </motion.div>
