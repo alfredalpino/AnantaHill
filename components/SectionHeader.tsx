@@ -11,7 +11,7 @@ interface SectionHeaderProps {
 
 const SectionHeader = ({ title, subtitle, centered = true, light = false }: SectionHeaderProps) => {
   return (
-    <div className={`mb-16 ${centered ? 'text-center' : 'text-left'}`}>
+    <div className={`sm:mb-16 mb-10 ${centered ? 'text-center' : 'text-left'}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}

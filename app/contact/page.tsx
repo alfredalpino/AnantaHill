@@ -18,7 +18,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="bg-ivory pt-32 pb-20 min-h-screen">
+    <div className="bg-ivory sm:pt-40 pt-32 sm:pb-20 pb-12 min-h-screen">
       <div className="container mx-auto px-6">
         <SectionHeader 
           subtitle="Contact Us"
@@ -32,7 +32,7 @@ export default function Contact() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-cream p-10 rounded-[32px] border border-border shadow-soft"
+              className="bg-cream sm:p-10 p-8 rounded-[32px] border border-border shadow-soft"
             >
               <h3 className="text-2xl font-serif mb-8">Reach Out</h3>
               

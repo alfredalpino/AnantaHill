@@ -18,7 +18,7 @@ export default function OurStory() {
   return (
     <div className="flex flex-col bg-ivory">
       {/* Narrative Header */}
-      <section className="pt-32 pb-20 bg-ivory">
+      <section className="sm:pt-40 pt-32 sm:pb-20 pb-12 bg-ivory">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}

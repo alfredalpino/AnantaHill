@@ -33,7 +33,7 @@ export default function Home() {
           style={{ y, scale }}
           className="absolute inset-0 z-0"
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/50 to-black/90 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70 z-10" />
           {/* Grain Overlay */}
           <div className="absolute inset-0 opacity-[0.03] z-20 pointer-events-none mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
           <motion.img

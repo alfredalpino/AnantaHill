@@ -99,7 +99,7 @@ export default function Dining() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pt-8">
 
       {/* Menu Filter & List */}
       <section className="section-padding">
@@ -108,6 +108,21 @@ export default function Dining() {
             subtitle="The Signature"
             title="Culinary Highlights"
           />
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex justify-center sm:-mt-8 -mt-2 sm:mb-12 mb-6"
+          >
+            <button 
+              onClick={() => setIsModalOpen(true)}
+              className="bg-primary text-ivory px-10 py-4 rounded-full text-xs uppercase tracking-luxury font-bold hover:bg-accent transition-all shadow-luxury flex items-center gap-3"
+            >
+              <Utensils size={16} />
+              Reserve a Table
+            </button>
+          </motion.div>
 
           {/* Search & Categories */}
           {/* Sticky Search & Categories */}

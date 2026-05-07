@@ -33,11 +33,11 @@ const Preloader = () => {
               className="mb-8 flex justify-center"
             >
               <Image 
-                src="/nav-logo.png" 
+                src="/logo.png" 
                 alt="Ananta Logo" 
                 width={200} 
                 height={80} 
-                className="h-20 w-auto object-contain"
+                className="h-28 w-auto object-contain"
               />
             </motion.div>
             

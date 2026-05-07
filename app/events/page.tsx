@@ -31,7 +31,7 @@ export default function Events() {
   ];
 
   return (
-    <div className="bg-ivory pt-32 pb-20">
+    <div className="bg-ivory sm:pt-40 pt-32 sm:pb-20 pb-12">
       <div className="container mx-auto px-6">
         <SectionHeader 
           subtitle="Occasions"

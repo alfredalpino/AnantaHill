@@ -88,7 +88,7 @@ export default function Accommodations() {
     : rooms.filter(room => room.category === filter);
 
   return (
-    <div className="pt-32 pb-20 bg-ivory min-h-screen">
+    <div className="sm:pt-40 pt-32 sm:pb-20 pb-12 bg-ivory min-h-screen">
       <div className="container mx-auto px-6">
         <SectionHeader 
           subtitle="Accommodations"
