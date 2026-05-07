@@ -61,6 +61,19 @@
   .glass-card {
     @apply bg-ivory/80 backdrop-blur-md border border-border shadow-soft;
   }
+
+  .link-underline {
+    @apply relative overflow-hidden;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-full h-[1px] bg-primary transform scale-x-0 origin-right transition-transform duration-500 ease-in-out;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100 origin-left;
+  }
 }
 
 @keyframes fade-up {

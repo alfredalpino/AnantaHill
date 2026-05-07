@@ -102,7 +102,7 @@ export default function Accommodations() {
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-8 py-2 rounded-full text-xs uppercase tracking-widest transition-all whitespace-nowrap ${
+                className={`px-8 py-2 rounded-full text-sm uppercase tracking-widest transition-all whitespace-nowrap ${
                   filter === cat 
                     ? "bg-primary text-ivory shadow-luxury" 
                     : "bg-cream text-secondary hover:bg-border"

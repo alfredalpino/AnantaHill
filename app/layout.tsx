@@ -3,6 +3,8 @@ import { Playfair_Display, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Preloader from "@/components/Preloader";
+import PageWrapper from "@/components/PageWrapper";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -27,10 +29,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${outfit.variable}`}>
       <body className="bg-ivory text-foreground antialiased flex flex-col min-h-screen font-sans">
+        <Preloader />
+        
+        {/* Global Grain Texture Overlay */}
+        <div className="fixed inset-0 z-[9998] pointer-events-none opacity-[0.03] mix-blend-overlay bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')]" />
+        
         <Navbar />
-        <main className="flex-grow">
+        <PageWrapper>
           {children}
-        </main>
+        </PageWrapper>
         <Footer />
       </body>
     </html>

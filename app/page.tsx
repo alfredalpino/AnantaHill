@@ -367,9 +367,9 @@ export default function Home() {
                 role: "Suites Guest"
               },
               {
-                text: "The farm-to-table dining is exceptional. You can literally taste the freshness of the hills in every bite. A sanctuary in the truest sense.",
-                author: "Dr. Sarah Mitchell",
-                role: "Cottage Guest"
+                text: "An exquisite culinary journey. The mirrored elegance of the dining room combined with the authentic flavors of Jharkhand was the highlight of our stay. The Dhuska platter is a must-try!",
+                author: "Ananya Sharma",
+                role: "Dining Guest"
               },
               {
                 text: "Modern luxury blended perfectly with heritage. The attention to detail in the architecture and service is unmatched in the region.",

@@ -18,19 +18,19 @@ export default function OurStory() {
   return (
     <div className="flex flex-col bg-ivory">
       {/* Narrative Header */}
-      <section className="pt-40 pb-20 bg-ivory">
+      <section className="pt-32 pb-20 bg-ivory">
         <div className="container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl"
+            className="max-w-4xl mx-auto text-center"
           >
-            <span className="uppercase tracking-[0.5em] text-[10px] font-bold text-primary mb-6 block">Est. 2018</span>
-            <h1 className="text-6xl md:text-8xl font-serif text-secondary mb-12 leading-[0.9] tracking-tighter">
+            <span className="uppercase tracking-[0.5em] text-xs font-bold text-primary mb-4 block">Est. 2018</span>
+            <h1 className="text-5xl md:text-7xl font-serif text-secondary mb-12 tracking-tighter">
               A Legacy of <br />
               <span className="italic font-light text-primary">Hillside Tranquility</span>
             </h1>
-            <p className="text-secondary/70 text-xl md:text-2xl leading-relaxed max-w-2xl font-light italic">
+            <p className="text-secondary/70 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto font-light italic">
               "Ananta" translates to infinity—a reflection of the boundless peace and timeless beauty that defines our hillside retreat.
             </p>
           </motion.div>
@@ -38,7 +38,7 @@ export default function OurStory() {
       </section>
 
       {/* Stats Bar */}
-      <section className="py-12 border-y border-border/50 bg-cream/30">
+      <section className="py-8 border-y border-border/50 bg-cream/30">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
@@ -49,7 +49,7 @@ export default function OurStory() {
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <div className="text-3xl md:text-4xl font-serif text-primary mb-2">{stat.value}</div>
-                <div className="text-[10px] uppercase tracking-widest font-bold text-secondary/40">{stat.label}</div>
+                <div className="text-[10px] uppercase tracking-widest font-bold text-secondary/50">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -66,7 +66,7 @@ export default function OurStory() {
               viewport={{ once: true }}
               className="space-y-8 text-secondary/80 text-lg leading-relaxed"
             >
-              <h2 className="text-4xl font-serif text-secondary mb-8">Harmony with Nature</h2>
+              <h2 className="text-4xl md:text-6xl font-serif text-secondary mb-8">Harmony with Nature</h2>
               <p>
                 Founded on the belief that true luxury lies in the harmony between man and nature, Ananta was envisioned as a sanctuary for those seeking to escape the cacophony of modern life. Our location on Canary Hill provides a natural vantage point, where the sunrise paints the sky in hues of gold.
               </p>
@@ -85,7 +85,7 @@ export default function OurStory() {
                 <img src="/images/lawn.webp" alt="About Ananta" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-secondary/10" />
               </div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -101,25 +101,30 @@ export default function OurStory() {
       {/* The Ananta Life */}
       <section className="section-padding bg-cream/50">
         <div className="container mx-auto px-6">
-          <SectionHeader 
+          <SectionHeader
             subtitle="The Ananta Life"
             title="Curated Amenities"
           />
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {amenities.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="p-12 bg-ivory rounded-[40px] shadow-soft hover:shadow-luxury transition-all group border border-border/10"
+                className="p-10 bg-ivory rounded-[32px] shadow-soft hover:shadow-luxury transition-all flex items-start gap-8 group border border-border/10 hover:border-primary/20"
               >
-                <div className="w-16 h-16 rounded-3xl bg-cream flex items-center justify-center text-primary mb-8 group-hover:scale-110 group-hover:bg-primary group-hover:text-ivory transition-all duration-500">
+                <div className="w-16 h-16 shrink-0 rounded-2xl bg-cream flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-ivory transition-all duration-500 shadow-sm">
                   {item.icon}
                 </div>
-                <h4 className="text-2xl font-serif text-secondary mb-4">{item.title}</h4>
-                <p className="text-secondary/60 text-base leading-relaxed">{item.desc}</p>
+                <div className="flex flex-col gap-4">
+                  <h4 className="text-2xl font-serif text-secondary group-hover:text-primary transition-colors leading-tight">{item.title}</h4>
+                  <p className="text-secondary/60 text-base leading-relaxed font-light">
+                    {item.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
@@ -130,9 +135,9 @@ export default function OurStory() {
       <section className="section-padding bg-secondary text-ivory text-center">
         <div className="container mx-auto px-6">
           <span className="uppercase tracking-[0.5em] text-[10px] font-bold text-primary mb-8 block">Experience the Infinite</span>
-          <h2 className="text-5xl md:text-8xl font-serif mb-12 leading-[0.9] tracking-tighter">
-            Ready to Write <br /> 
-            <span className="italic font-light text-primary">Your Story?</span>
+          <h2 className="text-5xl text-primary md:text-8xl font-serif mb-12 tracking-tighter">
+            Ready to Write
+            <span className="italic font-light">Your Story?</span>
           </h2>
           <p className="text-ivory/60 max-w-2xl mx-auto mb-16 italic text-xl font-light">
             Join us at Ananta and discover the peace you've been searching for. Our concierge is ready to craft your perfect escape.

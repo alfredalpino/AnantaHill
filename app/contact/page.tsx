@@ -43,7 +43,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-[10px] uppercase tracking-widest font-bold text-secondary mb-1">Call Us</h4>
-                    <p className="text-secondary font-medium">+91 9942631802</p>
+                    <a href="tel:+919942631802" className="text-secondary font-medium hover:text-primary transition-colors">+91 9942631802</a>
                     <p className="text-secondary/60 text-xs">Mon - Sun, 24/7</p>
                   </div>
                 </div>
@@ -54,8 +54,8 @@ export default function Contact() {
                   </div>
                   <div>
                     <h4 className="text-[10px] uppercase tracking-widest font-bold text-secondary mb-1">Email Us</h4>
-                    <p className="text-secondary font-medium">reservations@ananta.com</p>
-                    <p className="text-secondary/60 text-xs">support@ananta.com</p>
+                    <a href="mailto:reservations@ananta.com" className="text-secondary font-medium hover:text-primary transition-colors block">reservations@ananta.com</a>
+                    <a href="mailto:support@ananta.com" className="text-secondary/60 text-xs hover:text-primary transition-colors block">support@ananta.com</a>
                   </div>
                 </div>
 
@@ -174,10 +174,10 @@ export default function Contact() {
             className="rounded-[40px] overflow-hidden h-[500px] shadow-luxury border border-border"
           >
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14594.394143497148!2d85.3789069!3d23.9930869!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49c0000000000%3A0x0!2sCanary%20Hill!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.2070274789867!2d85.38901109999999!3d24.0121705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f49dd5046726e3%3A0x4a5e87ccee39e142!2sAnanta%20By%20The%20Hill!5e1!3m2!1sen!2sin!4v1778131316538!5m2!1sen!2sin" 
               width="100%" 
               height="100%" 
-              style={{ border: 0, filter: 'grayscale(1) contrast(1.2) opacity(0.8)' }} 
+              style={{ border: 0 }} 
               allowFullScreen={true} 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
