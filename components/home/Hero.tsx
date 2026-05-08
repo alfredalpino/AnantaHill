@@ -45,7 +45,7 @@ const Hero = ({ onReserveTable }: HeroProps) => {
             transition={{ duration: 1.5, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
             className="text-6xl md:text-[5rem] font-serif text-primary sm:mb-8 mb-5 tracking-tight"
           >
-            Ananta <br className='md:hidden block' />
+            Ananta <br />
             <motion.span
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -67,7 +67,7 @@ const Hero = ({ onReserveTable }: HeroProps) => {
             </p>
             
             <div className="flex flex-wrap items-center justify-center md:gap-8 gap-4">
-              <Link href="/rooms" className="luxury-button px-14 sm:px-10 text-xs !bg-white !text-accent hover:!bg-primary hover:!text-white min-w-[200px] text-center">
+              <Link href="/rooms" className="luxury-button px-14 sm:px-10 text-xs !bg-primary !text-accent hover:!bg-white hover:!text-accent min-w-[200px] text-center">
                 Explore Stay
               </Link>
               <button 
