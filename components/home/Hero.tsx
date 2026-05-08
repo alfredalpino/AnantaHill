@@ -69,13 +69,13 @@ const Hero = ({ onReserveTable }: HeroProps) => {
             <div className="flex flex-wrap items-center justify-center md:gap-8 gap-4">
               <Link 
                 href="/rooms" 
-                className="luxury-button px-12 text-[15px] !py-4 h-[56px] min-w-[200px] flex items-center justify-center !bg-primary !text-white hover:!bg-white hover:!text-primary"
+                className="luxury-button px-17 text-[15px] !py-4 h-[56px] min-w-[200px] flex items-center justify-center !bg-primary !text-white hover:!bg-white hover:!text-primary"
               >
                 Explore Stay
               </Link>
               <button 
                 onClick={onReserveTable}
-                className="px-12 py-4 h-[56px] min-w-[200px] border border-white text-white text-[15px] capitalize tracking-wide font-medium transition-all hover:bg-white hover:text-primary flex items-center justify-center bg-white/10 backdrop-blur-sm"
+                className="px-16 py-4 h-[56px] min-w-[200px] border border-white text-white text-[15px] capitalize tracking-wide font-medium transition-all hover:bg-white hover:text-primary flex items-center justify-center bg-white/10 backdrop-blur-sm"
               >
                 Reserve Table
               </button>
