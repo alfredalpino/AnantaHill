@@ -43,14 +43,14 @@ const Hero = ({ onReserveTable }: HeroProps) => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
-            className="text-6xl md:text-[5rem] font-serif text-primary mb-8 tracking-tight"
+            className="text-6xl md:text-[5rem] font-serif text-primary sm:mb-8 mb-5 tracking-tight"
           >
             Ananta <br className='md:hidden block' />
             <motion.span
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.5, delay: 1.2, ease: [0.19, 1, 0.22, 1] }}
-              className="text-white"
+              className="text-white text-5xl md:text-[5rem]"
             >
                By The Hill
             </motion.span>
