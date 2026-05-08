@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit, Cinzel } from "next/font/google";
+import { Outfit, Cinzel, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -18,6 +18,12 @@ const cinzel = Cinzel({
   subsets: ["latin"],
 });
 
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Ananta - By The Hill",
   description: "Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.",
@@ -29,7 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${outfit.variable} ${cinzel.variable}`}>
+    <html lang="en" className={`${outfit.variable} ${cinzel.variable} ${cormorant.variable}`}>
       <body className="bg-ivory text-foreground antialiased flex flex-col min-h-screen font-sans">
         <Preloader />
         

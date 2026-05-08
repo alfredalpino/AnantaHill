@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { Calendar, Users, Home, ChevronDown } from 'lucide-react';
+import { Calendar, Users, Home, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import CustomSelect from './CustomSelect';
@@ -14,65 +14,94 @@ const BookingWidget = () => {
   const [roomType, setRoomType] = useState("All Rooms");
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.5 }}
-      className="w-full max-w-6xl mx-auto bg-ivory/80 backdrop-blur-2xl rounded-md p-4 md:p-3 flex flex-col md:flex-row items-stretch gap-2 shadow-luxury mt-[-100px] relative z-30 border border-ivory/20"
-    >
-      <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
-        {/* Check In */}
-        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-md transition-all cursor-pointer relative group">
-          <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
-            <Calendar size={12} className="text-primary" />
-            Check In
-          </label>
-          <input 
-            type="date" 
-            value={checkIn}
-            onChange={(e) => setCheckIn(e.target.value)}
-            className="bg-transparent text-sm text-secondary font-bold focus:outline-none w-full cursor-pointer mt-1"
-          />
-        </div>
+    <section className="py-16 bg-ivory">
+      <div className="container-custom">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="w-full bg-secondary rounded-2xl p-8 md:p-12 shadow-luxury relative z-30"
+        >
+          <div className="mb-8">
+            <h2 className="text-3xl font-serif text-white mb-2">Reserve your stay</h2>
+            <p className="text-white/80 text-sm">Pick your dates and room to continue with a seamless booking experience.</p>
+          </div>
 
-        {/* Check Out */}
-        <div className="flex flex-col gap-1 p-5 hover:bg-ivory/50 rounded-md transition-all cursor-pointer relative group border-t sm:border-t-0 sm:border-l border-ivory/10">
-          <label className="text-[10px] uppercase tracking-[0.2em] text-secondary/50 font-bold flex items-center gap-2">
-            <Calendar size={12} className="text-primary" />
-            Check Out
-          </label>
-          <input 
-            type="date" 
-            value={checkOut}
-            onChange={(e) => setCheckOut(e.target.value)}
-            className="bg-transparent text-sm text-secondary font-bold focus:outline-none w-full cursor-pointer mt-1"
-          />
-        </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 items-end gap-4">
+            {/* Room Selection */}
+            <div className="w-full">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold flex items-center gap-2 mb-2">
+                <Home size={12} />
+                Room
+              </label>
+              <CustomSelect
+                value={roomType}
+                onChange={(e) => setRoomType(e.target.value)}
+                options={["All Rooms", "Suites", "Deluxe", "Cottages"]}
+                variant="full"
+                className="!bg-white/5 !border-white/10 !text-white !rounded"
+              />
+            </div>
 
-        <GuestCounter 
-          value={guests}
-          onChange={setGuests}
-          className="flex-1 p-5 hover:bg-ivory/50 rounded-md transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10"
-        />
+            {/* Check In */}
+            <div className="w-full">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold flex items-center gap-2 mb-2">
+                <Calendar size={12} />
+                Check-In
+              </label>
+              <div className="relative">
+                <input
+                  type="date"
+                  value={checkIn}
+                  onChange={(e) => setCheckIn(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-white/20 cursor-pointer"
+                />
+              </div>
+            </div>
 
-        <CustomSelect 
-          label="Category"
-          icon={<Home size={12} className="text-primary" />}
-          value={roomType}
-          onChange={(e) => setRoomType(e.target.value)}
-          options={["All Rooms", "Suites", "Deluxe", "Cottages"]}
-          className="flex-1 p-5 hover:bg-ivory/50 rounded-md transition-all cursor-pointer relative group border-t lg:border-t-0 lg:border-l border-ivory/10"
-          variant="rounded"
-        />
+            {/* Check Out */}
+            <div className="w-full">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold flex items-center gap-2 mb-2">
+                <Calendar size={12} />
+                Check-Out
+              </label>
+              <div className="relative">
+                <input
+                  type="date"
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                  className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-white/20 cursor-pointer"
+                />
+              </div>
+            </div>
+
+            {/* Guests */}
+            <div className="w-full">
+              <label className="text-[10px] uppercase tracking-[0.2em] text-white/70 font-bold flex items-center gap-2 mb-2">
+                <Users size={12} />
+                Guests
+              </label>
+              <GuestCounter
+                value={guests}
+                onChange={setGuests}
+                variant="booking-bar"
+                className="!bg-white/5 !border-white/10 !text-white !rounded !h-[46px]"
+              />
+            </div>
+
+            {/* Submit */}
+            <div className="w-full">
+              <Link
+                href={`/booking?room=${roomType === "All Rooms" ? "The Royal Ananta Suite" : roomType}`}
+                className="w-full bg-primary hover:bg-primary/90 text-white px-4 h-[46px] rounded text-xs uppercase tracking-luxury font-bold transition-all flex items-center justify-center gap-3 shadow-luxury"
+              >
+                Book Now
+              </Link>
+            </div>
+          </div>
+        </motion.div>
       </div>
-
-      <Link 
-        href={`/booking?room=${roomType === "All Rooms" ? "The Royal Ananta Suite" : roomType}`}
-        className="bg-primary text-ivory px-10 py-5 md:py-0 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-secondary transition-all shadow-luxury m-1 flex items-center justify-center text-center"
-      >
-        Check Availability
-      </Link>
-    </motion.div>
+    </section>
   );
 };
 

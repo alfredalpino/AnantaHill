@@ -72,15 +72,15 @@ export default function Dining() {
     return matchesSearch && matchesCategory;
   });
 
-  const addToCart = (dish: any) => {
+  const addToCart = (dish: any, quantity: number = 1) => {
     setCartItems(prev => {
       const existing = prev.find(item => item.id === dish.id);
       if (existing) {
         return prev.map(item => 
-          item.id === dish.id ? { ...item, quantity: item.quantity + 1 } : item
+          item.id === dish.id ? { ...item, quantity: item.quantity + quantity } : item
         );
       }
-      return [...prev, { ...dish, quantity: 1 }];
+      return [...prev, { ...dish, quantity }];
     });
     setIsCartOpen(true);
   };
@@ -148,7 +148,7 @@ export default function Dining() {
             </div>
           </div>
 
-          <motion.div layout className="grid md:grid-cols-3 lg:grid-cols-4 gap-10">
+          <motion.div layout className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
             <AnimatePresence mode="wait">
               {filteredDishes.length > 0 ? (
                 filteredDishes.map((dish) => (

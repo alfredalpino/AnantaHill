@@ -21,7 +21,7 @@ const Restaurant = ({ onReserveTable }: RestaurantProps) => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="relative rounded-md overflow-hidden shadow-luxury h-[400px] md:h-[650px] w-full"
+              className="relative rounded-md overflow-hidden shadow-luxury h-[400px] md:h-[550px] w-full"
             >
               <img src="/images/restaurant.webp" alt="The Ananta Dining Room" className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]" />
               <div className="absolute inset-0 bg-black/5" />

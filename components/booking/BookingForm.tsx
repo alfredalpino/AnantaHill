@@ -1,6 +1,6 @@
 "use client";
 
-import { Calendar, ShieldCheck, Info } from 'lucide-react';
+import { Calendar, User, Mail, Phone, Users, MessageSquare } from 'lucide-react';
 import GuestCounter from '@/components/GuestCounter';
 
 interface BookingFormProps {
@@ -11,63 +11,113 @@ interface BookingFormProps {
 
 const BookingForm = ({ onSubmit, guests, onGuestsChange }: BookingFormProps) => {
   return (
-    <form onSubmit={onSubmit} className="space-y-10">
-      <section>
-        <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Personal Details</h3>
-        <div className="grid md:grid-cols-2 gap-8">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Full Name</label>
-            <input type="text" placeholder="John Doe" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Email Address</label>
-            <input type="email" placeholder="john@example.com" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all" />
-          </div>
-        </div>
-      </section>
+    <form onSubmit={onSubmit} className="space-y-8">
+      {/* Form Header */}
+      <div>
+        <span className="text-[11px] uppercase tracking-[0.3em] text-primary font-bold block mb-3">Reservation</span>
+        <h2 className="text-4xl font-serif text-secondary mb-4">Your details</h2>
+        <p className="text-secondary/50 text-sm leading-relaxed">Complete the form to continue to secure checkout.</p>
+      </div>
 
-      <section>
-        <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Stay Information</h3>
-        <div className="grid md:grid-cols-2 gap-8 mb-8">
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Check-in Date</label>
-            <div className="relative">
-              <input type="date" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all appearance-none" />
-              <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
-            </div>
-          </div>
-          <div className="space-y-2">
-            <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Check-out Date</label>
-            <div className="relative">
-              <input type="date" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all appearance-none" />
-              <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
-            </div>
-          </div>
+      <div className="grid md:grid-cols-2 gap-x-8 gap-y-6">
+        {/* Full Name */}
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase tracking-widest font-bold text-primary flex items-center gap-2.5 ml-1">
+            <User size={14} /> Full Name
+          </label>
+          <input 
+            type="text" 
+            placeholder="John Doe" 
+            className="w-full bg-[#F9F8F6] border border-[#EBEAE6] px-6 py-4 rounded focus:outline-none focus:border-primary text-sm transition-all" 
+          />
         </div>
-        <div className="grid md:grid-cols-2 gap-8">
+
+        {/* Email */}
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase tracking-widest font-bold text-primary flex items-center gap-2.5 ml-1">
+            <Mail size={14} /> Email
+          </label>
+          <input 
+            type="email" 
+            placeholder="john@example.com" 
+            className="w-full bg-[#F9F8F6] border border-[#EBEAE6] px-6 py-4 rounded focus:outline-none focus:border-primary text-sm transition-all" 
+          />
+        </div>
+
+        {/* Phone */}
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase tracking-widest font-bold text-primary flex items-center gap-2.5 ml-1">
+            <Phone size={14} /> Phone
+          </label>
+          <input 
+            type="tel" 
+            placeholder="+91 6200112103" 
+            className="w-full bg-[#F9F8F6] border border-[#EBEAE6] px-6 py-4 rounded focus:outline-none focus:border-primary text-sm transition-all" 
+          />
+        </div>
+
+        {/* Guests */}
+        <div className="space-y-3">
+          <label className="text-[10px] uppercase tracking-widest font-bold text-primary flex items-center gap-2.5 ml-1">
+            <Users size={14} /> Guests
+          </label>
           <GuestCounter 
             value={guests}
             onChange={onGuestsChange}
+            variant="booking-form"
             className="w-full"
           />
         </div>
-      </section>
 
-      <section>
-        <h3 className="text-xs uppercase tracking-luxury text-primary font-bold mb-8 border-b border-border pb-4">Additional Requests</h3>
-        <div className="space-y-2">
-          <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1">Message (Optional)</label>
-          <textarea rows={4} placeholder="Any specific requirements for your stay?" className="w-full bg-cream border border-border px-6 py-4 rounded-md focus:outline-none focus:border-primary text-sm shadow-soft transition-all resize-none"></textarea>
+        {/* Stay Dates Heading (Full Width) */}
+        <div className="col-span-full">
+          <label className="text-[10px] uppercase tracking-widest font-bold text-primary flex items-center gap-2.5 ml-1 mb-2">
+            <Calendar size={14} /> Stay Dates
+          </label>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="space-y-3">
+              <span className="text-[9px] uppercase tracking-widest font-bold text-secondary/30 ml-4">Check-In</span>
+              <div className="relative">
+                <input 
+                  type="date" 
+                  className="w-full bg-[#F9F8F6] border border-[#EBEAE6] px-6 py-4 rounded focus:outline-none focus:border-primary text-sm transition-all appearance-none pr-14" 
+                />
+                <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
+              </div>
+            </div>
+            <div className="space-y-3">
+              <span className="text-[9px] uppercase tracking-widest font-bold text-secondary/30 ml-4">Check-Out</span>
+              <div className="relative">
+                <input 
+                  type="date" 
+                  className="w-full bg-[#F9F8F6] border border-[#EBEAE6] px-6 py-4 rounded focus:outline-none focus:border-primary text-sm transition-all appearance-none pr-14" 
+                />
+                <Calendar className="absolute right-6 top-1/2 -translate-y-1/2 text-primary/40 pointer-events-none" size={18} />
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <div className="pt-4">
-        <button type="submit" className="luxury-button px-4 w-full py-6 text-sm flex items-center justify-center gap-3">
-          <ShieldCheck size={20} /> Complete Reservation
+        {/* Special Requests */}
+        <div className="col-span-full pt-4 space-y-3">
+          <label className="text-[10px] uppercase tracking-widest font-bold text-primary flex items-center gap-2.5 ml-1">
+            <MessageSquare size={14} /> Special Requests
+          </label>
+          <textarea 
+            rows={5} 
+            placeholder="Let us know if you have any special requirements..." 
+            className="w-full bg-[#F9F8F6] border border-[#EBEAE6] px-6 py-4 rounded focus:outline-none focus:border-primary text-sm transition-all resize-none"
+          ></textarea>
+        </div>
+      </div>
+
+      <div className="pt-2">
+        <button 
+          type="submit" 
+          className="w-full bg-primary hover:bg-primary/90 text-white py-6 rounded text-sm font-bold uppercase tracking-widest transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+        >
+          Proceed to Payment
         </button>
-        <p className="text-[10px] text-center text-secondary/40 italic mt-6 flex items-center justify-center gap-2">
-          <Info size={12} /> This is a secure booking request. No payment is required right now.
-        </p>
       </div>
     </form>
   );

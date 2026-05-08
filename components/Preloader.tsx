@@ -55,15 +55,6 @@ const Preloader = () => {
                 className="absolute top-0 bottom-0 w-32 bg-primary"
               />
             </div>
-            
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              className="mt-8 text-[10px] uppercase tracking-[0.4em] text-accent/40 font-medium text-center"
-            >
-              NATURE • RETREAT • EXPERIENCES
-            </motion.p>
           </div>
         </motion.div>
       )}

@@ -16,7 +16,8 @@ export default {
         border: "var(--border-soft)",
       },
       fontFamily: {
-        serif: ["var(--font-cinzel)", "serif"],
+        serif: ["var(--font-cormorant)", "serif"],
+        display: ["var(--font-cinzel)", "serif"],
         sans: ["var(--font-outfit)", "sans-serif"],
       },
       boxShadow: {

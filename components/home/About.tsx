@@ -18,8 +18,8 @@ const About = () => {
           >
             <SectionHeader
               centered={false}
-              subtitle="Our Story"
-              title="Timeless Elegance in Nature's Lap"
+              subtitle="Our Journey"
+              title="The Ananta Story"
             />
             <p className="text-secondary text-lg leading-relaxed mb-6">
               Perched gracefully on the serene slopes of Canary Hill, Ananta is more than just a destination; it's a whisper of the hills, a breath of fresh air, and a tribute to refined living.
@@ -32,7 +32,7 @@ const About = () => {
             </Link>
           </motion.div>
 
-          <div className="h-[400px] md:h-[600px]">
+          <div className="h-[400px] md:h-[500px]">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}

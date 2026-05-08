@@ -8,6 +8,8 @@ import Rooms from '@/components/home/Rooms';
 import Restaurant from '@/components/home/Restaurant';
 import Testimonials from '@/components/home/Testimonials';
 import CTA from '@/components/home/CTA';
+import BookingWidget from '@/components/BookingWidget';
+import Features from '@/components/home/Features';
 import TableReservationModal from '@/components/TableReservationModal';
 
 export default function Home() {
@@ -16,9 +18,11 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <Hero onReserveTable={() => setIsTableModalOpen(true)} />
+      <BookingWidget />
+      <Features />
+      <Rooms />
       <About />
       <Experiences />
-      <Rooms />
       <Restaurant onReserveTable={() => setIsTableModalOpen(true)} />
       <Testimonials />
       <CTA />

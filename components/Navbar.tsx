@@ -44,8 +44,8 @@ const Navbar = () => {
           isMobileMenuOpen 
             ? "bg-white shadow-none py-4" 
             : (isScrolled 
-                ? "bg-white/95 backdrop-blur-md py-2.5 shadow-sm border-b border-accent/5" 
-                : `bg-transparent ${!isHome ? 'border-b border-accent/10 py-4' : 'py-6'}`)
+                ? "bg-white/95 backdrop-blur-md py-2 shadow-sm border-b border-accent/5" 
+                : `bg-transparent ${!isHome ? 'border-b border-accent/10 py-4' : 'py-5'}`)
         }`}
       >
         <div className="container-custom flex justify-between items-center">
@@ -55,15 +55,29 @@ const Navbar = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1 }}
+              className="flex items-center gap-2"
             >
               <Image 
                 src="/nav-logo.png" 
                 alt="Ananta Logo" 
                 width={140} 
                 height={40} 
-                className={`w-auto transition-all duration-700 ${isScrolled || isMobileMenuOpen ? "h-14 md:h-16" : (isHome ? "h-16 md:h-18" : "h-16 md:h-18")} object-contain`}
+                className={`w-auto transition-all duration-700 ${isScrolled || isMobileMenuOpen ? "h-14 md:h-16" : (isHome ? "h-16" : "h-16")} object-contain`}
                 priority
               />
+              <AnimatePresence>
+                {!isScrolled && (
+                  <motion.span 
+                    initial={{ opacity: 0, width: 0, x: -10 }}
+                    animate={{ opacity: 1, width: "auto", x: 0 }}
+                    exit={{ opacity: 0, width: 0, x: -10 }}
+                    transition={{ duration: 0.5 }}
+                    className="font-display font-bold text-xl md:text-2xl tracking-[0.15em] uppercase text-primary whitespace-nowrap overflow-hidden"
+                  >
+                    Ananta
+                  </motion.span>
+                )}
+              </AnimatePresence>
             </motion.div>
           </Link>
   
@@ -78,7 +92,7 @@ const Navbar = () => {
               >
                 <Link 
                   href={link.href} 
-                  className={`text-xs uppercase tracking-[0.3em] font-medium transition-colors link-underline ${
+                  className={`text-[15px] capitalize tracking-wide font-sans font-medium transition-colors link-underline ${
                     isScrolled 
                       ? "text-accent hover:text-primary" 
                       : (isHome ? "text-white hover:text-primary" : "text-accent hover:text-primary")
@@ -96,7 +110,7 @@ const Navbar = () => {
             >
               <Link 
                 href="/booking" 
-                className="luxury-button text-xs !px-8 !py-3"
+                className="luxury-button !bg-primary hover:!bg-primary/90 !text-white text-[13px] capitalize tracking-wide font-sans font-bold !px-6 !py-3 shadow-sm"
               >
                 Book Now
               </Link>
@@ -158,7 +172,7 @@ const Navbar = () => {
                 <Link 
                   href="/booking" 
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="luxury-button"
+                  className="luxury-button !bg-primary !text-secondary hover:!bg-secondary hover:!text-white"
                 >
                   Book Your Stay
                 </Link>

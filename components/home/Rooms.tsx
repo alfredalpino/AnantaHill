@@ -1,82 +1,86 @@
 "use client";
 
-import { motion } from 'framer-motion';
+import { useState } from 'react';
 import Link from 'next/link';
+import SectionHeader from '@/components/SectionHeader';
+import RoomCard from '@/components/cards/RoomCard';
+import RoomDetailsModal from '@/components/RoomDetailsModal';
+import { Wifi, Coffee, Wind, Tv } from 'lucide-react';
 
 const roomImg = "/images/room.jpg";
 
+const rooms = [
+  {
+    id: 1,
+    category: "Suites",
+    name: "The Royal Ananta Suite",
+    desc: "Our flagship suite offering panoramic views of the hills with a private balcony and a colonial-style living area.",
+    price: "25,000",
+    size: "850 sq ft",
+    occupancy: "2 Guests",
+    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />, <Tv key="t" />]
+  },
+  {
+    id: 2,
+    category: "Deluxe",
+    name: "Hill View Deluxe",
+    desc: "Elegant and spacious rooms featuring large windows that frame the majestic peaks of Canary Hill.",
+    price: "12,000",
+    size: "450 sq ft",
+    occupancy: "2 Guests",
+    amenities: [<Wifi key="w" />, <Wind key="wi" />, <Tv key="t" />]
+  },
+  {
+    id: 3,
+    category: "Cottages",
+    name: "Garden Cottage",
+    desc: "Tucked away in our private orchards, these cottages offer ultimate privacy and a rustic-luxe vibe.",
+    price: "15,000",
+    size: "550 sq ft",
+    occupancy: "2 Guests",
+    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />]
+  }
+];
+
 const Rooms = () => {
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+  const [selectedRoomData, setSelectedRoomData] = useState<any>(null);
+
+  const openDetails = (room: any) => {
+    setSelectedRoomData(room);
+    setIsDetailsOpen(true);
+  };
+
   return (
     <section className="section-padding bg-ivory">
       <div className="container-custom">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
           <div className="text-left">
             <span className="uppercase tracking-luxury text-xs font-bold text-primary mb-4 block">Stay with Us</span>
-            <h2 className="text-4xl md:text-6xl font-serif text-secondary">The Collection</h2>
+            <h2 className="text-4xl md:text-6xl font-serif text-secondary">Explore Our Stays</h2>
           </div>
           <Link href="/rooms" className="luxury-button-outline px-10 py-3">
             View All Rooms
           </Link>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-md overflow-hidden h-[450px] lg:h-[600px] group shadow-luxury border border-border/50"
-          >
-            <img src={roomImg} alt="Royal Suite" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-8 md:p-14">
-              <span className="text-ivory text-xs uppercase tracking-luxury mb-2 font-bold">Heritage Experience</span>
-              <h3 className="text-2xl md:text-3xl text-ivory font-serif mb-6">The Royal Ananta Suite</h3>
-
-              <div className="flex items-center gap-10">
-                <span className="text-ivory font-bold">Rs. 25,000 / night</span>
-                <Link href="/booking?room=The Royal Ananta Suite" className="text-ivory text-xs uppercase tracking-widest border-b border-ivory pb-1 hover:text-primary hover:border-primary transition-all">Book Now</Link>
-              </div>
-            </div>
-          </motion.div>
-
-          <div className="flex flex-col gap-10">
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="relative rounded-md overflow-hidden group shadow-luxury md:h-[280px] h-[320px] border border-border/50"
-            >
-              <img src={roomImg} alt="Hill View" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors cursor-pointer">
-                <Link href="/booking?room=Hill View Deluxe" className="absolute inset-0" />
-              </div>
-              <div className="absolute inset-0 p-8 flex flex-col justify-end pointer-events-none">
-                <h3 className="text-2xl text-ivory font-serif">Hill View Deluxe</h3>
-                <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from Rs. 12,000</p>
-
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="relative rounded-md overflow-hidden group shadow-luxury md:h-[280px] h-[320px] border border-border/50"
-            >
-              <img src={roomImg} alt="Garden Cottage" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-              <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors cursor-pointer">
-                <Link href="/booking?room=Garden Cottage" className="absolute inset-0" />
-              </div>
-              <div className="absolute inset-0 p-8 flex flex-col justify-end pointer-events-none">
-                <h3 className="text-2xl text-ivory font-serif">Garden Cottage</h3>
-                <p className="text-ivory text-xs mt-2 uppercase tracking-luxury font-bold">Starting from Rs. 15,000</p>
-
-              </div>
-            </motion.div>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {rooms.map((room) => (
+            <RoomCard 
+              key={room.id} 
+              room={room} 
+              roomImg={roomImg} 
+              onOpenDetails={openDetails} 
+            />
+          ))}
         </div>
       </div>
+
+      <RoomDetailsModal 
+        isOpen={isDetailsOpen} 
+        onClose={() => setIsDetailsOpen(false)} 
+        room={selectedRoomData}
+      />
     </section>
   );
 };

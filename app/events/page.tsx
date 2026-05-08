@@ -75,7 +75,7 @@ export default function Events() {
                     </div>
                   ))}
                 </div>
-                <Link href="/contact" className="luxury-button px-10">
+                <Link href="/contact" className="luxury-button px-6">
                   Plan Your Event
                 </Link>
               </div>

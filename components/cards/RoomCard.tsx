@@ -75,13 +75,13 @@ const RoomCard = ({ room, roomImg, onOpenDetails }: RoomCardProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <button 
               onClick={() => onOpenDetails(room)} 
-              className="luxury-button-outline w-full py-4 text-[10px]"
+              className="luxury-button-outline w-full py-4 px-2 text-xs"
             >
               Details
             </button>
             <Link 
               href={`/booking?room=${room.name}`} 
-              className="luxury-button w-full py-4 text-[10px] flex items-center justify-center"
+              className="luxury-button w-full py-4 px-2 text-xs flex items-center justify-center"
             >
               Book Now
             </Link>

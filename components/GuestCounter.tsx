@@ -9,6 +9,7 @@ interface GuestCounterProps {
   max?: number;
   label?: string;
   className?: string;
+  variant?: 'default' | 'booking-bar' | 'booking-form';
 }
 
 const GuestCounter = ({ 
@@ -17,7 +18,8 @@ const GuestCounter = ({
   min = 1, 
   max = 10, 
   label = "Guests",
-  className = "" 
+  className = "",
+  variant = 'default'
 }: GuestCounterProps) => {
   const increment = () => {
     if (value < max) onChange(value + 1);
@@ -26,6 +28,54 @@ const GuestCounter = ({
   const decrement = () => {
     if (value > min) onChange(value - 1);
   };
+
+  if (variant === 'booking-bar') {
+    return (
+      <div className={`flex items-center justify-between px-4 bg-white/5 border border-white/10 rounded-xl ${className}`}>
+        <button 
+          type="button"
+          onClick={decrement}
+          className={`text-white/40 hover:text-white transition-colors ${value <= min ? 'opacity-20 cursor-not-allowed' : ''}`}
+        >
+          <Minus size={16} />
+        </button>
+        
+        <span className="font-bold text-sm">{value}</span>
+
+        <button 
+          type="button"
+          onClick={increment}
+          className={`text-white/40 hover:text-white transition-colors ${value >= max ? 'opacity-20 cursor-not-allowed' : ''}`}
+        >
+          <Plus size={16} />
+        </button>
+      </div>
+    );
+  }
+
+  if (variant === 'booking-form') {
+    return (
+      <div className={`flex items-center justify-between px-6 py-4 bg-[#F9F8F6] border border-[#EBEAE6] rounded-2xl ${className}`}>
+        <button 
+          type="button"
+          onClick={decrement}
+          className={`text-secondary/30 hover:text-secondary transition-colors ${value <= min ? 'opacity-20 cursor-not-allowed' : ''}`}
+        >
+          <Minus size={20} />
+        </button>
+        
+        <span className="font-bold text-lg text-secondary">{value}</span>
+
+        <button 
+          type="button"
+          onClick={increment}
+          className={`text-secondary/30 hover:text-secondary transition-colors ${value >= max ? 'opacity-20 cursor-not-allowed' : ''}`}
+        >
+          <Plus size={20} />
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex flex-col gap-1 ${className}`}>

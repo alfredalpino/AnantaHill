@@ -14,7 +14,7 @@ const SectionHeader = ({ title, subtitle, centered = true, light = false }: Sect
   const isResponsive = centered === 'responsive';
 
   return (
-    <div className={`sm:mb-16 mb-10 ${isResponsive ? 'text-left md:text-center' : isCentered ? 'text-center' : 'text-left'}`}>
+    <div className={`sm:mb-12 mb-10 ${isResponsive ? 'text-left md:text-center' : isCentered ? 'text-center' : 'text-left'}`}>
       <motion.span 
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -29,7 +29,7 @@ const SectionHeader = ({ title, subtitle, centered = true, light = false }: Sect
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.1 }}
-        className={`text-4xl md:text-5xl lg:text-6xl font-serif ${light ? 'text-ivory' : 'text-secondary'}`}
+        className={`text-4xl md:text-5xl font-serif ${light ? 'text-ivory' : 'text-secondary'}`}
       >
         {title}
       </motion.h2>

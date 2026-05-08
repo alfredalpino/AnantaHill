@@ -30,7 +30,7 @@ const Hero = ({ onReserveTable }: HeroProps) => {
           initial={{ scale: 1.15, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 2.5, ease: [0.19, 1, 0.22, 1] }}
-          src="/images/hero-bg.webp"
+          src="/images/hero-1.webp"
           alt="Ananta Resort"
           className="w-full h-full object-cover"
         />
