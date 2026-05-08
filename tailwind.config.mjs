@@ -8,12 +8,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#C5A059", // Muted Gold
-        secondary: "#3C2F2F", // Dark Coffee Brown
-        accent: "#1A1A1A", // Deep Black
-        ivory: "#FAF9F6",
-        white: "#FFFFFF",
-        border: "rgba(60, 47, 47, 0.05)",
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
+        ivory: "var(--ivory)",
+        white: "var(--white)",
+        border: "var(--border-soft)",
       },
       fontFamily: {
         serif: ["var(--font-outfit)", "sans-serif"],
