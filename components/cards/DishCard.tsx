@@ -82,7 +82,7 @@ const DishCard = ({ dish, dishImg, onAddToCart }: DishCardProps) => {
             onClick={() => onAddToCart(dish, quantity)} 
             className="flex-1 bg-primary hover:bg-primary/90 text-secondary py-3 rounded-lg flex items-center justify-center transition-all active:scale-[0.97]"
           >
-            <span className="text-[13px] text-white tracking-wide font-bold">Add to Cart</span>
+            <span className="text-[13px] text-white tracking-wide font-semibold capitalize">Add to cart</span>
           </button>
         </div>
       </div>

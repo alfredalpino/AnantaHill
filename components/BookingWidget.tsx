@@ -93,7 +93,7 @@ const BookingWidget = () => {
             <div className="w-full">
               <Link
                 href={`/booking?room=${roomType === "All Rooms" ? "The Royal Ananta Suite" : roomType}`}
-                className="w-full bg-primary hover:bg-primary/90 text-white px-4 h-[46px] rounded text-xs uppercase tracking-luxury font-bold transition-all flex items-center justify-center gap-3 shadow-luxury"
+                className="w-full bg-primary hover:bg-primary/90 text-white px-4 h-[46px] rounded text-[15px] capitalize tracking-wide font-bold transition-all flex items-center justify-center gap-3 shadow-luxury"
               >
                 Book Now
               </Link>

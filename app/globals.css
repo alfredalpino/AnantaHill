@@ -57,11 +57,11 @@
   }
 
   .luxury-button {
-    @apply inline-flex items-center justify-center px-10 py-5 bg-primary text-white text-[10px] uppercase tracking-[0.4em] font-bold transition-all hover:bg-primary/90 active:scale-[0.98] shadow-soft;
+    @apply inline-flex items-center justify-center px-10 py-5 bg-primary text-white text-[15px] capitalize tracking-wide font-bold transition-all hover:bg-primary/90 active:scale-[0.98] shadow-soft;
   }
 
   .luxury-button-outline {
-    @apply inline-flex items-center justify-center px-10 py-5 border border-primary text-primary text-[10px] uppercase tracking-[0.4em] font-bold transition-all hover:bg-primary/5 active:scale-[0.98];
+    @apply inline-flex items-center justify-center px-10 py-5 border border-primary text-primary text-[15px] capitalize tracking-wide font-bold transition-all hover:bg-primary/5 active:scale-[0.98];
   }
 
   .section-padding {

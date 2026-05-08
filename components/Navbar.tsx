@@ -110,7 +110,7 @@ const Navbar = () => {
             >
               <Link 
                 href="/booking" 
-                className="luxury-button !bg-primary hover:!bg-primary/90 !text-white text-[13px] capitalize tracking-wide font-sans font-bold !px-6 !py-3 shadow-sm"
+                className="luxury-button !bg-primary hover:!bg-primary/90 !text-white text-[15px] capitalize tracking-wide font-sans font-semibold !px-6 !py-2.5 shadow-sm"
               >
                 Book Now
               </Link>

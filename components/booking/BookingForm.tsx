@@ -114,7 +114,7 @@ const BookingForm = ({ onSubmit, guests, onGuestsChange }: BookingFormProps) => 
       <div className="pt-2">
         <button 
           type="submit" 
-          className="w-full bg-primary hover:bg-primary/90 text-white py-6 rounded text-sm font-bold uppercase tracking-widest transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+          className="w-full bg-primary hover:bg-primary/90 text-white py-6 rounded text-[15px] capitalize tracking-wide font-bold transition-all active:scale-[0.98] flex items-center justify-center gap-3"
         >
           Proceed to Payment
         </button>

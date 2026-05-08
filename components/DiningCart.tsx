@@ -104,7 +104,7 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                     <p className="text-xs uppercase tracking-widest mt-2 text-secondary/40">Add some delicacies to start</p>
                     <button 
                       onClick={onClose}
-                      className="mt-10 luxury-button-outline !px-10 !py-4 text-[10px] opacity-100"
+                      className="mt-10 luxury-button-outline !px-10 !py-4 text-[15px] opacity-100"
                     >
                       Close Cart
                     </button>
@@ -128,9 +128,9 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                       setIsOrdered(false);
                       onClose();
                     }}
-                    className="text-primary text-xs uppercase tracking-widest font-bold border-b border-primary pb-1"
+                    className="text-primary text-[15px] capitalize tracking-wide font-bold border-b border-primary pb-1"
                   >
-                    Back to Menu
+                    Back to menu
                   </button>
                 </motion.div>
               )}
@@ -157,9 +157,9 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
 
                   <button 
                     type="submit"
-                    className="luxury-button w-full py-4 text-sm"
+                    className="luxury-button w-full py-4 text-[15px]"
                   >
-                    Place In-Room Order
+                    Place in-room order
                   </button>
                 </form>
               </div>

@@ -118,10 +118,10 @@ export default function Dining() {
           >
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="bg-primary text-ivory px-10 py-4 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-accent transition-all shadow-luxury flex items-center gap-3"
+              className="bg-primary text-ivory px-10 py-4 rounded-md text-[15px] capitalize tracking-wide font-bold hover:bg-accent transition-all shadow-luxury flex items-center gap-3"
             >
-              <Utensils size={16} />
-              Reserve a Table
+              <Utensils size={18} />
+              Reserve a table
             </button>
           </motion.div>
 

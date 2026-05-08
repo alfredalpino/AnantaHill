@@ -57,8 +57,8 @@ const Experiences = () => {
                   <p className="text-ivory/80 text-sm leading-relaxed mb-4 font-light drop-shadow-sm">
                     {exp.desc}
                   </p>
-                  <Link href="/dining" className="inline-flex items-center gap-2 text-primary text-[10px] uppercase tracking-luxury font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all drop-shadow-sm">
-                    Explore Experience <ArrowRight size={12} />
+                  <Link href="/dining" className="inline-flex items-center gap-2 text-primary text-[15px] capitalize tracking-wide font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all drop-shadow-sm">
+                    Explore experience <ArrowRight size={14} />
                   </Link>
                 </div>
               </div>

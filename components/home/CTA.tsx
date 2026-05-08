@@ -42,11 +42,11 @@ const CTA = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-wrap justify-center gap-6"
           >
-            <Link href="/booking" className="bg-primary text-ivory px-10 py-5 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-ivory hover:text-secondary transition-all shadow-luxury min-w-[240px]">
-              Book Your Stay
+            <Link href="/booking" className="bg-primary text-ivory px-10 py-5 rounded-md text-[15px] capitalize tracking-wide font-bold hover:bg-ivory hover:text-secondary transition-all shadow-luxury min-w-[240px]">
+              Book your stay
             </Link>
-            <Link href="/contact" className="border border-ivory/30 text-ivory px-10 py-5 rounded-md text-xs uppercase tracking-luxury font-bold hover:bg-ivory hover:text-secondary transition-all min-w-[240px]">
-              Plan An Event
+            <Link href="/contact" className="border border-ivory/30 text-ivory px-10 py-5 rounded-md text-[15px] capitalize tracking-wide font-bold hover:bg-ivory hover:text-secondary transition-all min-w-[240px]">
+              Plan an event
             </Link>
           </motion.div>
         </div>
