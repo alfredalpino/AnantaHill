@@ -36,8 +36,8 @@ const BookingContent = () => {
         <div className="flex flex-col lg:flex-row gap-16 items-start">
           {/* Left Side: Form */}
           <div className="w-full lg:w-3/5">
-            <h1 className="text-4xl md:text-5xl font-semibold text-secondary mb-4">Confirm Reservation</h1>
-            <p className="text-secondary/60 mb-12 italic">Please provide your details to finalize the booking process.</p>
+            <h1 className="text-3xl md:text-4xl font-serif font-semibold text-secondary mb-4">Confirm Reservation</h1>
+            <p className="text-secondary/60 mb-10">Please provide your details to finalize the booking process.</p>
             
             <BookingForm 
               onSubmit={handleSubmit}

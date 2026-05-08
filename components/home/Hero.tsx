@@ -38,12 +38,12 @@ const Hero = ({ onReserveTable }: HeroProps) => {
 
       {/* Content Layer */}
       <div className="container-custom relative z-30 w-full">
-        <div className="max-w-4xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto text-center">
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
-            className="text-6xl md:text-[6rem] font-serif text-primary mb-8 tracking-tight"
+            className="text-6xl md:text-[5rem] font-serif text-primary mb-8 tracking-tight"
           >
             Ananta <br className='md:hidden block' />
             <motion.span

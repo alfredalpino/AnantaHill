@@ -62,7 +62,7 @@ const BookingForm = ({ onSubmit, guests, onGuestsChange }: BookingFormProps) => 
       </section>
 
       <div className="pt-4">
-        <button type="submit" className="luxury-button w-full py-6 text-sm flex items-center justify-center gap-3">
+        <button type="submit" className="luxury-button px-4 w-full py-6 text-sm flex items-center justify-center gap-3">
           <ShieldCheck size={20} /> Complete Reservation
         </button>
         <p className="text-[10px] text-center text-secondary/40 italic mt-6 flex items-center justify-center gap-2">

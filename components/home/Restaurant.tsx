@@ -36,8 +36,8 @@ const Restaurant = ({ onReserveTable }: RestaurantProps) => {
                 subtitle="Culinary Narrative"
                 title="A Symphony of Hillside Flavors"
               />
-              <p className="text-secondary text-lg leading-relaxed font-light italic">
-                "At Ananta, every meal is a tribute to the land. Our kitchen celebrates the rugged beauty of Canary Hill through refined heritage recipes and the freshest harvests from our organic gardens."
+              <p className="text-secondary text-lg leading-relaxed font-light">
+                At Ananta, every meal is a tribute to the land. Our kitchen celebrates the rugged beauty of Canary Hill through refined heritage recipes and the freshest harvests from our organic gardens.
               </p>
             </div>
 

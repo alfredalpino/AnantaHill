@@ -34,7 +34,7 @@ export default function Contact() {
               viewport={{ once: true }}
               className="bg-cream sm:p-10 p-8 rounded-md border border-border shadow-soft"
             >
-              <h3 className="text-2xl font-semibold mb-8">Reach Out</h3>
+              <h3 className="text-2xl font-serif font-semibold mb-8">Reach Out</h3>
               
               <div className="space-y-8">
                 <div className="flex gap-4">
@@ -101,7 +101,7 @@ export default function Contact() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                   >
-                    <h3 className="text-3xl font-semibold mb-8 text-secondary">Send an Enquiry</h3>
+                    <h3 className="text-2xl font-serif font-semibold mb-8 text-secondary">Send an Enquiry</h3>
                     <form onSubmit={handleSubmit} className="space-y-6">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">

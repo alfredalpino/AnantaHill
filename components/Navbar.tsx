@@ -78,7 +78,7 @@ const Navbar = () => {
               >
                 <Link 
                   href={link.href} 
-                  className={`text-xs uppercase tracking-[0.4em] font-medium transition-colors link-underline ${
+                  className={`text-xs uppercase tracking-[0.3em] font-medium transition-colors link-underline ${
                     isScrolled 
                       ? "text-accent hover:text-primary" 
                       : (isHome ? "text-white hover:text-primary" : "text-accent hover:text-primary")

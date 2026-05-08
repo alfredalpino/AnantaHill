@@ -133,7 +133,7 @@ const Testimonials = () => {
                       </p>
                     </div>
                     <div className="pt-6 border-t border-border/50">
-                      <h4 className="font-serif text-xl text-secondary">{feedback.author}</h4>
+                      <h4 className="font-serif text-secondary">{feedback.author}</h4>
                       <p className="text-primary text-[10px] uppercase tracking-luxury font-bold mt-1">{feedback.role}</p>
                     </div>
                   </motion.div>

@@ -3,7 +3,7 @@
 
 @layer base {
   :root {
-    --primary: #e7ca79; /* Official Brand Gold from Logo */
+    --primary: #e6c773; /* Official Brand Gold from Logo */
     --secondary: #3C2F2F; /* Dark Coffee Brown */
     --accent: #1A1A1A; /* Deep Black */
     --ivory: #FAF9F6; /* Warm Ivory */
@@ -29,7 +29,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-semibold tracking-tight text-accent;
+    @apply font-serif font-semibold tracking-tight text-accent;
   }
 
   /* Custom Selection */

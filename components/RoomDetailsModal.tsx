@@ -60,7 +60,7 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
               <div className="space-y-8">
                 <div>
                   <h4 className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 mb-3">Description</h4>
-                  <p className="text-secondary/70 text-sm leading-relaxed italic">
+                  <p className="text-secondary/70 text-sm leading-relaxed">
                     {room.desc}
                   </p>
                 </div>

@@ -63,7 +63,7 @@ const Experiences = () => {
                   {exp.subtitle}
                 </motion.span>
                 
-                <h3 className="text-3xl font-serif text-ivory mb-4 drop-shadow-lg">{exp.title}</h3>
+                <h3 className="text-2xl font-serif text-ivory mb-4 drop-shadow-lg">{exp.title}</h3>
                 
                 <div className="opacity-100 transition-all duration-700 ease-in-out">
                   <p className="text-ivory/80 text-sm leading-relaxed mb-8 font-light drop-shadow-sm">

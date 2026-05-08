@@ -27,9 +27,9 @@ const Rooms = () => {
             className="relative rounded-md overflow-hidden h-[450px] lg:h-[600px] group shadow-luxury border border-border/50"
           >
             <img src={roomImg} alt="Royal Suite" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-10 md:p-16">
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex flex-col justify-end p-8 md:p-14">
               <span className="text-ivory text-xs uppercase tracking-luxury mb-2 font-bold">Heritage Experience</span>
-              <h3 className="text-3xl md:text-5xl text-ivory font-serif mb-6">The Royal Ananta Suite</h3>
+              <h3 className="text-2xl md:text-3xl text-ivory font-serif mb-6">The Royal Ananta Suite</h3>
 
               <div className="flex items-center gap-10">
                 <span className="text-ivory font-bold">Rs. 25,000 / night</span>

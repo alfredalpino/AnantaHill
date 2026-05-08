@@ -21,11 +21,11 @@ const BookingSummary = ({ room, roomName }: BookingSummaryProps) => {
         </div>
       </div>
       
-      <div className="p-10">
-        <h2 className="text-3xl font-semibold text-secondary mb-4">{roomName}</h2>
-        <p className="text-secondary/60 text-sm leading-relaxed mb-8 italic">{room.desc}</p>
+      <div className="md:p-10 p-6">
+        <h2 className="sm:text-3xl text-2xl font-serif font-semibold text-secondary mb-4">{roomName}</h2>
+        <p className="text-secondary/60 text-sm leading-relaxed mb-5">{room.desc}</p>
 
-        <div className="border-t border-border pt-8 space-y-4">
+        <div className="border-t border-border pt-5 space-y-4">
           <div className="flex justify-between items-center">
             <span className="text-secondary/40 text-xs uppercase tracking-widest font-bold">Standard Rate</span>
             <span className="text-secondary font-bold">Rs. {room.price.toLocaleString()} / night</span>
@@ -36,7 +36,7 @@ const BookingSummary = ({ room, roomName }: BookingSummaryProps) => {
           </div>
           <div className="flex justify-between items-center pt-4">
             <span className="md:text-xl text-lg font-semibold text-secondary">Total Estimate</span>
-            <span className="md:text-3xl text-xl font-bold text-primary font-semibold">Rs. {room.price.toLocaleString()}</span>
+            <span className="md:text-2xl text-xl font-bold text-primary font-semibold">Rs. {room.price.toLocaleString()}</span>
           </div>
         </div>
       </div>

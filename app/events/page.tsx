@@ -63,7 +63,7 @@ export default function Events() {
                   </div>
                   <span className="uppercase tracking-widest text-[10px] font-bold text-primary">{type.subtitle}</span>
                 </div>
-                <h3 className="text-4xl md:text-5xl font-semibold text-secondary mb-8">{type.title}</h3>
+                <h3 className="text-3xl font-serif md:text-4xl font-semibold text-secondary mb-8">{type.title}</h3>
                 <p className="text-secondary/70 text-lg leading-relaxed mb-10">
                   {type.desc}
                 </p>

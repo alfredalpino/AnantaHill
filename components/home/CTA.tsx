@@ -21,7 +21,7 @@ const CTA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-sans text-ivory mb-8 leading-tight"
+            className="text-5xl md:text-7xl font-serif text-ivory mb-8 leading-tight"
           >
             Discover the <br /> <span className="text-primary">Infinite Calm</span>
           </motion.h2>

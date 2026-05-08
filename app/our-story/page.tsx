@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import SectionHeader from '@/components/SectionHeader';
-import { Wind, Waves, CheckCircle2, Coffee, Sparkles, MapPin, ArrowRight } from 'lucide-react';
+import { Wind, Waves, CheckCircle2, Coffee, Leaf, MapPin, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 const amenities = [
@@ -10,7 +10,7 @@ const amenities = [
   { icon: <Waves />, title: "Infinity Pool", desc: "Heated outdoor pool with panoramic views of the valley." },
   { icon: <CheckCircle2 />, title: "Organic Farm", desc: "Harvest your own vegetables for a personalized meal." },
   { icon: <Coffee />, title: "Artisan Cafe", desc: "Freshly roasted local coffee and mountain-infused teas." },
-  { icon: <Sparkles />, title: "Wellness Spa", desc: "Signature treatments using indigenous herbs and stones." },
+  { icon: <Leaf />, title: "Orchard Lawns", desc: "Expansive alfresco spaces for evening events and starlit strolls." },
   { icon: <MapPin />, title: "Nature Trails", desc: "Guided treks through the hidden paths of Canary Hill." },
 ];
 
@@ -89,7 +89,7 @@ export default function OurStory() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                className="absolute -bottom-10 -left-10 bg-primary p-12 rounded-md hidden md:block shadow-luxury border-8 border-ivory"
+                className="absolute -bottom-10 -left-10 bg-primary p-12 rounded-md hidden md:block border-8 border-ivory"
               >
                 <p className="text-ivory font-serif text-3xl italic leading-tight">"Where the hills <br /> find their home."</p>
               </motion.div>
@@ -120,7 +120,7 @@ export default function OurStory() {
                   {item.icon}
                 </div>
                 <div className="flex flex-col gap-4">
-                  <h4 className="text-2xl font-serif text-secondary group-hover:text-primary transition-colors leading-tight">{item.title}</h4>
+                  <h4 className="sm:text-2xl text-xl font-serif text-secondary group-hover:text-primary transition-colors leading-tight">{item.title}</h4>
                   <p className="text-secondary/60 text-base leading-relaxed font-light">
                     {item.desc}
                   </p>
