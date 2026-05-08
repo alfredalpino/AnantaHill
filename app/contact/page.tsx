@@ -102,7 +102,7 @@ export default function Contact() {
                     exit={{ opacity: 0, scale: 0.95 }}
                   >
                     <h3 className="text-2xl font-serif font-semibold mb-8 text-secondary">Send an Enquiry</h3>
-                    <form onSubmit={handleSubmit} className="space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-3">
                       <div className="grid md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">First Name</label>
@@ -130,7 +130,7 @@ export default function Contact() {
 
                       <div className="space-y-2">
                         <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Your Message</label>
-                        <textarea rows={6} placeholder="Tell us about your requirements..." className="w-full bg-cream border border-border px-6 py-6 rounded-md focus:outline-none focus:border-primary text-sm resize-none"></textarea>
+                        <textarea rows={4} placeholder="Tell us about your requirements..." className="w-full bg-cream border border-border px-6 py-6 rounded-md focus:outline-none focus:border-primary text-sm resize-none"></textarea>
                       </div>
 
                       <button type="submit" className="luxury-button w-full md:w-auto px-12 gap-3">

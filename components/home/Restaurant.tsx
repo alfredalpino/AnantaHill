@@ -64,10 +64,10 @@ const Restaurant = ({ onReserveTable }: RestaurantProps) => {
             </div>
 
             <div className="flex flex-wrap gap-6">
-              <button onClick={onReserveTable} className="luxury-button text-xs min-w-[275px]">
+              <button onClick={onReserveTable} className="luxury-button text-[15px] min-w-[275px]">
                 Reserve a Table
               </button>
-              <Link href="/dining" className="luxury-button-outline text-xs min-w-[275px] text-center">
+              <Link href="/dining" className="luxury-button-outline text-[15px] min-w-[275px] text-center">
                 Explore The Menu
               </Link>
             </div>

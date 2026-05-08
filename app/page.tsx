@@ -11,6 +11,7 @@ import CTA from '@/components/home/CTA';
 import BookingWidget from '@/components/BookingWidget';
 import Features from '@/components/home/Features';
 import TableReservationModal from '@/components/TableReservationModal';
+import LiveMusic from '@/components/home/LiveMusic';
 
 export default function Home() {
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function Home() {
       <About />
       <Experiences />
       <Restaurant onReserveTable={() => setIsTableModalOpen(true)} />
+      <LiveMusic />
       <Testimonials />
       <CTA />
 
