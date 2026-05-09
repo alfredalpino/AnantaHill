@@ -6,17 +6,17 @@ import ScrollReveal from '@/components/ScrollReveal';
 const features = [
   {
     title: "Aesthetic Vibes",
-    subtitle: "Indulge in the curated elegance of our hillside sanctuaries.",
+    subtitle: "Curated elegance in hillside sanctuaries.",
     icon: Star,
   },
   {
     title: "Soulful Nights",
-    subtitle: "Find peace under the starlit canopy of Canary Hill.",
+    subtitle: "Peace under starlit hill canopy.",
     icon: Moon,
   },
   {
     title: "Music Nights",
-    subtitle: "Savor live acoustic melodies in our mirrored dining halls.",
+    subtitle: "Acoustic melodies in dining halls.",
     icon: Music,
   },
 ];

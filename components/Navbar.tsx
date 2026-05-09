@@ -73,7 +73,7 @@ export default function Navbar() {
                             key={link.href}
                             href={link.href}
                             className={cn(
-                                'text-sm font-semibold transition-colors relative py-1',
+                                'text-[15px] font-semibold transition-colors relative py-1',
                                 heroTransparent
                                     ? pathname === link.href
                                         ? 'text-white'
