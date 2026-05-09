@@ -1,90 +1,65 @@
 "use client";
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface HeroProps {
   onReserveTable: () => void;
 }
 
-const Hero = ({ onReserveTable }: HeroProps) => {
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-
+export default function Hero({ onReserveTable }: HeroProps) {
   return (
-    <section ref={heroRef} className="relative h-screen min-h-[800px] flex items-center overflow-hidden bg-black">
-      {/* Cinematic Image Layer */}
-      <motion.div 
-        style={{ y, scale }}
-        className="absolute inset-0 z-0 overflow-hidden"
-      >
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <motion.img
-          initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.5, ease: [0.19, 1, 0.22, 1] }}
+    <section
+      id="home-hero-section"
+      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden bg-accent"
+    >
+      <div className="pointer-events-none absolute inset-0" aria-hidden>
+        <Image
           src="/images/hero-1.webp"
           alt="Ananta Resort"
-          className="w-full h-full object-cover"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
         />
-      </motion.div>
+        <div className="absolute inset-0 bg-black/30" />
+      </div>
+      
+      <div
+        className="pointer-events-none absolute inset-0 z-[3] bg-gradient-to-b from-black/40 via-black/20 to-black/50"
+        aria-hidden
+      />
 
-      {/* Content Layer */}
-      <div className="container-custom relative z-30 w-full">
-        <div className="max-w-5xl mx-auto text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 0.7, ease: [0.19, 1, 0.22, 1] }}
-            className="text-6xl md:text-[5rem] font-serif text-primary sm:mb-8 mb-5 tracking-tight"
-          >
-            Ananta <br />
-            <motion.span
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.5, delay: 1.2, ease: [0.19, 1, 0.22, 1] }}
-              className="text-white text-5xl md:text-[5rem]"
-            >
-               By The Hill
-            </motion.span>
-          </motion.h1>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.5 }}
-            className="max-w-lg mx-auto sm:space-y-12 space-y-6"
-          >
-            <p className="text-white/90 text-lg md:text-xl font-light leading-relaxed">
+      <div className="relative z-10 container-shell flex max-w-4xl flex-col items-center px-4 text-center sm:px-6">
+        <ScrollReveal delay={120}>
+          <h1 className="mb-4 uppercase font-display text-4xl font-bold leading-[1.05] text-white sm:text-5xl md:text-7xl lg:text-8xl">
+            Ananta
+          </h1>
+          <p className="eyebrow mb-6 text-primary md:text-lg">
+            By The Hill
+          </p>
+          <div className="mx-auto mb-8 max-w-xl space-y-4 text-sm leading-relaxed text-white/95 sm:text-base md:text-lg">
+            <p>
               Boutique hillside retreat crafted for calm stays, private celebrations, and unforgettable escapes.
             </p>
-            
-            <div className="flex flex-wrap items-center justify-center md:gap-8 gap-4">
-              <Link 
-                href="/rooms" 
-                className="luxury-button px-17 text-[15px] !py-4 h-[56px] min-w-[200px] flex items-center justify-center !bg-primary !text-white hover:!bg-white hover:!text-primary"
-              >
-                Explore Stay
-              </Link>
-              <button 
-                onClick={onReserveTable}
-                className="px-16 py-4 h-[56px] min-w-[200px] border border-white text-white text-[15px] capitalize tracking-wide font-medium transition-all hover:bg-white hover:text-primary flex items-center justify-center bg-white/10 backdrop-blur-sm"
-              >
-                Reserve Table
-              </button>
-            </div>
-          </motion.div>
-        </div>
+          </div>
+          <div className="flex flex-col justify-center gap-4 sm:flex-row sm:items-center sm:justify-center">
+            <Link
+              href="/rooms"
+              className="btn-primary inline-flex max-w-72 w-full sm:mx-0 mx-auto justify-center px-10 py-4 text-base font-semibold sm:w-auto"
+            >
+              Explore Stay
+            </Link>
+            <button
+              onClick={onReserveTable}
+              className="btn-outline inline-flex max-w-72 w-full sm:mx-0 mx-auto justify-center border-2 border-white/90 bg-white/5 px-10 py-4 text-base text-white backdrop-blur-sm transition-colors hover:border-white hover:bg-white hover:text-primary-dark sm:w-auto"
+            >
+              Reserve Table
+            </button>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}

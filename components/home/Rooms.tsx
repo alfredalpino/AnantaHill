@@ -2,12 +2,10 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import SectionHeader from '@/components/SectionHeader';
-import RoomCard from '@/components/cards/RoomCard';
+import { ArrowRight } from 'lucide-react';
+import RoomCard from '@/components/RoomCard';
 import RoomDetailsModal from '@/components/RoomDetailsModal';
-import { Wifi, Coffee, Wind, Tv } from 'lucide-react';
-
-const roomImg = "/images/room.jpg";
+import ScrollReveal from '@/components/ScrollReveal';
 
 const rooms = [
   {
@@ -18,7 +16,8 @@ const rooms = [
     price: "25,000",
     size: "850 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />, <Tv key="t" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast', 'Butler']
   },
   {
     id: 2,
@@ -28,7 +27,8 @@ const rooms = [
     price: "12,000",
     size: "450 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Wind key="wi" />, <Tv key="t" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   },
   {
     id: 3,
@@ -38,48 +38,64 @@ const rooms = [
     price: "15,000",
     size: "550 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   }
 ];
 
 const Rooms = () => {
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [selectedRoomData, setSelectedRoomData] = useState<any>(null);
-
-  const openDetails = (room: any) => {
-    setSelectedRoomData(room);
-    setIsDetailsOpen(true);
-  };
+  const [selectedRoom, setSelectedRoom] = useState<any>(null);
 
   return (
-    <section className="section-padding bg-ivory">
-      <div className="container-custom">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
-          <div className="text-left">
-            <span className="uppercase tracking-luxury text-xs font-bold text-primary mb-4 block">Stay with Us</span>
-            <h2 className="text-4xl md:text-6xl font-serif text-secondary">Explore Our Stays</h2>
+    <section className="section-shell border-t border-secondary bg-background">
+      <div className="container-shell">
+        <div className="section-head text-center md:text-left md:mx-0 max-w-full flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-14 gap-6">
+          <div className="max-w-2xl">
+            <ScrollReveal>
+              <p className="eyebrow mb-2">Pick & choose from different categories</p>
+              <h2 className="font-display text-3xl font-bold text-text-primary sm:text-4xl md:text-5xl">
+                Rooms & villas
+              </h2>
+              <p className="text-sm leading-relaxed text-text-body sm:text-base mt-3">
+                Discover suites, deluxe rooms, and garden cottages with clear pricing and straightforward capacity details.
+              </p>
+            </ScrollReveal>
           </div>
-          <Link href="/rooms" className="luxury-button-outline px-10 py-3">
-            View All Rooms
-          </Link>
+          <ScrollReveal delay={200}>
+            <Link
+              href="/rooms"
+              className="btn-outline hidden md:inline-flex"
+            >
+              View all accommodations
+            </Link>
+          </ScrollReveal>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {rooms.map((room) => (
-            <RoomCard 
-              key={room.id} 
-              room={room} 
-              roomImg={roomImg} 
-              onOpenDetails={openDetails} 
-            />
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {rooms.map((room, i) => (
+            <ScrollReveal key={room.id} delay={i * 120}>
+              <RoomCard room={room} onViewDetails={setSelectedRoom} />
+            </ScrollReveal>
           ))}
+        </div>
+
+        <div className="mt-12 text-center md:hidden">
+          <ScrollReveal delay={200}>
+            <Link
+              href="/rooms"
+              className="inline-flex items-center gap-2 font-semibold text-primary-dark transition-all duration-200 hover:gap-3"
+            >
+              View all accommodations
+              <ArrowRight className="h-5 w-5" aria-hidden />
+            </Link>
+          </ScrollReveal>
         </div>
       </div>
 
       <RoomDetailsModal 
-        isOpen={isDetailsOpen} 
-        onClose={() => setIsDetailsOpen(false)} 
-        room={selectedRoomData}
+        isOpen={Boolean(selectedRoom)} 
+        onClose={() => setSelectedRoom(null)} 
+        room={selectedRoom}
       />
     </section>
   );

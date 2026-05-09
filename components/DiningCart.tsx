@@ -37,13 +37,13 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[140] flex justify-end">
+        <div className="fixed inset-0 z-[200] flex justify-end">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-secondary/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           />
           
           <motion.div 
@@ -51,15 +51,15 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="relative bg-ivory w-full max-w-md h-full shadow-luxury flex flex-col"
+            className="relative bg-white w-full max-w-md h-full shadow-2xl flex flex-col"
           >
-            <div className="p-6 border-b border-border flex justify-between items-center bg-cream">
+            <div className="p-6 border-b border-secondary-dark flex justify-between items-center">
               <div className="flex items-center gap-3">
-                <ShoppingBag className="text-primary" size={24} />
-                <h2 className="text-xl font-serif text-secondary">Your Order</h2>
+                <ShoppingBag className="text-primary-dark" size={24} />
+                <h2 className="text-xl font-display font-bold text-text-primary">Your Order</h2>
               </div>
-              <button onClick={onClose} className="p-2 hover:bg-border rounded-full transition-colors group" aria-label="Close cart">
-                <X size={24} className="text-secondary group-hover:text-primary transition-colors" />
+              <button onClick={onClose} className="p-2 hover:bg-secondary-dark rounded-full transition-colors" aria-label="Close cart">
+                <X size={24} className="text-text-primary" />
               </button>
             </div>
 
@@ -68,45 +68,45 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                 items.length > 0 ? (
                   <div className="space-y-6">
                     {items.map((item) => (
-                      <div key={item.id} className="flex gap-4 pb-6 border-b border-border last:border-0">
+                      <div key={item.id} className="flex gap-4 pb-6 border-b border-secondary-dark last:border-0">
                         <div className="flex-1">
-                          <h4 className="text-sm font-serif text-secondary mb-1">{item.title}</h4>
-                          <p className="text-primary font-bold text-xs">{item.price}</p>
+                          <h4 className="text-base font-bold text-text-primary mb-1">{item.title}</h4>
+                          <p className="text-primary-dark font-bold text-sm">{item.price}</p>
                         </div>
-                        <div className="flex items-center gap-3 bg-cream rounded-full px-3 py-1">
+                        <div className="flex items-center gap-3 bg-secondary-dark rounded-xl px-3 py-1">
                           <button 
                             onClick={() => onUpdateQuantity(item.id, -1)}
-                            className="text-secondary/60 hover:text-primary transition-colors"
+                            className="text-text-muted hover:text-text-primary transition-colors"
                           >
                             <Minus size={14} />
                           </button>
-                          <span className="text-xs font-bold w-4 text-center">{item.quantity}</span>
+                          <span className="text-sm font-bold w-4 text-center text-text-primary tabular-nums">{item.quantity}</span>
                           <button 
                             onClick={() => onUpdateQuantity(item.id, 1)}
-                            className="text-secondary/60 hover:text-primary transition-colors"
+                            className="text-text-muted hover:text-text-primary transition-colors"
                           >
                             <Plus size={14} />
                           </button>
                         </div>
                         <button 
                           onClick={() => onRemove(item.id)}
-                          className="text-secondary/20 hover:text-red-500 transition-colors"
+                          className="text-text-muted hover:text-error transition-colors"
                         >
-                          <Trash2 size={16} />
+                          <Trash2 size={18} />
                         </button>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <div className="h-full flex flex-col items-center justify-center text-center opacity-60 py-20">
-                    <ShoppingBag size={48} className="mb-4 text-secondary/20" />
-                    <p className="font-serif text-lg text-secondary">Your cart is empty</p>
-                    <p className="text-xs uppercase tracking-widest mt-2 text-secondary/40">Add some delicacies to start</p>
+                  <div className="h-full flex flex-col items-center justify-center text-center py-20">
+                    <ShoppingBag size={64} className="mb-4 text-secondary-dark" />
+                    <p className="font-display text-2xl font-bold text-text-primary">Your cart is empty</p>
+                    <p className="text-sm text-text-muted mt-2">Add some delicacies to start your culinary journey.</p>
                     <button 
                       onClick={onClose}
-                      className="mt-10 luxury-button-outline !px-10 !py-4 text-[15px] opacity-100"
+                      className="mt-10 btn-outline"
                     >
-                      Close Cart
+                      Browse Menu
                     </button>
                   </div>
                 )
@@ -116,11 +116,11 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                   animate={{ opacity: 1, scale: 1 }}
                   className="h-full flex flex-col items-center justify-center text-center p-6"
                 >
-                  <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-6">
-                    <CheckCircle2 size={32} />
+                  <div className="w-20 h-20 rounded-full bg-success/10 flex items-center justify-center text-success mb-6">
+                    <CheckCircle2 size={40} />
                   </div>
-                  <h3 className="text-2xl font-serif text-secondary mb-2">Order Placed!</h3>
-                  <p className="text-secondary/60 text-sm mb-8 italic">
+                  <h3 className="font-display text-3xl font-bold text-text-primary mb-2">Order Placed!</h3>
+                  <p className="text-text-body text-base mb-8">
                     Your meal is being prepared and will be delivered to Room {roomNo} shortly.
                   </p>
                   <button 
@@ -128,7 +128,7 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                       setIsOrdered(false);
                       onClose();
                     }}
-                    className="text-primary text-[15px] capitalize tracking-wide font-bold border-b border-primary pb-1"
+                    className="btn-primary"
                   >
                     Back to menu
                   </button>
@@ -137,29 +137,29 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
             </div>
 
             {!isOrdered && items.length > 0 && (
-              <div className="p-6 bg-cream border-t border-border space-y-6">
-                <form onSubmit={handleOrder} className="space-y-4">
+              <div className="p-6 bg-secondary-dark/30 border-t border-secondary-dark space-y-6">
+                <form onSubmit={handleOrder} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40">Delivery Room Number</label>
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Delivery Room Number</label>
                     <input 
                       type="text" 
                       placeholder="e.g. 104" 
                       value={roomNo}
                       onChange={(e) => setRoomNo(e.target.value)}
-                      className="w-full bg-ivory border border-border px-4 py-3 rounded-xl focus:outline-none focus:border-primary text-sm"
+                      className="w-full bg-white border border-secondary-dark px-4 py-3 rounded-xl focus:outline-none focus:border-primary-dark text-sm"
                     />
                   </div>
                   
-                  <div className="flex justify-between items-center pt-2">
-                    <span className="text-secondary/60 text-sm">Total Amount</span>
-                    <span className="text-xl font-bold text-primary font-semibold">Rs. {total.toLocaleString()}</span>
+                  <div className="flex justify-between items-center">
+                    <span className="text-text-body text-base">Total Amount</span>
+                    <span className="text-2xl font-bold text-primary-dark">₹{total.toLocaleString()}</span>
                   </div>
 
                   <button 
                     type="submit"
-                    className="luxury-button w-full py-4 text-[15px]"
+                    className="btn-primary w-full py-4 text-base font-bold"
                   >
-                    Place in-room order
+                    Place Order
                   </button>
                 </form>
               </div>

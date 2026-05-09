@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Utensils, Sparkles } from 'lucide-react';
-import SectionHeader from '@/components/SectionHeader';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface RestaurantProps {
   onReserveTable: () => void;
@@ -11,66 +11,74 @@ interface RestaurantProps {
 
 const Restaurant = ({ onReserveTable }: RestaurantProps) => {
   return (
-    <section className="section-padding bg-cream/30 overflow-hidden">
-      <div className="container-custom">
-        <div className="grid lg:grid-cols-12 gap-20 items-center">
+    <section className="section-shell bg-secondary/30">
+      <div className="container-shell">
+        <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
           {/* Visual Side */}
-          <div className="lg:col-span-5 order-2 lg:order-1 relative">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2 }}
-              className="relative rounded-md overflow-hidden shadow-luxury h-[400px] md:h-[550px] w-full"
-            >
-              <img src="/images/restaurant.webp" alt="The Ananta Dining Room" className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s]" />
-              <div className="absolute inset-0 bg-black/5" />
-            </motion.div>
+          <div className="w-full lg:w-1/2">
+            <ScrollReveal>
+              <div className="relative aspect-square overflow-hidden rounded-2xl shadow-premium">
+                <Image
+                  src="/images/restaurant.webp"
+                  alt="The Ananta Dining Room"
+                  fill
+                  className="object-cover transition-transform duration-[2s] hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-black/5" />
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* Content Side */}
-          <div className="lg:col-span-7 order-1 lg:order-2 space-y-12">
-            <div>
-              <SectionHeader
-                centered={false}
-                subtitle="Culinary Narrative"
-                title="A Symphony of Hillside Flavors"
-              />
-              <p className="text-secondary text-lg leading-relaxed font-light">
-                At Ananta, every meal is a tribute to the land. Our kitchen celebrates the rugged beauty of Canary Hill through refined heritage recipes and the freshest harvests from our organic gardens.
-              </p>
-            </div>
+          <div className="w-full space-y-10 lg:w-1/2">
+            <ScrollReveal delay={200}>
+              <div className="section-head text-left mx-0">
+                <p className="eyebrow mb-2">Culinary Narrative</p>
+                <h2 className="font-display text-3xl font-bold text-text-primary md:text-5xl">
+                  A Symphony of Hillside Flavors
+                </h2>
+                <p className="mt-6 text-base leading-relaxed text-text-body md:text-lg">
+                  At Ananta, every meal is a tribute to the land. Our kitchen celebrates the rugged beauty of Canary Hill through refined heritage recipes and the freshest harvests from our organic gardens.
+                </p>
+              </div>
 
-            <div className="grid grid-cols-1 gap-8">
-              <div className="flex gap-6 group">
-                <div className="w-12 h-12 rounded-md bg-white flex items-center justify-center text-primary shrink-0 shadow-soft group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  <Utensils size={20} />
+              <div className="grid grid-cols-1 gap-8 mt-10">
+                <div className="flex gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-primary-dark shrink-0 shadow-sm group-hover:bg-primary-dark group-hover:text-white transition-all duration-500">
+                    <Utensils size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-text-primary mb-2">Heritage Fine Dining</h4>
+                    <p className="text-text-body text-base leading-relaxed">A curated fusion of local heritage flavors and global culinary techniques.</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-2">Heritage Fine Dining</h4>
-                  <p className="text-secondary/70 text-sm leading-relaxed">A curated fusion of local heritage flavors and global culinary techniques.</p>
+
+                <div className="flex gap-6 group">
+                  <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center text-primary-dark shrink-0 shadow-sm group-hover:bg-primary-dark group-hover:text-white transition-all duration-500">
+                    <Sparkles size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-display text-2xl font-bold text-text-primary mb-2">The Mirrored Hall</h4>
+                    <p className="text-text-body text-base leading-relaxed">Dine amidst golden reflections and soft evening glows for an immersive sensory escape.</p>
+                  </div>
                 </div>
               </div>
 
-              <div className="flex gap-6 group">
-                <div className="w-12 h-12 rounded-md bg-white flex items-center justify-center text-primary shrink-0 shadow-soft group-hover:bg-primary group-hover:text-white transition-all duration-500">
-                  <Sparkles size={20} />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold mb-2">The Mirrored Hall</h4>
-                <p className="text-secondary/70 text-sm leading-relaxed">Dine amidst golden reflections and soft evening glows for an immersive sensory escape.</p>
-                </div>
+              <div className="flex flex-col sm:flex-row gap-5 mt-12">
+                <button 
+                  onClick={onReserveTable} 
+                  className="btn-primary px-10 py-4 text-base font-bold text-center"
+                >
+                  Reserve a Table
+                </button>
+                <Link 
+                  href="/dining" 
+                  className="btn-outline px-10 py-4 text-base font-bold text-center"
+                >
+                  Explore The Menu
+                </Link>
               </div>
-            </div>
-
-            <div className="flex flex-wrap gap-6">
-              <button onClick={onReserveTable} className="luxury-button text-[15px] min-w-[275px]">
-                Reserve a Table
-              </button>
-              <Link href="/dining" className="luxury-button-outline text-[15px] min-w-[275px] text-center">
-                Explore The Menu
-              </Link>
-            </div>
+            </ScrollReveal>
           </div>
         </div>
       </div>

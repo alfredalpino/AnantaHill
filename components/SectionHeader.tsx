@@ -29,7 +29,7 @@ const SectionHeader = ({ title, subtitle, centered = true, light = false }: Sect
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, delay: 0.1 }}
-        className={`text-4xl md:text-5xl font-serif ${light ? 'text-ivory' : 'text-secondary'}`}
+        className={`text-4xl md:text-5xl font-serif ${light ? 'text-ivory' : 'text-text-primary'}`}
       >
         {title}
       </motion.h2>

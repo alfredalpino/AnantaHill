@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Calendar, Clock, Users, MessageSquare } from 'lucide-react';
-import { useState } from 'react';
+import { X, Calendar, Clock, Users, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 interface TableReservationModalProps {
   isOpen: boolean;
@@ -11,6 +11,16 @@ interface TableReservationModalProps {
 
 const TableReservationModal = ({ isOpen, onClose }: TableReservationModalProps) => {
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // Lock body scroll
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = 'unset';
+      };
+    }
+  }, [isOpen]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,25 +34,25 @@ const TableReservationModal = ({ isOpen, onClose }: TableReservationModalProps) 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-secondary/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           />
           
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-ivory rounded-md shadow-luxury overflow-hidden flex flex-col max-h-[90vh]"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
           >
-            <div className="p-8 md:p-10 overflow-y-auto">
+            <div className="p-8 md:p-10 overflow-y-auto custom-scrollbar">
               <button 
                 onClick={onClose}
-                className="absolute top-6 right-6 text-secondary hover:text-primary transition-colors"
+                className="absolute top-6 right-6 text-text-muted hover:text-text-primary transition-colors z-20"
               >
                 <X size={24} />
               </button>
@@ -50,34 +60,35 @@ const TableReservationModal = ({ isOpen, onClose }: TableReservationModalProps) 
               {!isSubmitted ? (
                 <>
                   <div className="mb-8">
-                    <h2 className="text-3xl font-serif mb-2">Table Reservation</h2>
-                    <p className="text-secondary text-sm">Join us for a farm-to-table culinary journey.</p>
+                    <p className="eyebrow mb-2">The Mirrored Hall</p>
+                    <h2 className="font-display text-3xl font-bold text-text-primary mb-2">Table Reservation</h2>
+                    <p className="text-text-muted text-sm">Join us for a farm-to-table culinary journey.</p>
                   </div>
 
                   <form onSubmit={handleSubmit} className="space-y-5">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Full Name</label>
-                        <input type="text" placeholder="John Doe" className="w-full bg-cream border border-border px-4 py-3 rounded-md focus:outline-none focus:border-primary text-sm" />
+                        <label className="field-label">Full Name</label>
+                        <input type="text" placeholder="John Doe" className="field-input" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest font-bold text-secondary">Phone Number</label>
-                        <input type="tel" placeholder="+91 00000 00000" className="w-full bg-cream border border-border px-4 py-3 rounded-md focus:outline-none focus:border-primary text-sm" />
+                        <label className="field-label">Phone Number</label>
+                        <input type="tel" placeholder="+91 00000 00000" className="field-input" />
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest font-bold text-secondary flex items-center gap-2">
-                          <Calendar size={14} className="text-primary" /> Date
+                        <label className="field-label flex items-center gap-2">
+                          <Calendar size={14} className="text-primary-dark" /> Date
                         </label>
-                        <input type="date" className="w-full bg-cream border border-border px-4 py-3 rounded-md focus:outline-none focus:border-primary text-sm" />
+                        <input type="date" className="field-input" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] uppercase tracking-widest font-bold text-secondary flex items-center gap-2">
-                          <Clock size={14} className="text-primary" /> Time
+                        <label className="field-label flex items-center gap-2">
+                          <Clock size={14} className="text-primary-dark" /> Time
                         </label>
-                        <select className="w-full bg-cream border border-border px-4 py-3 rounded-md focus:outline-none focus:border-primary text-sm">
+                        <select className="field-input">
                           <option>07:00 PM</option>
                           <option>07:30 PM</option>
                           <option>08:00 PM</option>
@@ -88,20 +99,20 @@ const TableReservationModal = ({ isOpen, onClose }: TableReservationModalProps) 
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] uppercase tracking-widest font-bold text-secondary flex items-center gap-2">
-                        <Users size={14} className="text-primary" /> Guests
+                      <label className="field-label flex items-center gap-2">
+                        <Users size={14} className="text-primary-dark" /> Guests
                       </label>
-                      <input type="number" min="1" max="20" placeholder="Number of guests" className="w-full bg-cream border border-border px-4 py-3 rounded-md focus:outline-none focus:border-primary text-sm" />
+                      <input type="number" min="1" max="20" placeholder="Number of guests" className="field-input" />
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-[10px] uppercase tracking-widest font-bold text-secondary flex items-center gap-2">
-                        <MessageSquare size={14} className="text-primary" /> Special Requests
+                      <label className="field-label flex items-center gap-2">
+                        <MessageSquare size={14} className="text-primary-dark" /> Special Requests
                       </label>
-                      <textarea placeholder="Any dietary restrictions or special occasions?" rows={3} className="w-full bg-cream border border-border px-4 py-4 rounded-md focus:outline-none focus:border-primary text-sm resize-none"></textarea>
+                      <textarea placeholder="Any dietary restrictions or special occasions?" rows={3} className="field-input resize-none"></textarea>
                     </div>
 
-                    <button type="submit" className="w-full luxury-button mt-4">
+                    <button type="submit" className="btn-primary w-full mt-4 font-bold">
                       Confirm Reservation
                     </button>
                   </form>
@@ -111,12 +122,12 @@ const TableReservationModal = ({ isOpen, onClose }: TableReservationModalProps) 
                   <motion.div 
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-4"
+                    className="w-20 h-20 bg-success/10 text-success rounded-full flex items-center justify-center mb-4"
                   >
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <CheckCircle2 size={40} />
                   </motion.div>
-                  <h2 className="text-3xl font-serif">Reservation Received</h2>
-                  <p className="text-secondary max-w-xs mx-auto">We've received your request and will confirm your table shortly. Look forward to seeing you!</p>
+                  <h2 className="font-display text-3xl font-bold text-text-primary">Reservation Received</h2>
+                  <p className="text-text-body max-w-xs mx-auto">We've received your request and will confirm your table shortly. Look forward to seeing you!</p>
                 </div>
               )}
             </div>

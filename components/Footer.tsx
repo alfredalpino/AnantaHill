@@ -1,78 +1,86 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
-import { FaFacebookF, FaInstagram, FaXTwitter } from 'react-icons/fa6';
+import { FaInstagram } from 'react-icons/fa';
 
-const Footer = () => {
-  return (
-    <footer className="bg-cream border-t border-border pt-20 pb-10">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
-          {/* Brand Column */}
-          <div className="flex flex-col gap-6 items-start">
-            <div className="relative w-60 h-20">
-              <Image 
-                src="/logo.png" 
-                alt="Ananta Logo" 
-                fill
-                className="object-contain object-left"
-              />
+export default function Footer() {
+    return (
+        <footer className="bg-secondary/70 px-6 pb-10 pt-20">
+            <div className="container-shell px-0">
+                <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
+                    {/* Logo & Tagline */}
+                    <div className="space-y-6">
+                        <Link href="/" className="flex items-center gap-2">
+                            <Image src="/logo.png" alt="Ananta Logo" width={180} height={80} className="h-16 w-auto" />
+                        </Link>
+                        <div className="max-w-xs space-y-1 text-sm leading-relaxed text-text-body">
+                            <p>
+                                Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.
+                            </p>
+                        </div>
+                        <div className="flex gap-3">
+                            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Visit Ananta on Instagram" className="rounded-full border border-secondary-dark bg-white p-2 text-primary transition-all duration-200 hover:border-primary hover:bg-primary hover:text-white">
+                                <FaInstagram className="w-5 h-5" />
+                            </a>
+                            <a href="mailto:info@anantaresort.com" aria-label="Email Ananta" className="rounded-full border border-secondary-dark bg-white p-2 text-primary transition-all duration-200 hover:border-primary hover:bg-primary hover:text-white">
+                                <Mail className="w-5 h-5" />
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Navigation */}
+                    <div>
+                        <h4 className="mb-6 text-lg font-bold font-display text-text-primary">Plan Stay</h4>
+                        <ul className="space-y-4">
+                            <li><Link href="/booking" className="text-sm text-text-body transition-colors hover:text-primary-dark">Book a stay</Link></li>
+                            <li><Link href="/rooms" className="text-sm text-text-body transition-colors hover:text-primary-dark">Rooms and villas</Link></li>
+                            <li><Link href="/events" className="text-sm text-text-body transition-colors hover:text-primary-dark">Event venues</Link></li>
+                            <li><Link href="/dining" className="text-sm text-text-body transition-colors hover:text-primary-dark">Dining</Link></li>
+                        </ul>
+                    </div>
+
+                    {/* Contact Info */}
+                    <div>
+                        <h4 className="mb-6 text-lg font-bold font-display text-text-primary">Contact</h4>
+                        <ul className="space-y-4">
+                            <li className="flex gap-3 text-sm text-text-body">
+                                <MapPin className="w-5 h-5 text-primary-dark shrink-0" />
+                                <span>Canary Hill Rd, Hirabaug, Hazaribagh, Jharkhand 825301</span>
+                            </li>
+                            <li className="flex gap-3 text-sm text-text-body">
+                                <Phone className="w-5 h-5 text-primary-dark shrink-0" />
+                                <span>
+                                    <a href="tel:+919942631802" className="hover:text-primary-dark transition-colors">+91 99426 31802</a>
+                                </span>
+                            </li>
+                            <li className="flex gap-3 text-sm text-text-body">
+                                <Mail className="w-5 h-5 text-primary-dark shrink-0" />
+                                <a href="mailto:info@anantaresort.com" className="hover:text-primary-dark transition-colors">info@anantaresort.com</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Timings */}
+                    <div>
+                        <h4 className="mb-6 text-lg font-bold font-display text-text-primary">Explore</h4>
+                        <ul className="space-y-4 text-sm text-text-body">
+                            <li><Link href="/our-story" className="transition-colors hover:text-primary-dark">Our Story</Link></li>
+                            <li><Link href="/contact" className="transition-colors hover:text-primary-dark">Contact us</Link></li>
+                            <li>Check-in: 12:00 PM</li>
+                            <li>Check-out: 11:00 AM</li>
+                            <li>Reception: 24/7</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="flex flex-col items-center justify-between gap-4 border-t border-secondary-dark pt-10 text-xs text-text-muted md:flex-row">
+                    <p className='text-center md:text-left'>© 2026 Ananta - By The Hill. All rights reserved.</p>
+                    <div className="flex gap-6">
+                        <Link href="/privacy-policy" className="hover:text-primary-dark transition-colors">Privacy Policy</Link>
+                        <Link href="/terms-and-conditions" className="hover:text-primary-dark transition-colors">Terms & Conditions</Link>
+                    </div>
+                </div>
             </div>
-            <p className="text-secondary leading-relaxed max-w-xs">
-              Ananta - By The Hill is a sanctuary of peace and luxury, where the beauty of nature meets the elegance of heritage.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-secondary hover:bg-primary hover:text-ivory transition-all">
-                <FaInstagram size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-secondary hover:bg-primary hover:text-ivory transition-all">
-                <FaFacebookF size={18} />
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-serif text-xl mb-6">Explore</h4>
-            <ul className="flex flex-col gap-4">
-              <li><Link href="/rooms" className="text-secondary hover:text-primary transition-colors link-underline pb-1 inline-block">Rooms</Link></li>
-              <li><Link href="/dining" className="text-secondary hover:text-primary transition-colors link-underline pb-1 inline-block">Dining Experience</Link></li>
-              <li><Link href="/events" className="text-secondary hover:text-primary transition-colors link-underline pb-1 inline-block">Weddings & Events</Link></li>
-              <li><Link href="/contact" className="text-secondary hover:text-primary transition-colors link-underline pb-1 inline-block">Contact Us</Link></li>
-            </ul>
-          </div>
-
-          {/* Contact Details */}
-          <div>
-            <h4 className="font-serif text-xl mb-6">Get in Touch</h4>
-            <ul className="flex flex-col gap-4">
-              <li className="flex gap-3 text-secondary">
-                <MapPin size={20} className="text-primary shrink-0 mt-1.5" />
-                <span>Canary Hill Rd, Hirabaug, Hazaribagh, Jharkhand 825301</span>
-              </li>
-              <li className="flex gap-3 text-secondary">
-                <Phone size={20} className="text-primary shrink-0 mt-1.5" />
-                <a href="tel:+919942631802" className="hover:text-primary transition-colors">+91 9942631802</a>
-              </li>
-              <li className="flex gap-3 text-secondary">
-                <Mail size={20} className="text-primary shrink-0 mt-1.5" />
-                <a href="mailto:reservations@ananta.com" className="hover:text-primary transition-colors">reservations@ananta.com</a>
-              </li>
-            </ul>
-          </div>
-
-        </div>
-
-        <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-secondary uppercase tracking-widest">
-          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Ananta. All rights reserved.</p>
-          <div className="flex gap-8">
-            <Link href="/privacy" className="hover:text-primary link-underline pb-1">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-primary link-underline pb-1">Terms & Conditions</Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-};
-
-export default Footer;
+        </footer>
+    );
+}

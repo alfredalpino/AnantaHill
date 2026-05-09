@@ -1,49 +1,76 @@
 "use client";
 
-import { CreditCard } from 'lucide-react';
+import { CreditCard, ShieldCheck } from 'lucide-react';
+import Image from 'next/image';
 
 interface BookingSummaryProps {
   room: {
     image: string;
     price: number;
-    desc: string;
+    category?: string;
   };
   roomName: string;
 }
 
 const BookingSummary = ({ room, roomName }: BookingSummaryProps) => {
+  const gst = room.price * 0.18;
+  const finalTotal = room.price + gst;
+
   return (
-    <div className="bg-cream rounded-md overflow-hidden shadow-luxury border border-border">
-      <div className="h-64 relative">
-        <img src={room.image} alt={roomName} className="w-full h-full object-cover" />
-        <div className="absolute top-6 right-6 bg-ivory/90 backdrop-blur-md px-4 py-2 rounded-full border border-ivory/20 shadow-soft">
-          <span className="text-[10px] font-bold text-primary uppercase tracking-widest">Active Choice</span>
+    <div className="card-premium overflow-hidden sticky top-24">
+      <div className="h-56 relative overflow-hidden">
+        <Image 
+          src={room.image} 
+          alt={roomName} 
+          fill
+          className="object-cover"
+        />
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full border border-secondary shadow-sm">
+            <span className="text-primary-dark font-bold text-[10px] uppercase tracking-widest">{room.category || 'Luxury Room'}</span>
         </div>
       </div>
       
-      <div className="md:p-10 p-6">
-        <h2 className="sm:text-3xl text-2xl font-serif font-semibold text-secondary mb-4">{roomName}</h2>
-        <p className="text-secondary/60 text-sm leading-relaxed mb-5">{room.desc}</p>
+      <div className="p-6 md:p-8 space-y-6">
+        <div>
+          <h3 className="font-display text-2xl font-bold text-text-primary mb-1">
+            {roomName}
+          </h3>
+          <p className="text-sm text-text-muted">
+            Includes all premium amenities and breakfast.
+          </p>
+        </div>
 
-        <div className="border-t border-border pt-5 space-y-4">
-          <div className="flex justify-between items-center">
-            <span className="text-secondary/40 text-xs uppercase tracking-widest font-bold">Standard Rate</span>
-            <span className="text-secondary font-bold">Rs. {room.price.toLocaleString()} / night</span>
+        <div className="space-y-4 border-y border-secondary-dark py-6">
+          <div className="flex justify-between text-sm">
+            <span className="text-text-body">Base Rate (1 Night)</span>
+            <span className="font-bold text-text-primary">₹{room.price.toLocaleString()}</span>
           </div>
-          <div className="flex justify-between items-center text-primary font-bold">
-            <span className="text-xs uppercase tracking-widest">Taxes & Fees</span>
-            <span>Included</span>
+          <div className="flex justify-between text-sm text-primary-dark">
+            <span className="font-medium">Special Discount</span>
+            <span className="font-bold">-₹0</span>
           </div>
-          <div className="flex justify-between items-center pt-4">
-            <span className="md:text-xl text-lg font-semibold text-secondary">Total Estimate</span>
-            <span className="md:text-2xl text-xl font-bold text-primary font-semibold">Rs. {room.price.toLocaleString()}</span>
+          <div className="flex justify-between text-sm">
+            <span className="text-text-body">GST (18%)</span>
+            <span className="font-bold text-text-primary">₹{gst.toLocaleString()}</span>
           </div>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-lg font-bold text-text-primary">Total Amount</span>
+          <span className="text-2xl font-bold text-primary-dark">₹{finalTotal.toLocaleString()}</span>
+        </div>
+
+        <div className="flex gap-3 rounded-xl bg-secondary-dark/50 p-4">
+          <ShieldCheck className="h-5 w-5 shrink-0 text-success" />
+          <p className="text-[11px] leading-relaxed text-text-body">
+            <strong className="font-semibold text-text-primary">Secure Booking:</strong> Full refund if cancelled 48 hours before check-in. All taxes included.
+          </p>
         </div>
       </div>
 
-      <div className="bg-transparent border-t border-border p-8 flex items-center justify-center gap-4">
-        <CreditCard className="text-secondary/30" size={20} />
-        <p className="text-secondary/50 text-[10px] uppercase tracking-widest font-bold">Pay upon arrival or secure checkout later</p>
+      <div className="bg-secondary-dark/30 p-5 flex items-center justify-center gap-3 border-t border-secondary-dark">
+        <CreditCard className="text-text-muted" size={18} />
+        <p className="text-[10px] font-bold uppercase tracking-widest text-text-muted">Pay Securely Online or at Hotel</p>
       </div>
     </div>
   );

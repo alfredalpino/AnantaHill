@@ -1,14 +1,10 @@
 "use client";
 
-import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import SectionHeader from '@/components/SectionHeader';
-import { Wifi, Coffee, Wind, Tv, Users, Maximize } from 'lucide-react';
 import { useState } from 'react';
+import Link from 'next/link';
+import RoomCard from '@/components/RoomCard';
 import RoomDetailsModal from '@/components/RoomDetailsModal';
-import RoomCard from '@/components/cards/RoomCard';
-
-const roomImg = "/images/room.jpg";
+import ScrollReveal from '@/components/ScrollReveal';
 
 const rooms = [
   {
@@ -19,7 +15,8 @@ const rooms = [
     price: "25,000",
     size: "850 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />, <Tv key="t" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast', 'Butler']
   },
   {
     id: 2,
@@ -29,7 +26,8 @@ const rooms = [
     price: "12,000",
     size: "450 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Wind key="wi" />, <Tv key="t" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   },
   {
     id: 3,
@@ -39,7 +37,8 @@ const rooms = [
     price: "15,000",
     size: "550 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Wind key="wi" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   },
   {
     id: 4,
@@ -49,7 +48,8 @@ const rooms = [
     price: "10,500",
     size: "400 sq ft",
     occupancy: "3 Guests",
-    amenities: [<Wifi key="w" />, <Tv key="t" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   },
   {
     id: 5,
@@ -59,7 +59,8 @@ const rooms = [
     price: "18,500",
     size: "600 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Coffee key="c" />, <Tv key="t" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   },
   {
     id: 6,
@@ -69,72 +70,87 @@ const rooms = [
     price: "14,000",
     size: "500 sq ft",
     occupancy: "2 Guests",
-    amenities: [<Wifi key="w" />, <Wind key="wi" />]
+    image: "/images/room.jpg",
+    amenities_labels: ['WiFi', 'AC', 'Breakfast']
   }
 ];
 
-export default function Accommodations() {
-  const [filter, setFilter] = useState("All");
-  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-  const [selectedRoomData, setSelectedRoomData] = useState<any>(null);
-  const categories = ["All", "Suites", "Cottages", "Deluxe"];
+export default function RoomsPage() {
+    const [filter, setFilter] = useState('All');
+    const [selectedRoom, setSelectedRoom] = useState<any>(null);
+    const categories = ["All", "Suites", "Cottages", "Deluxe"];
 
-  const openDetails = (room: any) => {
-    setSelectedRoomData(room);
-    setIsDetailsOpen(true);
-  };
+    const filteredRooms = rooms.filter(room =>
+        filter === 'All' || room.category === filter
+    );
 
-  const filteredRooms = filter === "All" 
-    ? rooms 
-    : rooms.filter(room => room.category === filter);
+    return (
+        <div className="min-h-screen">
+            <section className="relative flex h-[38vh] min-h-[280px] items-center justify-center overflow-hidden bg-secondary md:h-[42vh]">
+                <div className="relative z-10 container-shell text-center">
+                    <ScrollReveal>
+                        <h1 className="mb-3 font-display text-3xl font-bold text-text-primary md:text-5xl">
+                            Accommodations
+                        </h1>
+                        <p className="mx-auto max-w-2xl text-sm text-text-body md:text-base">
+                            Suites, cottages, and deluxe rooms are grouped for clarity, with transparent pricing and capacity.
+                        </p>
+                        <div className="mt-6">
+                            <Link
+                                href="/booking"
+                                className="btn-primary inline-flex px-8 py-3 text-sm font-semibold"
+                            >
+                                Book a stay
+                            </Link>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
 
-  return (
-    <div className="pt-32 pb-20 bg-ivory min-h-screen">
-      <div className="container-custom">
-        <SectionHeader 
-          subtitle="Accommodations"
-          title="Sanctuaries of Rest"
-        />
+            <section className="sticky top-[80px] z-30 border-b border-secondary border-t border-secondary/50 bg-white/95 shadow-sm backdrop-blur">
+                <div className="container-shell flex items-center gap-2 overflow-x-auto py-4 md:justify-center md:gap-3 md:py-5">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat}
+                            type="button"
+                            onClick={() => setFilter(cat)}
+                            className={`whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold transition-colors duration-200 ${filter === cat
+                                ? 'bg-primary-dark text-secondary shadow-sm'
+                                : 'text-text-muted hover:bg-secondary hover:text-text-primary'
+                                }`}
+                        >
+                            {cat}
+                        </button>
+                    ))}
+                </div>
+            </section>
 
-        {/* Filter Bar */}
-        <div className="sticky top-[80px] z-40 flex overflow-x-auto no-scrollbar gap-4 py-5 mb-16 bg-ivory border-b border-border -mx-6 px-6 scroll-smooth">
-          <div className="flex gap-4 mx-auto">
-            {categories.map(cat => (
-              <button
-                key={cat}
-                onClick={() => setFilter(cat)}
-                className={`px-4 sm:px-8 py-2 rounded-full sm:text-sm text-xs uppercase tracking-widest transition-all whitespace-nowrap ${
-                  filter === cat 
-                    ? "bg-primary text-ivory shadow-luxury" 
-                    : "bg-cream text-secondary hover:bg-border"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+            <section className="section-shell bg-background">
+                <div className="container-shell">
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                        {filteredRooms.map((room, i) => (
+                            <ScrollReveal key={room.id} delay={i % 3 * 120}>
+                                <RoomCard room={room} onViewDetails={setSelectedRoom} />
+                            </ScrollReveal>
+                        ))}
+                    </div>
+
+                    {filteredRooms.length === 0 && (
+                        <div className="py-20 text-center">
+                            <h3 className="font-display text-xl font-bold text-text-primary md:text-2xl">
+                                No rooms in this category
+                            </h3>
+                            <p className="mt-2 text-sm text-text-muted">Try another filter or view all rooms.</p>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            <RoomDetailsModal
+                isOpen={Boolean(selectedRoom)}
+                onClose={() => setSelectedRoom(null)}
+                room={selectedRoom}
+            />
         </div>
-
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          <AnimatePresence mode="popLayout">
-            {filteredRooms.map((room) => (
-              <RoomCard 
-                key={room.id} 
-                room={room} 
-                roomImg={roomImg} 
-                onOpenDetails={openDetails} 
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-      </div>
-      
-
-      <RoomDetailsModal 
-        isOpen={isDetailsOpen} 
-        onClose={() => setIsDetailsOpen(false)} 
-        room={selectedRoomData}
-      />
-    </div>
-  );
+    );
 }

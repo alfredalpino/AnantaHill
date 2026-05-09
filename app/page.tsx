@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import Hero from '@/components/home/Hero';
 import About from '@/components/home/About';
 import Experiences from '@/components/home/Experiences';
@@ -8,26 +9,53 @@ import Rooms from '@/components/home/Rooms';
 import Restaurant from '@/components/home/Restaurant';
 import Testimonials from '@/components/home/Testimonials';
 import CTA from '@/components/home/CTA';
-import BookingWidget from '@/components/BookingWidget';
 import Features from '@/components/home/Features';
 import TableReservationModal from '@/components/TableReservationModal';
 import LiveMusic from '@/components/home/LiveMusic';
+import ScrollReveal from '@/components/ScrollReveal';
+
+const BookingBar = dynamic(() => import('@/components/BookingBar'), { ssr: false });
 
 export default function Home() {
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
 
   return (
-    <div className="flex flex-col">
+    <div className="relative">
       <Hero onReserveTable={() => setIsTableModalOpen(true)} />
-      <BookingWidget />
-      <Features />
-      <Rooms />
-      <About />
-      <Experiences />
-      <Restaurant onReserveTable={() => setIsTableModalOpen(true)} />
-      <LiveMusic />
-      <Testimonials />
-      <CTA />
+      
+      <BookingBar />
+
+      <ScrollReveal delay={100}>
+        <Features />
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <Rooms />
+      </ScrollReveal>
+
+      <ScrollReveal delay={300}>
+        <About />
+      </ScrollReveal>
+
+      <ScrollReveal delay={400}>
+        <Experiences />
+      </ScrollReveal>
+
+      <ScrollReveal delay={500}>
+        <Restaurant onReserveTable={() => setIsTableModalOpen(true)} />
+      </ScrollReveal>
+
+      <ScrollReveal delay={600}>
+        <LiveMusic />
+      </ScrollReveal>
+
+      <ScrollReveal delay={700}>
+        <Testimonials />
+      </ScrollReveal>
+
+      <ScrollReveal delay={800}>
+        <CTA />
+      </ScrollReveal>
 
       <TableReservationModal
         isOpen={isTableModalOpen}

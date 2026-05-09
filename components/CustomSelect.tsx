@@ -25,7 +25,7 @@ const CustomSelect = ({
   return (
     <div className="flex flex-col gap-1 w-full">
       {label && (
-        <label className="text-[10px] uppercase tracking-widest font-bold text-secondary/40 ml-1 flex items-center gap-2">
+        <label className="field-label ml-1 flex items-center gap-2">
           {icon}
           {label}
         </label>
@@ -36,8 +36,8 @@ const CustomSelect = ({
           onChange={onChange}
           className={`
             w-full appearance-none cursor-pointer focus:outline-none transition-all
-            bg-cream border border-border text-secondary font-medium
-            ${variant === 'full' ? 'rounded-full px-8 py-3 text-xs uppercase tracking-widest font-bold' : 'rounded-2xl px-6 py-4 text-sm'}
+            bg-white border border-secondary text-text-primary font-bold
+            ${variant === 'full' ? 'rounded-full px-8 py-3 text-xs uppercase tracking-widest' : 'rounded-2xl px-6 py-4 text-sm'}
             ${className}
           `}
         >
@@ -45,14 +45,14 @@ const CustomSelect = ({
             const labelStr = typeof opt === 'string' ? opt : opt.label;
             const valueStr = typeof opt === 'string' ? opt : opt.value;
             return (
-              <option key={valueStr} value={valueStr} className="bg-white text-secondary">
+              <option key={valueStr} value={valueStr} className="bg-white text-text-primary">
                 {labelStr}
               </option>
             );
           })}
         </select>
-        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/50 group-hover:text-white transition-colors">
-          <ChevronDown size={16} />
+        <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-text-muted transition-colors">
+          <ChevronDown size={18} />
         </div>
       </div>
     </div>

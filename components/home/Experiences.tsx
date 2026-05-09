@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
-import SectionHeader from '@/components/SectionHeader';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const experiences = [
   {
@@ -25,44 +25,44 @@ const experiences = [
 
 const Experiences = () => {
   return (
-    <section className="section-padding bg-ivory">
-      <div className="container-custom">
-        <SectionHeader
-          subtitle="Memories in the Making"
-          title="Curated Experiences"
-          centered="responsive"
-        />
+    <section className="section-shell bg-background">
+      <div className="container-shell">
+        <div className="section-head">
+          <ScrollReveal>
+            <p className="eyebrow mb-2">Memories in the Making</p>
+            <h2 className="font-display text-3xl font-bold text-text-primary md:text-5xl">
+              Curated experiences
+            </h2>
+            <p className="text-base leading-relaxed text-text-body mt-4">
+              Experiences shaped by land, season, and intention, so your time here feels grounded, not staged.
+            </p>
+          </ScrollReveal>
+        </div>
 
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8">
           {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: i * 0.2 }}
-              className="group relative h-[350px] lg:h-[450px] rounded-md overflow-hidden shadow-luxury cursor-pointer border border-border/50"
-            >
-              <img
-                src={exp.img}
-                alt={exp.title}
-                className="w-full h-full object-cover transition-transform duration-[1.5s] group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
-
-              <div className="absolute inset-0 p-8 flex flex-col justify-end z-20">
-                <h3 className="text-2xl font-serif text-ivory mb-4 drop-shadow-lg">{exp.title}</h3>
+            <ScrollReveal key={i} delay={i * 100}>
+              <div className="group relative h-[400px] lg:h-[500px] overflow-hidden rounded-2xl shadow-premium">
+                <Image
+                  src={exp.img}
+                  alt={exp.title}
+                  fill
+                  className="object-cover transition-transform duration-[1.5s] group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
                 
-                <div className="opacity-100 transition-all duration-700 ease-in-out">
-                  <p className="text-ivory/80 text-sm leading-relaxed mb-4 font-light drop-shadow-sm">
+                <div className="absolute inset-0 p-8 flex flex-col justify-end z-20">
+                  <h3 className="font-display text-2xl font-bold text-white mb-2">{exp.title}</h3>
+                  <p className="text-white/80 text-sm leading-relaxed mb-6 font-medium">
                     {exp.desc}
                   </p>
-                  <Link href="/dining" className="inline-flex items-center gap-2 text-primary text-[15px] capitalize tracking-wide font-bold border-b border-primary/30 pb-1 hover:border-primary transition-all drop-shadow-sm">
-                    Explore experience <ArrowRight size={14} />
+                  <Link href="/dining" className="inline-flex items-center gap-2 text-white text-sm font-bold group/link">
+                    Explore experience
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                   </Link>
                 </div>
               </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

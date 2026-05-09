@@ -1,49 +1,47 @@
 import type { Metadata } from "next";
-import { Outfit, Cinzel, Cormorant_Garamond } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { ToastProvider } from "@/components/Toast";
+import ClientLayout from "@/components/ClientLayout";
 import Preloader from "@/components/Preloader";
-import PageWrapper from "@/components/PageWrapper";
-
-
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
-
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-});
 
 const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-cormorant",
+});
+
+const playfair = Playfair_Display({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-playfair",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  variable: "--font-dm-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Ananta - By The Hill",
+  title: "Ananta - By The Hill | Luxury Nature Resort in Hazaribagh",
   description: "Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${cinzel.variable} ${cormorant.variable}`}>
-      <body className="bg-ivory text-foreground antialiased flex flex-col min-h-screen font-sans">
-        <Preloader />
-        
-        <Navbar />
-        <PageWrapper>
-          {children}
-        </PageWrapper>
-        <Footer />
+    <html lang="en" className="smooth-scroll" suppressHydrationWarning>
+      <body
+        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} font-body antialiased`}
+      >
+        <ToastProvider>
+          <Preloader />
+          <ClientLayout>{children}</ClientLayout>
+        </ToastProvider>
       </body>
     </html>
   );

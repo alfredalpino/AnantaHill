@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { CheckCircle2 } from 'lucide-react';
 
 interface BookingSuccessProps {
   roomName: string;
@@ -9,18 +10,20 @@ interface BookingSuccessProps {
 
 const BookingSuccess = ({ roomName }: BookingSuccessProps) => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-ivory p-6">
+    <div className="min-h-screen flex items-center justify-center bg-white p-6">
       <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="max-w-md w-full bg-cream p-12 rounded-md shadow-luxury text-center border border-border"
+        className="max-w-lg w-full bg-white p-10 md:p-16 rounded-3xl shadow-premium text-center border border-secondary-dark"
       >
-        <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-8 text-3xl">✓</div>
-        <h2 className="text-3xl font-serif font-semibold text-secondary mb-4">Reservation Sent</h2>
-        <p className="text-secondary/60 mb-10">
-          Thank you for choosing Ananta. Our concierge will contact you within 30 minutes to finalize your stay in the {roomName}.
+        <div className="w-24 h-24 bg-success/10 text-success rounded-full flex items-center justify-center mx-auto mb-10">
+            <CheckCircle2 size={48} />
+        </div>
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">Reservation Sent</h2>
+        <p className="text-text-body text-base md:text-lg mb-10 leading-relaxed">
+          Thank you for choosing Ananta. Our concierge will contact you within 30 minutes to finalize your stay in the <strong className="text-primary-dark">{roomName}</strong>.
         </p>
-        <Link href="/" className="luxury-button inline-block">Return Home</Link>
+        <Link href="/" className="btn-primary inline-flex">Return Home</Link>
       </motion.div>
     </div>
   );

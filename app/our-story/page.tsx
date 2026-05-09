@@ -1,136 +1,136 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import SectionHeader from '@/components/SectionHeader';
-import { Wind, Waves, CheckCircle2, Coffee, Leaf, MapPin, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { Wind, Waves, Coffee, Leaf, MapPin, Trees } from 'lucide-react';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const amenities = [
-  { icon: <Wind />, title: "Mountain Yoga", desc: "Start your day with sunrise sessions overlooking the peaks." },
-  { icon: <Waves />, title: "Infinity Pool", desc: "Heated outdoor pool with panoramic views of the valley." },
-  { icon: <CheckCircle2 />, title: "Organic Farm", desc: "Harvest your own vegetables for a personalized meal." },
-  { icon: <Coffee />, title: "Artisan Cafe", desc: "Freshly roasted local coffee and mountain-infused teas." },
-  { icon: <Leaf />, title: "Orchard Lawns", desc: "Expansive alfresco spaces for evening events and starlit strolls." },
-  { icon: <MapPin />, title: "Nature Trails", desc: "Guided treks through the hidden paths of Canary Hill." },
+  { icon: Wind, title: "Mountain Yoga", desc: "Start your day with sunrise sessions overlooking the peaks." },
+  { icon: Waves, title: "Infinity Pool", desc: "Heated outdoor pool with panoramic views of the valley." },
+  { icon: Trees, title: "Organic Farm", desc: "Harvest your own vegetables for a personalized meal." },
+  { icon: Coffee, title: "Artisan Cafe", desc: "Freshly roasted local coffee and mountain-infused teas." },
+  { icon: Leaf, title: "Orchard Lawns", desc: "Expansive alfresco spaces for evening events and starlit strolls." },
+  { icon: MapPin, title: "Nature Trails", desc: "Guided treks through the hidden paths of Canary Hill." },
 ];
 
-export default function OurStory() {
-  return (
-    <div className="flex flex-col bg-ivory">
-      {/* Narrative Header */}
-      <section className="pt-32 pb-20 bg-ivory">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <span className="uppercase tracking-[0.5em] text-xs font-bold text-primary mb-4 block">Est. 2018</span>
-            <h1 className="text-5xl md:text-7xl font-serif text-secondary mb-12 tracking-tighter leading-[1.2]">
-              A Legacy of <br />
-              <span className="text-primary font-normal">Hillside Tranquility</span>
-            </h1>
-            <p className="text-secondary/70 text-xl md:text-2xl leading-relaxed max-w-2xl mx-auto font-light italic">
-              "Ananta" translates to infinity—a reflection of the boundless peace and timeless beauty that defines our hillside retreat.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Stats Bar */}
-      <section className="py-8 border-y border-border/50 bg-cream/30">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-            {[
-              { label: "Acres of Nature", value: "50+" },
-              { label: "Luxury Suites", value: "24" },
-              { label: "Elevation (ft)", value: "1200" },
-              { label: "Guest Satisfaction", value: "99%" },
-            ].map((stat, i) => (
-              <div key={i} className="text-center">
-                <div className="text-3xl md:text-4xl font-serif text-primary mb-2">{stat.value}</div>
-                <div className="text-[10px] uppercase tracking-widest font-bold text-secondary/50">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Story Section */}
-      <section className="section-padding">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="space-y-8 text-secondary/80 text-lg leading-relaxed"
-            >
-              <h2 className="text-4xl md:text-6xl font-serif text-secondary mb-8">Harmony with Nature</h2>
-              <p>
-                Founded on the belief that true luxury lies in the harmony between man and nature, Ananta was envisioned as a sanctuary for those seeking to escape the cacophony of modern life. Our location on Canary Hill provides a natural vantage point, where the sunrise paints the sky in hues of gold.
-              </p>
-              <p>
-                Every stone used in our construction, every plant in our organic farm, and every recipe in our kitchen is a tribute to the local heritage of Jharkhand. We blend traditional craftsmanship with contemporary elegance to create an experience that is both authentic and refined.
-              </p>
-              <div className="pt-6">
-                <Link href="/rooms" className="luxury-button">
-                  View Our Rooms <ArrowRight className="ml-2" size={16} />
-                </Link>
-              </div>
-            </motion.div>
-
-            <div className="relative">
-              <div className="rounded-md overflow-hidden shadow-luxury h-[400px] md:h-[600px] relative">
-                <img src="/images/lawn.webp" alt="About Ananta" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-secondary/10" />
-              </div>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="absolute -bottom-10 -left-10 bg-primary p-12 rounded-md hidden md:block border-8 border-ivory"
-              >
-                <p className="text-ivory font-serif text-3xl italic leading-tight">"Where the hills <br /> find their home."</p>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* The Ananta Life */}
-      <section className="section-padding bg-cream/50">
-        <div className="container-custom">
-          <SectionHeader
-            subtitle="The Ananta Life"
-            title="Curated Amenities"
-          />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {amenities.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-10 bg-ivory rounded-md shadow-soft hover:shadow-luxury transition-all flex items-start gap-8 group border border-border/10 hover:border-primary/20"
-              >
-                <div className="w-16 h-16 shrink-0 rounded-2xl bg-cream flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-ivory transition-all duration-500 shadow-sm">
-                  {item.icon}
+export default function OurStoryPage() {
+    return (
+        <div className="min-h-screen">
+            {/* Narrative Header */}
+            <section className="relative flex h-[50vh] min-h-[400px] items-center justify-center overflow-hidden bg-secondary md:h-[60vh]">
+                <div className="relative z-10 container-shell text-center">
+                    <ScrollReveal>
+                        <p className="eyebrow mb-4 text-accent">Est. 2018</p>
+                        <h1 className="mb-6 font-display text-4xl font-bold text-text-primary md:text-6xl lg:text-7xl">
+                            A Legacy of <br />
+                            <span className="text-primary-dark">Hillside Tranquility</span>
+                        </h1>
+                        <p className="mx-auto max-w-2xl text-base italic text-text-body md:text-xl">
+                            "Ananta" translates to infinity—a reflection of the boundless peace and timeless beauty that defines our hillside retreat.
+                        </p>
+                    </ScrollReveal>
                 </div>
-                <div className="flex flex-col gap-4">
-                  <h4 className="sm:text-2xl text-xl font-serif text-secondary group-hover:text-primary transition-colors leading-tight">{item.title}</h4>
-                  <p className="text-secondary/60 text-base leading-relaxed font-light">
-                    {item.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+            </section>
 
-    </div>
-  );
+            {/* Stats Bar */}
+            <section className="border-y border-secondary bg-white/50 py-10 md:py-16">
+                <div className="container-shell">
+                    <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
+                        {[
+                            { label: "Acres of Nature", value: "50+" },
+                            { label: "Luxury Suites", value: "24" },
+                            { label: "Elevation (ft)", value: "1200" },
+                            { label: "Guest Satisfaction", value: "99%" },
+                        ].map((stat, i) => (
+                            <ScrollReveal key={i} delay={i * 100}>
+                                <div className="text-center">
+                                    <div className="font-display text-3xl font-bold text-primary-dark md:text-5xl">{stat.value}</div>
+                                    <div className="mt-2 text-[10px] font-bold uppercase tracking-widest text-text-muted">{stat.label}</div>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Story Section */}
+            <section className="section-shell bg-background">
+                <div className="container-shell">
+                    <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+                        <div className="w-full space-y-6 lg:w-1/2">
+                            <ScrollReveal>
+                                <h2 className="font-display text-3xl font-bold text-text-primary md:text-5xl leading-tight">
+                                    Harmony with Nature
+                                </h2>
+                                <div className="mt-8 space-y-6 text-base leading-relaxed text-text-body md:text-lg">
+                                    <p>
+                                        Founded on the belief that true luxury lies in the harmony between man and nature, Ananta was envisioned as a sanctuary for those seeking to escape the cacophony of modern life. Our location on Canary Hill provides a natural vantage point, where the sunrise paints the sky in hues of gold.
+                                    </p>
+                                    <p>
+                                        Every stone used in our construction, every plant in our organic farm, and every recipe in our kitchen is a tribute to the local heritage of Jharkhand. We blend traditional craftsmanship with contemporary elegance to create an experience that is both authentic and refined.
+                                    </p>
+                                </div>
+                                <div className="mt-10">
+                                    <Link href="/rooms" className="btn-primary inline-flex px-8">
+                                        View our rooms
+                                    </Link>
+                                </div>
+                            </ScrollReveal>
+                        </div>
+                        <div className="w-full lg:w-1/2">
+                            <ScrollReveal delay={200}>
+                                <div className="relative aspect-3/3 overflow-hidden rounded-2xl shadow-premium">
+                                    <Image
+                                        src="/images/lawn.webp"
+                                        alt="Ananta Grounds"
+                                        fill
+                                        className="object-cover"
+                                    />
+                                    <div className="absolute bottom-8 left-8 right-8 rounded-xl bg-white/90 p-6 backdrop-blur-md shadow-lg border border-white/50 hidden md:block">
+                                        <p className="font-display text-2xl font-bold italic text-primary-dark">
+                                            "Where the hills find their home."
+                                        </p>
+                                    </div>
+                                </div>
+                            </ScrollReveal>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Amenities Grid */}
+            <section className="section-shell bg-secondary/30">
+                <div className="container-shell">
+                    <div className="section-head text-center">
+                        <ScrollReveal>
+                            <p className="eyebrow mb-2">The Ananta Life</p>
+                            <h2 className="font-display text-2xl font-bold text-text-primary sm:text-3xl md:text-5xl">
+                                Curated Amenities
+                            </h2>
+                        </ScrollReveal>
+                    </div>
+                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {amenities.map((item, i) => (
+                            <ScrollReveal key={i} delay={i * 100}>
+                                <div className="feature-card flex flex-col gap-6 p-8 md:p-10">
+                                    <div className="w-16 h-16 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center text-primary-dark">
+                                        <item.icon className="w-8 h-8" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-display text-2xl font-bold text-text-primary mb-3">
+                                            {item.title}
+                                        </h4>
+                                        <p className="text-text-body text-base leading-relaxed">
+                                            {item.desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
+                </div>
+            </section>
+        </div>
+    );
 }

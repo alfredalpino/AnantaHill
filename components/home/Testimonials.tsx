@@ -93,7 +93,7 @@ const Testimonials = () => {
   const displayItems = [...testimonials, ...testimonials];
 
   return (
-    <section className="section-padding bg-ivory overflow-hidden">
+    <section className="section-padding bg-white overflow-hidden">
       <div className="container-custom">
         <SectionHeader
           subtitle="Testimonials"
@@ -121,20 +121,20 @@ const Testimonials = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: (i % testimonials.length) * 0.1 }}
-                    className="bg-cream p-8 md:p-10 rounded-md shadow-soft hover:shadow-luxury transition-all relative group border border-border/50 h-full flex flex-col justify-between"
+                    className="bg-white p-8 md:p-10 rounded-2xl shadow-premium border border-secondary-dark h-full flex flex-col justify-between group"
                   >
                     <div>
-                      <Quote className="text-primary/20 absolute top-8 right-8 group-hover:text-primary/40 transition-colors" size={40} />
-                      <div className="flex gap-1 mb-6 text-primary">
+                      <Quote className="text-primary/40 absolute top-8 right-8 group-hover:text-primary-dark transition-colors" size={40} />
+                      <div className="flex gap-1 mb-6 text-primary-dark">
                         {[...Array(5)].map((_, idx) => <Star key={idx} size={14} fill="currentColor" />)}
                       </div>
-                      <p className="text-secondary text-base md:text-lg leading-relaxed mb-8 italic">
+                      <p className="text-text-primary text-base md:text-lg leading-relaxed mb-8 italic">
                         "{feedback.text}"
                       </p>
                     </div>
-                    <div className="pt-6 border-t border-border/50">
-                      <h4 className="font-serif text-secondary">{feedback.author}</h4>
-                      <p className="text-primary text-[10px] uppercase tracking-luxury font-bold mt-1">{feedback.role}</p>
+                    <div className="pt-6 border-t border-secondary-dark">
+                      <h4 className="font-display text-xl font-bold text-text-primary">{feedback.author}</h4>
+                      <p className="text-primary-dark text-xs font-bold uppercase tracking-widest mt-1">{feedback.role}</p>
                     </div>
                   </motion.div>
                 </div>

@@ -1,55 +1,44 @@
 "use client";
 
-import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
+import ScrollReveal from '@/components/ScrollReveal';
 
 const CTA = () => {
   return (
-    <section className="relative section-padding overflow-hidden bg-secondary">
-      <div className="container-custom relative z-20 text-center">
-        <div className="max-w-4xl mx-auto">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="uppercase tracking-[0.5em] text-[10px] font-bold text-primary mb-6 block"
-          >
-            Ready for your escape?
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-serif text-ivory mb-8 leading-tight"
-          >
-            Discover the <br /> <span className="text-primary">Infinite Calm</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="text-ivory/90 text-lg mb-12 max-w-2xl mx-auto font-normal"
-          >
-            Whether it's a weekend getaway or a month-long retreat, find your sanctuary in the heart of Canary Hill. Your story begins at Ananta.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap justify-center gap-6"
-          >
-            <Link href="/booking" className="bg-primary text-ivory px-10 py-5 rounded-md text-[15px] capitalize tracking-wide font-bold hover:bg-ivory hover:text-secondary transition-all shadow-luxury min-w-[240px]">
+    <section className="relative flex min-h-[420px] items-center justify-center overflow-hidden md:min-h-[500px]">
+      <div className="absolute inset-0 scale-105 transition-transform duration-[20s] ease-out hover:scale-100">
+        <Image
+          src="/images/night-pool.webp"
+          alt="Ananta Experience"
+          fill
+          sizes="100vw"
+          loading="lazy"
+          className="object-cover object-center"
+        />
+      </div>
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative z-10 container-shell max-w-3xl text-center">
+        <ScrollReveal>
+          <p className="eyebrow mb-4 text-primary">Begin your journey</p>
+          <h2 className="mb-8 font-display text-3xl font-bold leading-tight text-white sm:text-4xl md:text-6xl">
+            Ready for a different pace?
+          </h2>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-5">
+            <Link
+              href="/booking"
+              className="btn-primary px-10 py-4 text-base font-semibold"
+            >
               Book your stay
             </Link>
-            <Link href="/contact" className="border border-ivory/30 text-ivory px-10 py-5 rounded-md text-[15px] capitalize tracking-wide font-bold hover:bg-ivory hover:text-secondary transition-all min-w-[240px]">
-              Plan an event
+            <Link
+              href="/contact"
+              className="btn-outline border-2 border-white/90 bg-white/5 px-10 py-4 text-base font-semibold text-white backdrop-blur-sm hover:bg-white hover:text-primary-dark"
+            >
+              Contact concierge
             </Link>
-          </motion.div>
-        </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

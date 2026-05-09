@@ -1,188 +1,164 @@
-"use client";
+'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { clsx, type ClassValue } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
-const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const isHome = pathname === '/';
+function cn(...inputs: ClassValue[]) {
+    return twMerge(clsx(inputs));
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [isMobileMenuOpen]);
-
-  const navLinks = [
+const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Rooms', href: '/rooms' },
     { name: 'Dining', href: '/dining' },
     { name: 'Events', href: '/events' },
-    { name: 'Our Story', href: '/our-story' },
+    { name: 'Story', href: '/our-story' },
     { name: 'Contact', href: '/contact' },
-  ];
+];
 
-  return (
-    <>
-      <header 
-        className={`fixed w-full z-[140] transition-[background-color,padding,box-shadow,border-color] duration-700 ease-in-out ${
-          isMobileMenuOpen 
-            ? "bg-white shadow-none py-4" 
-            : (isScrolled 
-                ? "bg-white/95 backdrop-blur-md py-2 shadow-sm border-b border-accent/5" 
-                : `bg-transparent ${!isHome ? 'border-b border-accent/10 py-4' : 'py-5'}`)
-        }`}
-      >
-        <div className="container-custom flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/" className="relative z-[130]">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="flex items-center gap-2"
-            >
-              <Image 
-                src="/nav-logo.png" 
-                alt="Ananta Logo" 
-                width={140} 
-                height={40} 
-                className={`w-auto transition-all duration-700 ${isScrolled || isMobileMenuOpen ? "h-14 md:h-16" : (isHome ? "h-16" : "h-16")} object-contain`}
-                priority
-              />
-              <AnimatePresence>
-                {!isScrolled && (
-                  <motion.span 
-                    initial={{ opacity: 0, width: 0, x: -10 }}
-                    animate={{ opacity: 1, width: "auto", x: 0 }}
-                    exit={{ opacity: 0, width: 0, x: -10 }}
-                    transition={{ duration: 0.5 }}
-                    className="font-display font-bold text-xl md:text-2xl tracking-[0.15em] uppercase text-primary whitespace-nowrap overflow-hidden"
-                  >
-                    Ananta
-                  </motion.span>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          </Link>
-  
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-12">
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.name}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <Link 
-                  href={link.href} 
-                  className={`text-[15px] capitalize tracking-wide font-sans transition-colors link-underline ${
-                    isScrolled 
-                      ? "text-accent hover:text-primary" 
-                      : (isHome ? "text-white hover:text-primary" : "text-accent hover:text-primary")
-                  }`}
-                >
-                  {link.name}
+export default function Navbar() {
+    const [isScrolled, setIsScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+
+    const isHome = pathname === '/';
+    const heroTransparent = isHome && !isScrolled;
+
+    useEffect(() => {
+        const syncScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        syncScroll();
+        window.addEventListener('scroll', syncScroll, { passive: true });
+        return () => window.removeEventListener('scroll', syncScroll);
+    }, []);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+    }, [isMobileMenuOpen]);
+
+    return (
+        <nav
+            className={cn(
+                'nav-glass fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 transition-all duration-300 ease-out',
+                heroTransparent && 'nav-glass--hero-transparent',
+                isScrolled && 'nav-glass--scrolled py-2.5',
+                !isScrolled && 'py-4'
+            )}
+        >
+            <div className="container-shell flex items-center justify-between px-0">
+                <Link href="/" className="flex items-center gap-2 group shrink-0 lg:w-1/4" aria-label="Go to home">
+                    <Image
+                        src="/nav-logo.png"
+                        alt="Ananta Logo"
+                        width={180}
+                        height={60}
+                        className={cn('h-12 w-auto md:h-14 transition-all duration-300', heroTransparent && 'brightness-0 invert')}
+                    />
                 </Link>
-              </motion.div>
-            ))}
-            
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-            >
-              <Link 
-                href="/booking" 
-                className="luxury-button !bg-primary hover:!bg-primary/90 !text-white text-[15px] capitalize tracking-wide font-sans font-medium !px-6 !py-2.5 shadow-sm"
-              >
-                Book Now
-              </Link>
-            </motion.div>
-          </nav>
-  
-          {/* Mobile Toggle */}
-          <div className="lg:hidden flex items-center gap-4">
-            <button 
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`z-[150] transition-all duration-300 border rounded-md p-2 ${
-                isMobileMenuOpen 
-                  ? "text-accent border-transparent bg-transparent" 
-                  : (isScrolled 
-                      ? "text-accent border-transparent bg-transparent" 
-                      : (isHome 
-                          ? "text-white border-white/40 bg-white/10 backdrop-blur-sm" 
-                          : "text-accent border-transparent bg-transparent"))
-              }`}
-              aria-label="Toggle Menu"
-            >
-              {isMobileMenuOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
-            </button>
-          </div>
-        </div>
-      </header>
-  
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed top-0 right-0 w-full h-full bg-white/90 backdrop-blur-xl z-[120] flex flex-col items-center justify-center gap-12 lg:hidden"
-          >
-            <div className="flex flex-col items-center gap-8">
-              {navLinks.map((link, i) => (
-                <motion.div
-                  key={link.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + i * 0.1 }}
+
+                {/* Desktop Nav Links (Centered) */}
+                <div className="hidden md:flex flex-1 items-center justify-center gap-5 lg:gap-7 px-4">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={cn(
+                                'text-sm font-semibold transition-colors relative py-1',
+                                heroTransparent
+                                    ? pathname === link.href
+                                        ? 'text-white'
+                                        : 'text-white/85 hover:text-white'
+                                    : pathname === link.href
+                                      ? 'text-primary-dark font-bold'
+                                      : 'text-text-body hover:text-primary-dark'
+                            )}
+                        >
+                            {link.name}
+                            {pathname === link.href && (
+                                <span
+                                    className={cn(
+                                        'absolute bottom-0 left-0 right-0 h-0.5 rounded-full',
+                                        heroTransparent ? 'bg-white' : 'bg-primary-dark'
+                                    )}
+                                />
+                            )}
+                        </Link>
+                    ))}
+                </div>
+
+                {/* Right Side Buttons */}
+                <div className="hidden md:flex items-center justify-end gap-2 shrink-0 lg:w-1/4">
+                    <Link href="/booking" className="btn-primary py-2 px-6 text-sm">
+                        Book now
+                    </Link>
+                </div>
+
+                {/* Mobile Toggle */}
+                <button
+                    type="button"
+                    className={cn('md:hidden p-2', heroTransparent ? 'text-white' : 'text-text-primary')}
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle navigation"
                 >
-                  <Link 
-                    href={link.href} 
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-serif text-accent hover:text-primary transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.div>
-              ))}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + navLinks.length * 0.1 }}
-              >
-                <Link 
-                  href="/booking" 
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="luxury-button !bg-primary !text-secondary hover:!bg-secondary hover:!text-white"
-                >
-                  Book Your Stay
-                </Link>
-              </motion.div>
+                    {isMobileMenuOpen ? <X /> : <Menu />}
+                </button>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
-  );
-};
 
-export default Navbar;
+            {/* Mobile Menu */}
+            <div
+                className={cn(
+                    'nav-glass-panel fixed inset-0 z-[60] flex flex-col p-4 sm:p-6 bg-white/95 backdrop-blur-md transition-transform duration-300 ease-out md:hidden',
+                    isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                )}
+            >
+                <div className="flex justify-end pt-2">
+                    <button
+                        type="button"
+                        className="p-2 text-text-primary hover:bg-black/5 rounded-full transition-colors"
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label="Close navigation"
+                    >
+                        <X className="w-7 h-7" />
+                    </button>
+                </div>
+                <div className="flex flex-col items-center justify-center flex-1 gap-6 pb-12">
+                    {navLinks.map((link) => (
+                        <Link
+                            key={link.href}
+                            href={link.href}
+                            className={cn(
+                                'text-2xl font-display transition-colors text-center w-full',
+                                pathname === link.href ? 'text-primary-dark font-bold' : 'text-text-primary'
+                            )}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            {link.name}
+                        </Link>
+                    ))}
+                    
+                    <div className="my-4 h-px w-2/3 bg-secondary/50 mx-auto" />
+                    
+                    <div className="w-full max-w-[240px] flex flex-col gap-4 mt-2">
+                        <Link 
+                            href="/booking" 
+                            className="btn-primary w-full text-center py-3.5"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Book now
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    );
+}
