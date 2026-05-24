@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Users, ShieldCheck, Check, ArrowRight, Wifi, Wind, Coffee, Waves, UserCheck, Utensils, Dog, Maximize } from 'lucide-react';
 import Link from 'next/link';
@@ -30,6 +31,12 @@ interface RoomDetailsModalProps {
 }
 
 const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   // Lock body scroll
   useEffect(() => {
     if (isOpen) {
@@ -40,11 +47,11 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
     }
   }, [isOpen]);
 
-  if (!room) return null;
+  if (!room || !mounted) return null;
 
   const amenities = ['Complimentary WiFi', 'Air Conditioning', 'Mini Bar', '24/7 Room Service'];
 
-  return (
+  const modalContent = (
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-6 md:p-12">
@@ -179,6 +186,8 @@ const RoomDetailsModal = ({ isOpen, onClose, room }: RoomDetailsModalProps) => {
       )}
     </AnimatePresence>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default RoomDetailsModal;

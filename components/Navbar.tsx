@@ -97,7 +97,16 @@ export default function Navbar() {
                 </div>
 
                 {/* Right Side Buttons */}
-                <div className="hidden md:flex items-center justify-end gap-2 shrink-0 lg:w-1/4">
+                <div className="hidden md:flex items-center justify-end gap-4 shrink-0 lg:w-1/4">
+                    <Link 
+                        href="/login" 
+                        className={cn(
+                            'text-sm font-bold transition-colors',
+                            heroTransparent ? 'text-white/90 hover:text-white' : 'text-text-body hover:text-primary-dark'
+                        )}
+                    >
+                        Login
+                    </Link>
                     <Link href="/booking" className="btn-primary py-2 px-6 text-sm">
                         Book now
                     </Link>
@@ -148,7 +157,14 @@ export default function Navbar() {
                     
                     <div className="my-4 h-px w-2/3 bg-secondary/50 mx-auto" />
                     
-                    <div className="w-full max-w-[240px] flex flex-col gap-4 mt-2">
+                    <div className="w-full max-w-[240px] flex flex-col gap-3 mt-2">
+                        <Link 
+                            href="/login" 
+                            className="w-full text-center py-3.5 rounded-xl border-2 border-secondary text-text-primary font-bold hover:bg-secondary/10 transition-colors"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Login
+                        </Link>
                         <Link 
                             href="/booking" 
                             className="btn-primary w-full text-center py-3.5"
