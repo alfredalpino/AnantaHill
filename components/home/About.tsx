@@ -4,28 +4,54 @@ import Link from 'next/link';
 import Image from 'next/image';
 import ScrollReveal from '@/components/ScrollReveal';
 
+const features = [
+  "Colonial Architecture",
+  "Private Orchards",
+  "Panoramic Hill Views",
+  "Refined Hospitality",
+];
+
 const About = () => {
   return (
-    <section className="section-shell bg-white">
-      <div className="container-shell">
+    <section id="our-story" className="section-shell relative overflow-hidden bg-white !pt-20 sm:!pt-24 md:!pt-28">
+      <Image
+        src="/images/decor/leaf-corner.svg"
+        alt=""
+        width={120}
+        height={120}
+        className="pointer-events-none absolute left-2 top-8 opacity-60 sm:left-6 md:left-10"
+        aria-hidden
+      />
+      <Image
+        src="/images/decor/leaf-corner.svg"
+        alt=""
+        width={120}
+        height={120}
+        className="pointer-events-none absolute right-2 top-8 -scale-x-100 opacity-50 sm:right-6 md:right-10"
+        aria-hidden
+      />
+
+      <div className="container-shell relative z-[1]">
         <div className="section-head">
           <ScrollReveal>
             <p className="eyebrow mb-2">Our journey</p>
             <h2 className="font-display text-3xl font-bold text-text-primary md:text-5xl">
               The Ananta story
             </h2>
-            <p className="text-base leading-relaxed text-text-body mt-4">
-              Perched gracefully on the serene slopes of Canary Hill, Ananta is more than just a destination; it's a whisper of the hills, a breath of fresh air, and a tribute to refined living.
+            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-body md:text-lg">
+              Perched gracefully on the serene slopes of Canary Hill, Ananta is more than just a
+              destination; it&apos;s a whisper of the hills, a breath of fresh air, and a tribute to
+              refined living.
             </p>
           </ScrollReveal>
         </div>
 
         <ScrollReveal>
           <div className="flex flex-col items-center gap-10 md:gap-12 lg:flex-row lg:gap-14">
-            <div className="aspect-4/3 w-full overflow-hidden rounded-2xl shadow-premium lg:w-[46%] lg:max-w-140 lg:shrink-0">
+            <div className="aspect-4/3 w-full overflow-hidden rounded-xl shadow-premium lg:w-[46%] lg:max-w-140 lg:shrink-0">
               <Image
                 src="/images/main.webp"
-                alt="Ananta Resort"
+                alt="Ananta resort pool and pergolas by day"
                 width={960}
                 height={720}
                 loading="lazy"
@@ -33,33 +59,26 @@ const About = () => {
               />
             </div>
             <div className="w-full max-w-xl space-y-4 sm:space-y-5 lg:flex-1">
-              <p className="eyebrow text-accent">Hillside Haven</p>
+              <p className="eyebrow">Hillside haven</p>
               <h3 className="font-display text-2xl font-bold text-text-primary sm:text-3xl md:text-4xl">
                 Luxury meets nature
               </h3>
               <p className="text-base leading-relaxed text-text-body sm:text-lg">
-                Inspired by the heritage of grand estates and the simplicity of nature, we have crafted a space where every corner tells a story of luxury, comfort, and peace.
+                Inspired by the heritage of grand estates and the simplicity of nature, we have
+                crafted a space where every corner tells a story of luxury, comfort, and peace.
               </p>
-              <ul className="grid grid-cols-1 gap-2.5 sm:gap-3 sm:grid-cols-2">
-                {[
-                  "Colonial Architecture",
-                  "Panoramic Hill Views",
-                  "Private Orchards",
-                  "Refined Hospitality"
-                ].map((f) => (
+              <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-3">
+                {features.map((f) => (
                   <li
                     key={f}
-                    className="flex items-center gap-2 text-sm font-medium text-text-primary"
+                    className="flex items-start gap-3 text-sm font-medium text-text-primary"
                   >
-                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-dark" />
+                    <span className="story-bullet" aria-hidden />
                     {f}
                   </li>
                 ))}
               </ul>
-              <Link
-                href="/our-story"
-                className="btn-outline inline-flex"
-              >
+              <Link href="/our-story" className="btn-outline mt-2 inline-flex">
                 Read our story
               </Link>
             </div>

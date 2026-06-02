@@ -32,8 +32,14 @@ export default {
         display: ["var(--font-cormorant)", "serif"],
         body: ["var(--font-dm-sans)", "sans-serif"],
         branding: ["var(--font-playfair)", "serif"],
+        script: ["var(--font-script)", "cursive"],
         serif: ["var(--font-cormorant)", "serif"],
         sans: ["var(--font-dm-sans)", "sans-serif"],
+      },
+      backgroundImage: {
+        "gradient-gold": "var(--gradient-gold)",
+        "gradient-gold-light": "var(--gradient-gold-light)",
+        "gradient-hero-overlay": "var(--gradient-hero-overlay)",
       },
       borderRadius: {
         '2xl': '16px',

@@ -21,11 +21,19 @@ export default function Home() {
 
   return (
     <div className="relative">
-      <Hero onReserveTable={() => setIsTableModalOpen(true)} />
-      
-      <BookingBar />
+      <div className="relative">
+        <Hero />
+        <BookingBar
+          variant="compact"
+          className="absolute left-1/2 top-full z-30 w-[92%] max-w-[1280px] -translate-x-1/2 -translate-y-1/2"
+        />
+      </div>
 
       <ScrollReveal delay={100}>
+        <About />
+      </ScrollReveal>
+
+      <ScrollReveal delay={150}>
         <Features />
       </ScrollReveal>
 
@@ -34,26 +42,22 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal delay={300}>
-        <About />
-      </ScrollReveal>
-
-      <ScrollReveal delay={400}>
         <Experiences />
       </ScrollReveal>
 
-      <ScrollReveal delay={500}>
+      <ScrollReveal delay={400}>
         <Restaurant onReserveTable={() => setIsTableModalOpen(true)} />
       </ScrollReveal>
 
-      <ScrollReveal delay={600}>
+      <ScrollReveal delay={500}>
         <LiveMusic />
       </ScrollReveal>
 
-      <ScrollReveal delay={700}>
+      <ScrollReveal delay={600}>
         <Testimonials />
       </ScrollReveal>
 
-      <ScrollReveal delay={800}>
+      <ScrollReveal delay={700}>
         <CTA />
       </ScrollReveal>
 

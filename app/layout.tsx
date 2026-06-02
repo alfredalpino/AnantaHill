@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Great_Vibes, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/Toast";
 import ClientLayout from "@/components/ClientLayout";
@@ -15,6 +15,12 @@ const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   variable: "--font-playfair",
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-script",
 });
 
 const dmSans = DM_Sans({
@@ -36,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="smooth-scroll" suppressHydrationWarning>
       <body
-        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} font-body antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} ${greatVibes.variable} font-body antialiased`}
       >
         <ToastProvider>
           <Preloader />
