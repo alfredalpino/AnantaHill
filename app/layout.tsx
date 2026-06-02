@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Playfair_Display, Pinyon_Script } from "next/font/google";
 import "./globals.css";
 import { ToastProvider } from "@/components/Toast";
 import ClientLayout from "@/components/ClientLayout";
@@ -23,6 +23,12 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 });
 
+const pinyon = Pinyon_Script({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-pinyon",
+});
+
 export const metadata: Metadata = {
   title: "Ananta - By The Hill | Luxury Nature Resort in Hazaribagh",
   description: "Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.",
@@ -36,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="smooth-scroll" suppressHydrationWarning>
       <body
-        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} font-body antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} ${pinyon.variable} font-body antialiased`}
       >
         <ToastProvider>
           <Preloader />

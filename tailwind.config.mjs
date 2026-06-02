@@ -34,6 +34,7 @@ export default {
         branding: ["var(--font-playfair)", "serif"],
         serif: ["var(--font-cormorant)", "serif"],
         sans: ["var(--font-dm-sans)", "sans-serif"],
+        script: ["var(--font-pinyon)", "cursive"],
       },
       borderRadius: {
         '2xl': '16px',

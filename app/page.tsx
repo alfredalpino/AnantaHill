@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import dynamic from 'next/dynamic';
 import Hero from '@/components/home/Hero';
 import About from '@/components/home/About';
 import Experiences from '@/components/home/Experiences';
@@ -14,8 +13,6 @@ import TableReservationModal from '@/components/TableReservationModal';
 import LiveMusic from '@/components/home/LiveMusic';
 import ScrollReveal from '@/components/ScrollReveal';
 
-const BookingBar = dynamic(() => import('@/components/BookingBar'), { ssr: false });
-
 export default function Home() {
   const [isTableModalOpen, setIsTableModalOpen] = useState(false);
 
@@ -23,7 +20,6 @@ export default function Home() {
     <div className="relative">
       <Hero onReserveTable={() => setIsTableModalOpen(true)} />
       
-      <BookingBar />
 
       <ScrollReveal delay={100}>
         <Features />
