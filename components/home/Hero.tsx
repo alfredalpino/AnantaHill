@@ -88,16 +88,39 @@ export default function Hero({ onReserveTable }: HeroProps) {
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/night-pool.webp"
-          alt="Ananta Resort Night Pool"
+          alt="Ananta By The Hill resort at dusk"
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/35" />
+        <div
+          className="absolute inset-0"
+          style={{ background: "var(--gradient-hero-overlay)" }}
         />
         {/* Dark luxury radial/horizontal gradient cover to keep left-aligned text readable */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent md:bg-gradient-to-r" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
       </div>
+
+      {/* Elegant Leaf Corner Decor Images from remote */}
+      <Image
+        src="/images/decor/leaf-corner.svg"
+        alt=""
+        width={140}
+        height={140}
+        className="decor-leaf left-0 top-24 opacity-50 md:top-28"
+        aria-hidden
+      />
+      <Image
+        src="/images/decor/leaf-corner.svg"
+        alt=""
+        width={140}
+        height={140}
+        className="decor-leaf right-0 top-32 -scale-x-100 opacity-40"
+        aria-hidden
+      />
 
       {/* Background Leaf Outline Overlay (Right Bottom Decoration) */}
       <div className="absolute right-0 bottom-16 pointer-events-none z-10 w-72 h-72 md:w-96 md:h-96 opacity-35 select-none shrink-0" aria-hidden>

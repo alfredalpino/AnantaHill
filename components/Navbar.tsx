@@ -62,7 +62,7 @@ export default function Navbar() {
                         alt="Ananta Logo"
                         width={180}
                         height={60}
-                        className={cn('h-12 w-auto md:h-14 transition-all duration-300', heroTransparent && 'brightness-0 invert')}
+                        className="h-11 w-auto transition-all duration-300 md:h-12"
                     />
                 </Link>
 
@@ -76,7 +76,7 @@ export default function Navbar() {
                                 'text-[15px] font-semibold transition-colors relative py-1',
                                 heroTransparent
                                     ? pathname === link.href
-                                        ? 'text-white'
+                                        ? 'text-primary-light'
                                         : 'text-white/85 hover:text-white'
                                     : pathname === link.href
                                       ? 'text-primary-dark font-bold'
@@ -88,7 +88,7 @@ export default function Navbar() {
                                 <span
                                     className={cn(
                                         'absolute bottom-0 left-0 right-0 h-0.5 rounded-full',
-                                        heroTransparent ? 'bg-white' : 'bg-primary-dark'
+                                        heroTransparent ? 'bg-primary-light' : 'bg-primary-dark'
                                     )}
                                 />
                             )}
