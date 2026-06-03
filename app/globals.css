@@ -180,7 +180,7 @@
   .btn-gold-skeuo {
     background:
       linear-gradient(180deg, rgba(255, 255, 255, 0.52) 0%, rgba(255, 255, 255, 0.12) 28%, rgba(255, 255, 255, 0) 40%),
-      linear-gradient(180deg, #f7ebcb 0%, #edd595 46%, #dbbb6c 100%);
+      linear-gradient(90deg, #dbbb6c 0%, #edd595 25%, #f7ebcb 50%, #edd595 75%, #dbbb6c 100%);
     border: 1px solid color-mix(in srgb, #fff2d0 34%, #9f8442 66%);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.7),
