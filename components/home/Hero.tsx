@@ -4,7 +4,7 @@ import { useState, forwardRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, MapPin, ChevronLeft, ChevronRight, WavesLadder, Martini, CookingPot, Tent, BedDouble } from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -180,79 +180,56 @@ export default function Hero({ onReserveTable }: HeroProps) {
                 a well-stocked bar, fine dining, and elegant banquet spaces for unforgettable celebrations.
               </p>
 
-              {/* Grid of 5 Premium Features with custom Outline SVGs */}
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-y-6 gap-x-2 w-full my-6 sm:my-8 pt-4 border-t border-white/10">
+              {/* Grid of 5 Premium Features with Lucide Icons */}
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-y-6 gap-x-2 sm:gap-x-0 w-full my-6 sm:my-8 pt-6 border-t border-white/10 sm:divide-x sm:divide-white/15">
                 {/* 1. Swimming Pool */}
-                <div className="flex flex-col items-start group">
-                  <div className="h-9 w-9 text-primary mb-2 transition-transform duration-300 group-hover:-translate-y-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                      <path d="M17 2v11" />
-                      <path d="M13 2v7" />
-                      <path d="M13 5h4" />
-                      <path d="M13 8h4" />
-                      <path d="M2 17c1.5 0 2.2-1.2 3.5-1.2s2 1.2 3.5 1.2 2-1.2 3.5-1.2 2 1.2 3.5 1.2" />
-                      <path d="M2 20c1.5 0 2.2-1.2 3.5-1.2s2 1.2 3.5 1.2 2-1.2 3.5-1.2 2 1.2 3.5 1.2" strokeWidth="1.2" />
-                    </svg>
+                <div className="flex flex-col items-center text-center px-2 group">
+                  <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
+                    <WavesLadder className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest">Swimming Pool</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                    Swimming<br />Pool
+                  </span>
                 </div>
 
                 {/* 2. Bar & Lounge */}
-                <div className="flex flex-col items-start group">
-                  <div className="h-9 w-9 text-primary mb-2 transition-transform duration-300 group-hover:-translate-y-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                      <path d="M5 3h14l-7 8z" />
-                      <path d="M12 11v9" />
-                      <path d="M8 20h8" />
-                      <path d="M11 6l4-4" />
-                      <circle cx="15.5" cy="2" r="0.75" fill="currentColor" />
-                    </svg>
+                <div className="flex flex-col items-center text-center px-2 group">
+                  <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
+                    <Martini className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest">Bar & Lounge</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                    Bar &<br />Lounge
+                  </span>
                 </div>
 
                 {/* 3. Fine Dining */}
-                <div className="flex flex-col items-start group">
-                  <div className="h-9 w-9 text-primary mb-2 transition-transform duration-300 group-hover:-translate-y-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                      <path d="M3 18h18" />
-                      <path d="M3 18a9 9 0 0 1 18 0" />
-                      <path d="M12 4v2" />
-                      <circle cx="12" cy="3.5" r="1" />
-                    </svg>
+                <div className="flex flex-col items-center text-center px-2 group">
+                  <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
+                    <CookingPot className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest">Fine Dining</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                    Fine<br />Dining
+                  </span>
                 </div>
 
                 {/* 4. Banquet & Events */}
-                <div className="flex flex-col items-start group">
-                  <div className="h-9 w-9 text-primary mb-2 transition-transform duration-300 group-hover:-translate-y-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                      <path d="M4 20V9a8 8 0 0 1 16 0v11" />
-                      <path d="M6 20v-4h3v4" />
-                      <path d="M6 16h3" />
-                      <path d="M15 20v-4h3v4" />
-                      <path d="M15 16h3" />
-                      <path d="M11 20v-2h2v2" />
-                      <path d="M10 18h4" />
-                    </svg>
+                <div className="flex flex-col items-center text-center px-2 group">
+                  <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
+                    <Tent className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest">Banquet & Events</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                    Banquet<br />& Events
+                  </span>
                 </div>
 
                 {/* 5. Luxury Stay */}
-                <div className="flex flex-col items-start group">
-                  <div className="h-9 w-9 text-primary mb-2 transition-transform duration-300 group-hover:-translate-y-1">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="w-full h-full">
-                      <path d="M3 7v13" />
-                      <path d="M21 11v9" />
-                      <path d="M3 15h18" />
-                      <rect x="5" y="10" width="5" height="3" rx="0.5" />
-                      <rect x="11" y="10" width="5" height="3" rx="0.5" />
-                      <path d="M12 15v-2h9" />
-                    </svg>
+                <div className="flex flex-col items-center text-center px-2 group">
+                  <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
+                    <BedDouble className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[9px] font-bold text-white/80 uppercase tracking-widest">Luxury Stay</span>
+                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                    Luxury<br />Stay
+                  </span>
                 </div>
               </div>
 
