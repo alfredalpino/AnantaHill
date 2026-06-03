@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans, Great_Vibes, Playfair_Display, Pinyon_Script } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ToastProvider } from "@/components/Toast";
 import ClientLayout from "@/components/ClientLayout";
@@ -35,6 +36,13 @@ const pinyon = Pinyon_Script({
   variable: "--font-pinyon",
 });
 
+const manstromer = localFont({
+  src: "../public/fonts/Manstromer-Slant.woff2",
+  variable: "--font-manstromer",
+  display: "swap",
+  fallback: ["cursive"],
+});
+
 export const metadata: Metadata = {
   title: "Ananta - By The Hill | Luxury Nature Resort in Hazaribagh",
   description: "Experience ultimate luxury and serenity at Ananta - By The Hill. A premium resort inspired by heritage and nature.",
@@ -48,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="smooth-scroll" suppressHydrationWarning>
       <body
-        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} ${greatVibes.variable} ${pinyon.variable} font-body antialiased`}
+        className={`${cormorant.variable} ${dmSans.variable} ${playfair.variable} ${greatVibes.variable} ${pinyon.variable} ${manstromer.variable} font-body antialiased`}
       >
         <ToastProvider>
           <Preloader />

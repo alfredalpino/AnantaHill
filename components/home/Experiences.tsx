@@ -65,7 +65,7 @@ const Experiences = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
           {experiences.map((exp, i) => (
             <ScrollReveal key={i} delay={i * 100}>
-              <div className="group relative flex flex-col bg-[#655a35] rounded-[32px] overflow-hidden shadow-luxury transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)] h-full">
+              <div className="group relative flex flex-col bg-[#74683d] rounded-[32px] overflow-hidden shadow-luxury transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_5px_30px_rgba(0,0,0,0.35)] h-full">
                 {/* Image Container */}
                 <div className="relative w-full h-[250px] sm:h-[280px] md:h-[260px] lg:h-[300px] overflow-hidden rounded-t-[32px]">
                   <Image
@@ -76,13 +76,13 @@ const Experiences = () => {
                     className="object-cover"
                   />
                   {/* Smooth blend gradient overlay */}
-                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#655a35] via-[#655a35]/40 to-transparent z-10" />
+                  <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#74683d] via-[#74683d]/40 to-transparent z-10" />
                 </div>
 
                 {/* Content Container */}
                 <div className="p-8 pt-0 flex flex-col items-start relative z-20 flex-grow">
                   {/* Lotus Icon Badge */}
-                  <div className="relative -mt-7 mb-4 z-20 flex items-center justify-center w-14 h-14 rounded-full border border-[#ebd083]/45 bg-[#655a35] text-[#ebd083] shadow-premium">
+                  <div className="relative -mt-7 mb-4 z-20 flex items-center justify-center w-14 h-14 rounded-full border border-[#ebd083]/45 bg-[#74683d] text-[#ebd083] shadow-premium">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-7 h-7">
                       {/* Center petal */}
                       <path d="M12 5C11.5 8.5 11.5 15.5 12 19C12.5 15.5 12.5 8.5 12 5Z" />

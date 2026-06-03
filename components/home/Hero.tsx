@@ -4,7 +4,7 @@ import { useState, forwardRef, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { ChevronDown, MapPin, Calendar, Users, Minus, Plus, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ScrollReveal from '@/components/ScrollReveal';
@@ -20,6 +20,13 @@ function toIsoDate(date: Date) {
   return `${year}-${month}-${day}`;
 }
 
+function formatDisplayDate(dateStr?: string) {
+  if (!dateStr) return "Select Date";
+  const [y, m, d] = dateStr.split("-").map(Number);
+  const date = new Date(y, m - 1, d);
+  return date.toLocaleDateString("en-US", { day: "2-digit", month: "short", year: "numeric" });
+}
+
 export default function Hero({ onReserveTable }: HeroProps) {
   const router = useRouter();
   
@@ -28,8 +35,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
   const [isResortOpen, setIsResortOpen] = useState(false);
   const [checkIn, setCheckIn] = useState<string>("");
   const [checkOut, setCheckOut] = useState<string>("");
-  const [guests, setGuests] = useState<number>(2);
-  const [isGuestsOpen, setIsGuestsOpen] = useState(false);
+  const [guests] = useState<number>(2);
 
   const resortsList = [
     "Ananta by the Hill",
@@ -58,23 +64,23 @@ export default function Hero({ onReserveTable }: HeroProps) {
       type="button"
       onClick={onClick}
       ref={ref}
-      className="flex w-full items-center justify-between text-left transition-colors hover:bg-white/5 px-3 py-2 rounded-lg"
+      className="flex w-full h-full items-stretch text-left transition-colors hover:bg-white/5 cursor-pointer"
     >
-      <div className="grid grid-cols-2 gap-2 w-full">
-        <div>
-          <span className="block text-[10px] font-bold text-white/60 uppercase tracking-widest">Check In</span>
-          <span className="text-sm font-semibold text-white block mt-0.5">
-            {checkIn ? new Date(checkIn).toLocaleDateString('en-US', { day: '2-digit', month: 'short' }) : "Select Date"}
+      <div className="flex flex-row items-center w-full justify-between py-4 md:py-5 px-6">
+        <div className="flex flex-col flex-1 text-left">
+          <span className="block text-[11px] sm:text-xs font-bold text-white uppercase tracking-[0.15em] leading-none">CHECK IN</span>
+          <span className="text-sm font-semibold text-white block mt-1 truncate leading-none">
+            {formatDisplayDate(checkIn)}
           </span>
         </div>
-        <div className="border-l border-white/20 pl-3">
-          <span className="block text-[10px] font-bold text-white/60 uppercase tracking-widest">Check Out</span>
-          <span className="text-sm font-semibold text-white block mt-0.5">
-            {checkOut ? new Date(checkOut).toLocaleDateString('en-US', { day: '2-digit', month: 'short' }) : "Select Date"}
+        <div className="h-8 w-px bg-white/25 mx-6 self-center" />
+        <div className="flex flex-col flex-1 text-left">
+          <span className="block text-[11px] sm:text-xs font-bold text-white uppercase tracking-[0.15em] leading-none">CHECK OUT</span>
+          <span className="text-sm font-semibold text-white block mt-1 truncate leading-none">
+            {formatDisplayDate(checkOut)}
           </span>
         </div>
       </div>
-      <Calendar className="h-4 w-4 text-white/60 ml-2 shrink-0" />
     </button>
   ));
   CustomDateInput.displayName = 'CustomDateInput';
@@ -82,10 +88,10 @@ export default function Hero({ onReserveTable }: HeroProps) {
   return (
     <section
       id="home-hero-section"
-      className="relative flex min-h-screen w-full flex-col justify-between overflow-hidden bg-[#1E1919] pt-20"
+      className="relative flex min-h-screen w-full flex-col justify-between bg-[#1E1919] pt-20 pb-16 md:pb-24"
     >
       {/* Background Graphic & Cover */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 overflow-hidden">
         <Image
           src="/images/night-pool.webp"
           alt="Ananta By The Hill resort at dusk"
@@ -262,7 +268,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
           </div>
 
           {/* Right Layout Column (Space or Floating Cards) */}
-          <div className="lg:col-span-5 flex flex-col justify-end lg:h-full lg:min-h-[450px]">
+          <div className="hidden md:flex lg:col-span-5 flex-col justify-end lg:h-full lg:min-h-[450px]">
             {/* Location Card positioned beautifully bottom right */}
             <div className="self-end lg:mr-4 mb-4 z-10 w-full max-w-[320px] rounded-2xl bg-black/25 backdrop-blur border border-white/10 p-5 shadow-luxury transition-all duration-300 hover:border-primary/20">
               <div className="flex items-start gap-3">
@@ -282,26 +288,23 @@ export default function Hero({ onReserveTable }: HeroProps) {
         </div>
       </div>
 
-      {/* Unified Luxury Gold Booking Bar - Centered and Reduced Width */}
-      <div className="relative z-20 container-shell mx-auto px-4 sm:px-6 mb-8 md:mb-12">
-        <div className="w-full bg-gradient-to-r from-[#ab9657] via-[#85703a] to-[#ab9657] py-4 px-6 sm:px-8 border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-4 items-center">
+      {/* Unified Luxury Gold Booking Bar - Positioned between sections on desktop, in-flow on mobile */}
+      <div className="relative z-20 container-shell mx-auto px-4 sm:px-6 mb-8 mt-4 md:absolute md:bottom-0 md:left-1/2 md:-translate-x-1/2 md:translate-y-1/2 md:z-30 md:mb-0 md:mt-0">
+        <div className="w-full bg-[#ab9657] py-2 px-4 md:px-6 border border-white/20">
+          <div className="grid grid-cols-1 md:grid-cols-10 items-stretch">
             
             {/* 1. Resorts Select Dropdown */}
-            <div className="relative border-b border-white/10 md:border-b-0 md:border-r border-white/20 pb-3 md:pb-0 md:pr-4">
+            <div className="relative md:col-span-3 border-b border-white/10 md:border-b-0 md:border-r border-white/25 flex items-stretch">
               <button
                 type="button"
-                onClick={() => {
-                  setIsResortOpen(!isResortOpen);
-                  setIsGuestsOpen(false);
-                }}
-                className="flex w-full items-center justify-between text-left transition-colors hover:bg-white/5 px-3 py-2 rounded-lg"
+                onClick={() => setIsResortOpen(!isResortOpen)}
+                className="flex w-full h-full items-center justify-between text-left transition-colors hover:bg-white/5 px-6 py-4 md:py-5 cursor-pointer"
               >
-                <div>
-                  <span className="block text-[10px] font-bold text-white/60 uppercase tracking-widest">Resorts</span>
-                  <span className="text-sm font-semibold text-white block mt-0.5 truncate">{resort}</span>
+                <div className="flex flex-col flex-1">
+                  <span className="block text-[11px] sm:text-xs font-bold text-white uppercase tracking-[0.15em] leading-none">RESORTS</span>
+                  <span className="text-sm font-semibold text-white block mt-1 truncate leading-none">{resort}</span>
                 </div>
-                <ChevronDown className={`h-4 w-4 text-white/60 transition-transform duration-300 ${isResortOpen ? 'rotate-180' : ''}`} />
+                <ChevronDown className={`h-4 w-4 text-white/80 transition-transform duration-300 ${isResortOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {/* Resort Dropdown Box */}
@@ -330,7 +333,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
             </div>
 
             {/* 2 & 3. Integrated Check-in & Check-out Date Range Selector */}
-            <div className="border-b border-white/10 md:border-b-0 md:border-r border-white/20 pb-3 md:pb-0 md:px-4">
+            <div className="md:col-span-5 flex items-stretch border-b border-white/20 md:border-b-0 md:border-r border-white/25 py-1 md:py-0">
               <DatePicker
                 selectsRange
                 startDate={checkIn ? new Date(checkIn) : null}
@@ -342,7 +345,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
                 }}
                 minDate={today}
                 customInput={<CustomDateInput checkIn={checkIn} checkOut={checkOut} />}
-                wrapperClassName="w-full"
+                wrapperClassName="w-full h-full flex items-stretch"
                 dateFormat="dd-MM-yyyy"
                 popperClassName="z-50 tf-datepicker-popper"
                 calendarClassName="!rounded-2xl !border !border-secondary !shadow-premium"
@@ -374,71 +377,14 @@ export default function Hero({ onReserveTable }: HeroProps) {
               />
             </div>
 
-            {/* 4. Guests Selector Dropdown */}
-            <div className="relative border-b border-white/10 md:border-b-0 md:border-r border-white/20 pb-3 md:pb-0 md:px-4">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsGuestsOpen(!isGuestsOpen);
-                  setIsResortOpen(false);
-                }}
-                className="flex w-full items-center justify-between text-left transition-colors hover:bg-white/5 px-3 py-2 rounded-lg"
-              >
-                <div>
-                  <span className="block text-[10px] font-bold text-white/60 uppercase tracking-widest">Guests</span>
-                  <span className="text-sm font-semibold text-white block mt-0.5">{guests} {guests === 1 ? 'Guest' : 'Guests'}</span>
-                </div>
-                <Users className="h-4 w-4 text-white/60 ml-2 shrink-0" />
-              </button>
-
-              {/* Guests Count Popover */}
-              {isGuestsOpen && (
-                <>
-                  <div className="fixed inset-0 z-40" onClick={() => setIsGuestsOpen(false)} />
-                  <div className="absolute right-0 bottom-full mb-2 z-50 w-56 rounded-xl border border-white/10 bg-[#261E1E] p-4 shadow-luxury text-white">
-                    <h5 className="text-xs font-bold uppercase tracking-wider text-white/60 mb-3">Select Guests</h5>
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-semibold">Guests Count</span>
-                      <div className="flex items-center gap-3">
-                        <button
-                          type="button"
-                          disabled={guests <= 1}
-                          onClick={() => setGuests(prev => Math.max(1, prev - 1))}
-                          className="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 disabled:opacity-30 transition-colors"
-                        >
-                          <Minus className="h-3.5 w-3.5" />
-                        </button>
-                        <span className="text-sm font-bold tabular-nums min-w-4 text-center">{guests}</span>
-                        <button
-                          type="button"
-                          disabled={guests >= 10}
-                          onClick={() => setGuests(prev => Math.min(10, prev + 1))}
-                          className="h-8 w-8 rounded-lg bg-white/10 flex items-center justify-center hover:bg-white/20 disabled:opacity-30 transition-colors"
-                        >
-                          <Plus className="h-3.5 w-3.5" />
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => setIsGuestsOpen(false)}
-                      className="w-full mt-4 bg-primary text-white text-xs font-bold uppercase py-2 rounded-lg hover:bg-primary-light transition-colors"
-                    >
-                      Apply
-                    </button>
-                  </div>
-                </>
-              )}
-            </div>
-
-            {/* 5. Book Now Submit CTA */}
-            <div className="md:pl-4">
+            {/* 4. Book Now Submit CTA */}
+            <div className="md:col-span-2 flex items-center justify-center md:pl-4 py-3 md:py-0">
               <button
                 type="button"
                 onClick={handleBookNow}
-                className="w-full flex items-center justify-center py-3.5 px-6 rounded-tl-2xl rounded-br-2xl text-sm font-bold uppercase tracking-wider text-[#1e1919] bg-gradient-to-r from-[#ebd083] to-[#bda660] shadow-[0_4px_15px_rgba(189,166,96,0.35)] transition-all duration-300 hover:from-[#f5dc96] hover:to-[#c5ad66] hover:scale-[1.02] active:scale-[0.98]"
+                className="sm:w-40 w-full py-3.5 px-6 rounded-tl-2xl rounded-br-2xl text-sm font-bold uppercase tracking-wider text-[#063124] btn-gold-skeuo transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] cursor-pointer hover:brightness-[1.04]"
               >
-                Book Now
+                BOOK NOW
               </button>
             </div>
 

@@ -36,6 +36,7 @@ export default {
         serif: ["var(--font-cormorant)", "serif"],
         sans: ["var(--font-dm-sans)", "sans-serif"],
         pinyon: ["var(--font-pinyon)", "cursive"],
+        manstromer: ["var(--font-manstromer)", "cursive"],
       },
       backgroundImage: {
         "gradient-gold": "var(--gradient-gold)",

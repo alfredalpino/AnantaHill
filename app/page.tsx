@@ -45,11 +45,11 @@ export default function Home() {
       </ScrollReveal>
 
       <ScrollReveal delay={600}>
-        <Testimonials />
+        <CTA />
       </ScrollReveal>
 
       <ScrollReveal delay={700}>
-        <CTA />
+        <Testimonials />
       </ScrollReveal>
 
       <TableReservationModal
