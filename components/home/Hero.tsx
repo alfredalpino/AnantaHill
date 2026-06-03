@@ -156,10 +156,10 @@ export default function Hero({ onReserveTable }: HeroProps) {
               </h1>
 
               {/* Subtitle with elegant gold horizontal lines */}
-              <div className="flex items-center gap-3 sm:gap-4 my-2 text-primary font-medium tracking-[0.35em] text-xs sm:text-sm md:text-base uppercase select-none">
-                <span className="h-[1px] w-8 sm:w-16 bg-primary/60"></span>
+              <div className="flex items-center gap-3 sm:gap-4 my-2 text-primary font-semibold tracking-[0.35em] text-xs sm:text-sm md:text-base uppercase select-none">
+                <span className="h-[1px] w-8 sm:w-16 bg-primary/80"></span>
                 By The Hill
-                <span className="h-[1px] w-8 sm:w-16 bg-primary/60"></span>
+                <span className="h-[1px] w-8 sm:w-16 bg-primary/80"></span>
               </div>
 
               {/* Elegant Tagline Script */}
@@ -264,15 +264,15 @@ export default function Hero({ onReserveTable }: HeroProps) {
           {/* Right Layout Column (Space or Floating Cards) */}
           <div className="lg:col-span-5 flex flex-col justify-end lg:h-full lg:min-h-[450px]">
             {/* Location Card positioned beautifully bottom right */}
-            <div className="self-end lg:mr-4 mb-4 z-10 w-full max-w-[320px] rounded-2xl bg-black/25 backdrop-blur-md border border-white/10 p-5 shadow-luxury transition-all duration-300 hover:border-primary/20">
+            <div className="self-end lg:mr-4 mb-4 z-10 w-full max-w-[320px] rounded-2xl bg-black/25 backdrop-blur border border-white/10 p-5 shadow-luxury transition-all duration-300 hover:border-primary/20">
               <div className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <MapPin className="h-8 w-8 text-white/70 shrink-0 mt-0.5" />
                 <div className="flex flex-col">
-                  <h4 className="font-semibold text-sm text-white font-sans tracking-wide">
+                  <h4 className="font-medium text-sm text-white font-sans tracking-wide">
                     Hazaribagh, Jharkhand
                   </h4>
-                  <p className="text-xs text-white/70 italic mt-1 font-body">
-                    — Where every moment feels like a getaway.
+                  <p className="text-sm text-white/75 max-w-[180px] mt-1 font-body">
+                    Where every moment feels like a getaway.
                   </p>
                 </div>
               </div>
@@ -282,9 +282,9 @@ export default function Hero({ onReserveTable }: HeroProps) {
         </div>
       </div>
 
-      {/* Unified Luxury Gold Booking Bar - Positioned at Absolute Bottom of Viewport */}
-      <div className="relative z-20 w-full bg-gradient-to-r from-[#ab9657] via-[#85703a] to-[#ab9657] py-4 px-4 sm:px-8 border-t border-white/10 shadow-[0_-8px_30px_rgba(0,0,0,0.3)]">
-        <div className="container-shell mx-auto px-0">
+      {/* Unified Luxury Gold Booking Bar - Centered and Reduced Width */}
+      <div className="relative z-20 container-shell mx-auto px-4 sm:px-6 mb-8 md:mb-12">
+        <div className="w-full bg-gradient-to-r from-[#ab9657] via-[#85703a] to-[#ab9657] py-4 px-6 sm:px-8 border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.35)]">
           <div className="grid grid-cols-1 gap-4 md:grid-cols-4 items-center">
             
             {/* 1. Resorts Select Dropdown */}
@@ -436,7 +436,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
               <button
                 type="button"
                 onClick={handleBookNow}
-                className="w-full flex items-center justify-center py-3.5 px-6 rounded-full text-sm font-bold uppercase tracking-wider text-[#1e1919] bg-gradient-to-r from-[#ebd083] to-[#bda660] shadow-[0_4px_15px_rgba(189,166,96,0.35)] transition-all duration-300 hover:from-[#f5dc96] hover:to-[#c5ad66] hover:scale-[1.02] active:scale-[0.98]"
+                className="w-full flex items-center justify-center py-3.5 px-6 rounded-tl-2xl rounded-br-2xl text-sm font-bold uppercase tracking-wider text-[#1e1919] bg-gradient-to-r from-[#ebd083] to-[#bda660] shadow-[0_4px_15px_rgba(189,166,96,0.35)] transition-all duration-300 hover:from-[#f5dc96] hover:to-[#c5ad66] hover:scale-[1.02] active:scale-[0.98]"
               >
                 Book Now
               </button>
