@@ -35,7 +35,7 @@ const Experiences = () => {
         alt=""
         width={220}
         height={220}
-        className="absolute -left-5 sm:-left-10 top-0 -scale-x-100 opacity-50 select-none pointer-events-none"
+        className="absolute -left-10 sm:top-0 -top-10 -scale-x-100 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
       <Image
@@ -43,7 +43,7 @@ const Experiences = () => {
         alt=""
         width={220}
         height={220}
-        className="absolute -right-5 sm:-right-10 top-0 opacity-50 select-none pointer-events-none"
+        className="sm:block hidden absolute -right-5 sm:-right-10 top-0 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
 
@@ -84,7 +84,7 @@ const Experiences = () => {
                   {/* Lotus Icon Badge */}
                   <div className="relative -mt-7 mb-4 z-20 flex items-center justify-center w-14 h-14 rounded-full border border-[#ebd083]/45 bg-[#74683d] shadow-premium overflow-hidden">
                     <Image
-                      src="/graphics/experiences-lotus.png"
+                      src="/graphics/lotus.png"
                       alt="Lotus Icon"
                       width={36}
                       height={36}

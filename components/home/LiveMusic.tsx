@@ -24,6 +24,23 @@ const musicEvents = [
 const LiveMusic = () => {
   return (
     <section className="section-shell bg-background">
+      {/* Decorative leaf corner drawings */}
+      <Image
+        src="/graphics/leaf-root.png"
+        alt=""
+        width={280}
+        height={280}
+        className="absolute -left-8 -top-8 opacity-50 select-none pointer-events-none"
+        aria-hidden
+      />
+      <Image
+        src="/graphics/hero-graphic-2.png"
+        alt=""
+        width={160}
+        height={160}
+        className="pointer-events-none md:block hidden absolute -bottom-36 -scale-x-100 opacity-50 -right-8"
+        aria-hidden
+      />
       <div className="container-shell">
         <div className="section-head text-center">
           <ScrollReveal>
@@ -45,11 +62,10 @@ const LiveMusic = () => {
                     fill
                     className="object-cover transition-transform duration-[1.5s] group-hover:scale-105"
                   />
-                  
+
                   {/* Status Tag */}
-                  <div className={`absolute top-6 left-6 px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold shadow-sm z-20 ${
-                    event.status === "Upcoming" ? "bg-primary-dark text-white" : "bg-white/70 text-text-muted backdrop-blur-md border border-white/20"
-                  }`}>
+                  <div className={`absolute top-6 left-6 px-4 py-1.5 rounded-full text-[10px] uppercase tracking-widest font-bold shadow-sm z-20 ${event.status === "Upcoming" ? "bg-primary-dark text-white" : "bg-white/70 text-text-muted backdrop-blur-md border border-white/20"
+                    }`}>
                     {event.status}
                   </div>
                 </div>

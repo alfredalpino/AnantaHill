@@ -19,7 +19,7 @@ const About = () => {
         alt=""
         width={160}
         height={160}
-        className="pointer-events-none absolute -left-6 -top-16 opacity-60"
+        className="pointer-events-none absolute -left-6 md:-top-16 -top-20 opacity-60"
         aria-hidden
       />
       <Image
@@ -27,7 +27,7 @@ const About = () => {
         alt=""
         width={240}
         height={240}
-        className="pointer-events-none absolute right-0 top-24 opacity-60 sm:-right-10"
+        className="pointer-events-none w-48 md:w-60 absolute sm:top-24 bottom-8 opacity-60 sm:-right-12 -right-8"
         aria-hidden
       />
 

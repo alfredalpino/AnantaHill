@@ -12,6 +12,24 @@ interface RestaurantProps {
 const Restaurant = ({ onReserveTable }: RestaurantProps) => {
   return (
     <section className="section-shell bg-secondary/30">
+       {/* Decorative leaf corner drawings */}
+      <Image
+        src="/graphics/leaf-graphic.png"
+        alt=""
+        width={200}
+        height={200}
+         className="absolute -left-8 sm:top-0 -top-16 -scale-x-100 opacity-50 select-none pointer-events-none"
+        aria-hidden
+      />
+      <Image
+        src="/graphics/hero-graphic-1.png"
+        alt=""
+        width={180}
+        height={180}
+        className="pointer-events-none md:block hidden absolute -bottom-20 -scale-y-100 -scale-x-100 opacity-50 -right-16"
+        aria-hidden
+      />
+
       <div className="container-shell">
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
           {/* Visual Side */}
@@ -64,15 +82,15 @@ const Restaurant = ({ onReserveTable }: RestaurantProps) => {
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-5 mt-12">
-                <button 
-                  onClick={onReserveTable} 
+              <div className="flex flex-col sm:flex-row gap-5 mt-12 md:w-full w-[300px]">
+                <button
+                  onClick={onReserveTable}
                   className="btn-primary px-10 py-4 text-base font-bold text-center"
                 >
                   Reserve a Table
                 </button>
-                <Link 
-                  href="/dining" 
+                <Link
+                  href="/dining"
                   className="btn-outline px-10 py-4 text-base font-bold text-center"
                 >
                   Explore The Menu

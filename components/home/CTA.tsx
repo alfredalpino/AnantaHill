@@ -21,29 +21,21 @@ const CTA = () => {
         <div className="absolute inset-0 bg-[#063124]/85 md:bg-transparent md:bg-gradient-to-r md:from-transparent md:via-[#063124]/95 md:to-[#063124] z-[1]" />
       </div>
 
-      {/* Elegant Leaf Corner Decor Images */}
+      {/* Decorative leaf corner drawings */}
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/hero-graphic-1.png"
         alt=""
         width={160}
         height={160}
-        className="absolute left-0 bottom-0 rotate-90 opacity-40 select-none pointer-events-none z-[2] md:w-48 md:h-48"
+        className="absolute -right-10 -top-8 opacity-50 -scale-x-100 select-none pointer-events-none"
         aria-hidden
       />
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/leaf-graphic.png"
         alt=""
         width={160}
         height={160}
-        className="absolute right-0 top-0 -scale-y-100 opacity-45 select-none pointer-events-none z-[2] md:w-48 md:h-48"
-        aria-hidden
-      />
-      <Image
-        src="/images/decor/leaf-corner.svg"
-        alt=""
-        width={160}
-        height={160}
-        className="absolute right-0 bottom-0 rotate-180 opacity-40 select-none pointer-events-none z-[2] md:w-48 md:h-48"
+        className="sm:block hidden pointer-events-none absolute bottom-0 scale-x-100 opacity-50 -right-4"
         aria-hidden
       />
 

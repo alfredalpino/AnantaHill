@@ -4,6 +4,7 @@ import { motion, useAnimationControls } from 'framer-motion';
 import { Quote, Star } from 'lucide-react';
 import SectionHeader from '@/components/SectionHeader';
 import { useEffect, useState, useRef } from 'react';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -94,6 +95,23 @@ const Testimonials = () => {
 
   return (
     <section className="section-padding bg-white overflow-hidden">
+      {/* Decorative leaf corner drawings */}
+            <Image
+              src="/graphics/leaf-graphic.png"
+              alt=""
+              width={200}
+              height={200}
+              className="absolute w-[150px] sm:w-[200px] sm:-left-8 right-0 top-0 opacity-50 sm:-scale-x-100 select-none pointer-events-none"
+              aria-hidden
+            />
+            <Image
+              src="/graphics/hero-graphic-2.png"
+              alt=""
+              width={160}
+              height={160}
+              className="pointer-events-none md:block hidden absolute -bottom-5 -scale-x-100 opacity-50 -right-10"
+              aria-hidden
+            />
       <div className="container-custom">
         <SectionHeader
           subtitle="Testimonials"

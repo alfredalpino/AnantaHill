@@ -120,7 +120,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
         aria-hidden
       />
       <Image
-        src="/graphics/hero-graphic.png"
+        src="/graphics/hero-graphic-2.png"
         alt=""
         width={200}
         height={200}
