@@ -13,21 +13,21 @@ const features = [
 
 const About = () => {
   return (
-    <section id="our-story" className="section-shell relative overflow-hidden bg-white !pt-20 sm:!pt-24 md:!pt-28">
+    <section id="our-story" className="section-shell relative overflow-hidden bg-white !pt-20 sm:!pt-24 md:!pt-28 z-10">
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/hero-graphic-1.png"
         alt=""
-        width={120}
-        height={120}
-        className="pointer-events-none absolute left-2 top-8 opacity-60 sm:left-6 md:left-10"
+        width={160}
+        height={160}
+        className="pointer-events-none absolute -left-6 -top-16 opacity-60"
         aria-hidden
       />
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/leaf-graphic.png"
         alt=""
-        width={120}
-        height={120}
-        className="pointer-events-none absolute right-2 top-8 -scale-x-100 opacity-50 sm:right-6 md:right-10"
+        width={240}
+        height={240}
+        className="pointer-events-none absolute right-0 top-24 opacity-60 sm:-right-10"
         aria-hidden
       />
 
@@ -38,7 +38,7 @@ const About = () => {
             <h2 className="font-display text-3xl font-bold text-text-primary md:text-5xl">
               The Ananta story
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-text-body md:text-lg">
+            <p className="mx-auto mt-4 max-w-3xl text-base leading-relaxed text-text-body md:text-lg">
               Perched gracefully on the serene slopes of Canary Hill, Ananta is more than just a
               destination; it&apos;s a whisper of the hills, a breath of fresh air, and a tribute to
               refined living.

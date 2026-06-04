@@ -31,19 +31,19 @@ const Experiences = () => {
     <section className="section-shell bg-[#827546] relative overflow-hidden py-20">
       {/* Decorative leaf corner drawings */}
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/leaf-graphic.png"
         alt=""
-        width={160}
-        height={160}
-        className="absolute left-0 top-0 opacity-30 select-none pointer-events-none"
+        width={220}
+        height={220}
+        className="absolute -left-5 sm:-left-10 top-0 -scale-x-100 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/leaf-graphic.png"
         alt=""
-        width={160}
-        height={160}
-        className="absolute right-0 top-0 -scale-x-100 opacity-30 select-none pointer-events-none"
+        width={220}
+        height={220}
+        className="absolute -right-5 sm:-right-10 top-0 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
 
@@ -82,21 +82,14 @@ const Experiences = () => {
                 {/* Content Container */}
                 <div className="p-8 pt-0 flex flex-col items-start relative z-20 flex-grow">
                   {/* Lotus Icon Badge */}
-                  <div className="relative -mt-7 mb-4 z-20 flex items-center justify-center w-14 h-14 rounded-full border border-[#ebd083]/45 bg-[#74683d] text-[#ebd083] shadow-premium">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className="w-7 h-7">
-                      {/* Center petal */}
-                      <path d="M12 5C11.5 8.5 11.5 15.5 12 19C12.5 15.5 12.5 8.5 12 5Z" />
-                      {/* Inner Left petal */}
-                      <path d="M12 8C9.5 10.5 8.5 15 12 19C10.5 16 10.5 11.5 12 8Z" />
-                      {/* Inner Right petal */}
-                      <path d="M12 8C14.5 10.5 15.5 15 12 19C13.5 16 13.5 11.5 12 8Z" />
-                      {/* Outer Left petal */}
-                      <path d="M12 11C7.5 12.5 6 17 12 19C8.5 17.5 8.5 13.5 12 11Z" />
-                      {/* Outer Right petal */}
-                      <path d="M12 11C16.5 12.5 18 17 12 19C15.5 17.5 15.5 13.5 12 11Z" />
-                      {/* Bottom curve */}
-                      <path d="M9 19.5C10.5 20.5 13.5 20.5 15 19.5" />
-                    </svg>
+                  <div className="relative -mt-7 mb-4 z-20 flex items-center justify-center w-14 h-14 rounded-full border border-[#ebd083]/45 bg-[#74683d] shadow-premium overflow-hidden">
+                    <Image
+                      src="/graphics/experiences-lotus.png"
+                      alt="Lotus Icon"
+                      width={36}
+                      height={36}
+                      className="object-contain"
+                    />
                   </div>
 
                   <h3 className="font-display text-2xl lg:text-3xl text-white font-medium mb-3">

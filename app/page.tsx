@@ -28,9 +28,9 @@ export default function Home() {
         <Features />
       </ScrollReveal> */}
 
-      <ScrollReveal delay={200}>
+      {/* <ScrollReveal delay={200}>
         <Rooms />
-      </ScrollReveal>
+      </ScrollReveal> */}
 
       <ScrollReveal delay={300}>
         <Experiences />

@@ -88,7 +88,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
   return (
     <section
       id="home-hero-section"
-      className="relative flex min-h-screen w-full flex-col justify-between bg-[#1E1919] pt-20 pb-16 md:pb-24"
+      className="relative flex min-h-screen w-full flex-col justify-between bg-[#1E1919] pt-20 pb-6"
     >
       {/* Background Graphic & Cover */}
       <div className="absolute inset-0 z-0 overflow-hidden">
@@ -112,44 +112,29 @@ export default function Hero({ onReserveTable }: HeroProps) {
 
       {/* Elegant Leaf Corner Decor Images from remote */}
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/hero-graphic-1.png"
         alt=""
         width={140}
         height={140}
-        className="decor-leaf left-0 top-24 opacity-50 md:top-28"
+        className="decor-leaf -left-5 top-24 opacity-50 md:top-24"
         aria-hidden
       />
       <Image
-        src="/images/decor/leaf-corner.svg"
+        src="/graphics/hero-graphic.png"
         alt=""
-        width={140}
-        height={140}
-        className="decor-leaf right-0 top-32 -scale-x-100 opacity-40"
+        width={200}
+        height={200}
+        className="decor-leaf w-60 h-60 sm:-right-10 right-0 sm:-bottom-4 bottom-32 -scale-x-100 opacity-50 z-10"
         aria-hidden
       />
 
-      {/* Background Leaf Outline Overlay (Right Bottom Decoration) */}
-      <div className="absolute right-0 bottom-16 pointer-events-none z-10 w-72 h-72 md:w-96 md:h-96 opacity-35 select-none shrink-0" aria-hidden>
-        <svg viewBox="0 0 400 400" className="w-full h-full text-primary" fill="none" stroke="currentColor" strokeWidth="1">
-          {/* Detailed Golden Branch/Leaf Drawings */}
-          <path d="M400,320 C360,280 300,280 270,300 C250,315 240,335 240,360 M400,320 C380,260 330,220 280,240 C250,250 240,270 240,300" />
-          <path d="M270,300 C230,260 170,260 140,280 C120,295 110,315 110,340 M270,300 C250,240 200,200 150,220 C120,230 110,250 110,280" strokeDasharray="3,3" />
-          <path d="M340,310 C320,290 310,260 330,240 C350,220 370,240 380,270" />
-          <path d="M290,260 C270,240 260,210 280,190 C300,170 320,190 330,220" />
-          <path d="M220,210 C200,190 190,160 210,140 C230,120 250,140 260,170" />
-          {/* Fine Leaf veins */}
-          <path d="M355,275 C345,265 340,255 343,248" />
-          <path d="M305,225 C295,215 290,205 293,198" />
-          <path d="M235,175 C225,165 220,155 223,148" />
-        </svg>
-      </div>
 
       {/* Main Luxury Content Grid */}
       <div className="relative z-10 container-shell flex flex-1 flex-col justify-center py-12 md:py-20">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
           
           {/* Left Text Block */}
-          <div className="lg:col-span-7 flex flex-col items-start text-left text-white max-w-2xl">
+          <div className="lg:col-span-7 flex flex-col items-start text-left text-white max-w-2xl px-4">
             <ScrollReveal delay={100}>
               {/* Eyebrow */}
               <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] text-primary block mb-3">
@@ -181,13 +166,13 @@ export default function Hero({ onReserveTable }: HeroProps) {
               </p>
 
               {/* Grid of 5 Premium Features with Lucide Icons */}
-              <div className="grid grid-cols-3 sm:grid-cols-5 gap-y-6 gap-x-2 sm:gap-x-0 w-full my-6 sm:my-8 pt-6 border-t border-white/10 sm:divide-x sm:divide-white/15">
+              <div className="grid grid-cols-3 sm:grid-cols-5 gap-y-6 gap-x-2 sm:gap-x-0 w-full my-6 sm:my-8 pt-6 sm:divide-x sm:divide-white/15">
                 {/* 1. Swimming Pool */}
-                <div className="flex flex-col items-center text-center px-2 group">
+                <div className="flex flex-col items-center text-center sm:px-2 group">
                   <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
                     <WavesLadder className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                  <span className="text-[10px] sm:text-xs font-medium text-white/80 uppercase tracking-[0.15em] leading-tight">
                     Swimming<br />Pool
                   </span>
                 </div>
@@ -197,7 +182,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
                   <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
                     <Martini className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                  <span className="text-[10px] sm:text-xs font-medium text-white/80 uppercase tracking-[0.15em] leading-tight">
                     Bar &<br />Lounge
                   </span>
                 </div>
@@ -207,7 +192,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
                   <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
                     <CookingPot className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                  <span className="text-[10px] sm:text-xs font-medium text-white/80 uppercase tracking-[0.15em] leading-tight">
                     Fine<br />Dining
                   </span>
                 </div>
@@ -217,7 +202,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
                   <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
                     <Tent className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                  <span className="text-[10px] sm:text-xs font-medium text-white/80 uppercase tracking-[0.15em] leading-tight">
                     Banquet<br />& Events
                   </span>
                 </div>
@@ -227,7 +212,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
                   <div className="h-9 w-9 text-primary mb-3 transition-transform duration-300 group-hover:-translate-y-1">
                     <BedDouble className="w-full h-full" strokeWidth={1.5} />
                   </div>
-                  <span className="text-[10px] sm:text-xs font-bold text-white/90 uppercase tracking-[0.15em] leading-tight">
+                  <span className="text-[10px] sm:text-xs font-medium text-white/80 uppercase tracking-[0.15em] leading-tight">
                     Luxury<br />Stay
                   </span>
                 </div>
@@ -236,7 +221,7 @@ export default function Hero({ onReserveTable }: HeroProps) {
               {/* Discover More Link */}
               <Link
                 href="/rooms"
-                className="group relative inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest py-2 border-b border-primary/20 hover:border-primary transition-all duration-300"
+                className="group relative inline-flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest py-2 border-b border-primary/50 hover:border-primary transition-all duration-300"
               >
                 Discover More
                 <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -247,14 +232,14 @@ export default function Hero({ onReserveTable }: HeroProps) {
           {/* Right Layout Column (Space or Floating Cards) */}
           <div className="hidden md:flex lg:col-span-5 flex-col justify-end lg:h-full lg:min-h-[450px]">
             {/* Location Card positioned beautifully bottom right */}
-            <div className="self-end lg:mr-4 mb-4 z-10 w-full max-w-[320px] rounded-2xl bg-black/25 backdrop-blur border border-white/10 p-5 shadow-luxury transition-all duration-300 hover:border-primary/20">
+            <div className="self-end lg:mr-4 mb-4 z-10 w-full max-w-[320px] rounded-xl bg-black/30 backdrop-blur-xs border border-primary/30 p-8 shadow-luxury transition-all duration-300 hover:border-primary/20">
               <div className="flex items-start gap-3">
                 <MapPin className="h-8 w-8 text-white/70 shrink-0 mt-0.5" />
                 <div className="flex flex-col">
                   <h4 className="font-medium text-sm text-white font-sans tracking-wide">
                     Hazaribagh, Jharkhand
                   </h4>
-                  <p className="text-sm text-white/75 max-w-[180px] mt-1 font-body">
+                  <p className="text-sm text-white/75 max-w-[160px] mt-1 font-body">
                     Where every moment feels like a getaway.
                   </p>
                 </div>
