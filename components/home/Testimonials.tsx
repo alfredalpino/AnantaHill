@@ -94,7 +94,7 @@ const Testimonials = () => {
   const displayItems = [...testimonials, ...testimonials];
 
   return (
-    <section className="section-padding bg-white overflow-hidden">
+    <section className="section-padding bg-[#F5EBE4] overflow-hidden">
       {/* Decorative leaf corner drawings */}
             <Image
               src="/graphics/leaf-graphic.png"

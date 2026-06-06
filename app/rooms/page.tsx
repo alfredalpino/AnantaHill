@@ -107,7 +107,7 @@ export default function RoomsPage() {
                 </div>
             </section>
 
-            <section className="sticky top-[80px] z-30 border-b border-secondary border-t border-secondary/50 bg-white/95 shadow-sm backdrop-blur">
+            <section className="sticky top-[80px] z-30 border-b border-secondary border-t border-secondary/50 bg-[#F5EBE4]/95 shadow-sm backdrop-blur">
                 <div className="container-shell flex items-center gap-2 overflow-x-auto py-4 md:justify-center md:gap-3 md:py-5">
                     {categories.map((cat) => (
                         <button

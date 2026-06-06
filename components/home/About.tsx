@@ -13,7 +13,7 @@ const features = [
 
 const About = () => {
   return (
-    <section id="our-story" className="section-shell relative overflow-hidden bg-white !pt-20 sm:!pt-24 md:!pt-28 z-10">
+    <section id="our-story" className="section-shell relative overflow-hidden bg-[#F5EBE4] !pt-20 sm:!pt-24 md:!pt-28 z-10">
       <Image
         src="/graphics/hero-graphic-1.png"
         alt=""

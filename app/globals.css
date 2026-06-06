@@ -5,8 +5,8 @@
   --primary: #bda660;
   --primary-light: #e7ca79;
   --primary-dark: #a48f4f;
-  --secondary: #e7e3db;
-  --secondary-dark: #ece7dc;
+  --secondary: #e8ded4;
+  --secondary-dark: #f0e8d7;
   --accent: #261e1e;
   --text-primary: #1A1A1A;
   --text-body: #261e1e;
@@ -144,8 +144,8 @@
   .section-padding {
     @apply py-20 md:py-32;
   }
-  .bg-ivory { @apply bg-white; }
-  .bg-cream { @apply bg-white; }
+  .bg-ivory { @apply bg-[#F5EBE4]; }
+  .bg-cream { @apply bg-[#F5EBE4]; }
   .text-secondary { @apply text-text-primary; }
 
   .shadow-soft {

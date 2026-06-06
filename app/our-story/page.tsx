@@ -34,7 +34,7 @@ export default function OurStoryPage() {
             </section>
 
             {/* Stats Bar */}
-            <section className="border-y border-secondary bg-white/50 py-10 md:py-16">
+            <section className="border-y border-secondary bg-[#F5EBE4]/50 py-10 md:py-16">
                 <div className="container-shell">
                     <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
                         {[

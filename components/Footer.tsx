@@ -5,7 +5,7 @@ import { FaInstagram } from 'react-icons/fa';
 
 export default function Footer() {
     return (
-        <footer className="bg-secondary/70 px-6 pb-10 pt-20">
+        <footer className="bg-white border-t border-secondary px-6 pb-10 pt-20">
             <div className="container-shell px-0">
                 <div className="mb-16 grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
                     {/* Logo & Tagline */}
