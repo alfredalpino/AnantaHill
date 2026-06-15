@@ -1,150 +1,330 @@
 "use client";
 
+import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Heart, Briefcase, PartyPopper } from 'lucide-react';
+import { CalendarDays } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
+import TableReservationModal from '@/components/TableReservationModal';
 
 export default function EventsPage() {
-    const eventTypes = [
-        {
-            title: "Royal Weddings",
-            subtitle: "Begin Your Forever",
-            desc: "Exchange vows against the backdrop of majestic hills. Our sprawling lawns and heritage-inspired ballrooms provide the perfect stage for your dream wedding.",
-            img: "/images/lawn.webp",
-            icon: Heart
-        },
-        {
-            title: "Corporate Retreats",
-            subtitle: "Inspire Excellence",
-            desc: "Foster innovation and team spirit in a setting that breathes tranquility. Our modern conference facilities are equipped for productivity and rejuvenation.",
-            img: "/images/lounge-view.webp",
-            icon: Briefcase
-        },
-        {
-            title: "Private Celebrations",
-            subtitle: "Moments of Joy",
-            desc: "From milestone birthdays to intimate anniversaries, celebrate your life's special moments in our exclusive private dining spaces and garden decks.",
-            img: "/images/night-pool.webp",
-            icon: PartyPopper
-        }
-    ];
+    const [isReservationOpen, setIsReservationOpen] = useState(false);
+
+    // Reusable Ornament Separator
+    const GoldOrnament = () => (
+        <div className="flex items-center justify-start gap-4 my-6 w-full max-w-md">
+            <div className="h-[1.5px] flex-1 bg-[#bda660]" />
+            <div className="relative w-12 h-12 flex items-center justify-center shrink-0">
+                <Image
+                    src="/graphics/lotus.png"
+                    alt=""
+                    width={44}
+                    height={44}
+                    className="object-contain"
+                />
+            </div>
+            <div className="h-[1.5px] flex-1 bg-[#bda660]" />
+        </div>
+    );
 
     return (
-        <div className="min-h-screen">
-            <section className="relative flex h-[38vh] min-h-[280px] items-center justify-center overflow-hidden bg-secondary md:h-[42vh]">
-                <div className="relative z-10 container-shell text-center">
+        <div className="min-h-screen text-[#261E1E]">
+
+            {/* 1. Header Section */}
+            <section className="bg-[#FAF6F0] pt-12 pb-8 md:pt-16 md:pb-10 relative overflow-hidden">
+                {/* Header Framing Leaves */}
+                <div className="absolute left-0 md:top-1/2 top-1/5 -translate-y-[45%] -translate-x-[26%] opacity-80 w-40 sm:w-52 md:w-64 aspect-square pointer-events-none select-none z-0">
+                    <Image
+                        src="/graphics/event-leaf-left.png"
+                        alt=""
+                        fill
+                        sizes="(max-w-768px) 208px, 256px"
+                        className="object-contain"
+                    />
+                </div>
+                <div className="absolute right-0 md:top-1/2 top-1/5 -translate-y-[45%] translate-x-[26%] opacity-80 w-40 sm:w-52 md:w-64 aspect-square pointer-events-none select-none z-0">
+                    <Image
+                        src="/graphics/event-leaf-right.png"
+                        alt=""
+                        fill
+                        sizes="(max-w-768px) 208px, 256px"
+                        className="object-contain"
+                    />
+                </div>
+
+                <div className="container-shell relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6">
                     <ScrollReveal>
-                        <h1 className="mb-3 font-display text-3xl font-bold text-text-primary md:text-5xl">
-                            Celebrations at the Hill
+                        <h1 className="font-pinyon text-7xl sm:text-8xl md:text-[9.5rem] text-[#bda660] leading-none mb-2 font-normal">
+                            Experiences
                         </h1>
-                        <p className="mx-auto max-w-2xl text-sm text-text-body md:text-base">
-                            From majestic weddings to intimate gatherings, we provide the perfect backdrop for life's most cherished moments.
+                    </ScrollReveal>
+
+                    {/* Lotus Divider */}
+                    <ScrollReveal delay={100} className="w-full">
+                        <div className="flex items-center justify-center gap-6 my-4 w-full max-w-xl mx-auto px-4">
+                            <div className="h-[2px] flex-1 bg-gradient-to-r from-transparent to-[#bda660]/90" />
+                            <div className="relative w-10 h-6 flex items-center justify-center shrink-0">
+                                <Image
+                                    src="/graphics/lotus.png"
+                                    alt="Lotus symbol"
+                                    width={36}
+                                    height={36}
+                                    className="object-contain"
+                                />
+                            </div>
+                            <div className="h-[2px] flex-1 bg-gradient-to-l from-transparent to-[#bda660]/90" />
+                        </div>
+                    </ScrollReveal>
+
+                    <ScrollReveal delay={200}>
+                        <p className="font-body text-[#261E1E] text-sm sm:text-base font-semibold tracking-wider max-w-xl mx-auto leading-relaxed mt-4 px-2">
+                            Explore Our Different Types Of Lounges for your familiar gathering to bio bio bla
                         </p>
-                        <div className="mt-6">
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* 2. Solid Full-Width Gold Bar */}
+            <div className="w-full h-[4px] bg-[#bda660] relative z-10" />
+
+            {/* 3. Rooftop Section */}
+            <section className="bg-[#FAF6F0] py-10 md:py-14 relative overflow-hidden z-10">
+                {/* Framing gold leaf on the right edge of screen */}
+                <div className="hidden md:block absolute right-0 top-2/3 -translate-y-1/2 translate-x-[28%] opacity-80 w-48 sm:w-60 md:w-80 lg:w-[24rem] aspect-square pointer-events-none select-none z-0">
+                    <Image
+                        src="/graphics/event-leaf-right.png"
+                        alt=""
+                        fill
+                        sizes="(max-w-768px) 240px, (max-w-1024px) 320px, 384px"
+                        className="object-contain"
+                    />
+                </div>
+
+                <div className="container-shell relative z-10 px-4 sm:px-6">
+                    <ScrollReveal>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+                            {/* Image */}
+                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
+                                <Image
+                                    src="/images/lounge-view.webp"
+                                    alt="Rooftop bar lounge view"
+                                    fill
+                                    sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 550px"
+                                    className="object-cover"
+                                />
+                            </div>
+
+                            {/* Content */}
+                            <div className="order-2 flex flex-col items-start justify-center text-left px-2 sm:px-6">
+                                <div className="relative z-10 flex flex-col items-start">
+
+                                    {/* Icon & Title Row */}
+                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
+                                        <div className="shrink-0 flex items-center justify-start">
+                                            <Image
+                                                src="/graphics/event-rooftop.png"
+                                                alt="Rooftop Icon"
+                                                width={200}
+                                                height={200}
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <h2 className="font-pinyon text-6xl sm:text-7xl lg:text-8xl text-[#261E1E] leading-none font-normal pt-2">
+                                            Rooftop
+                                        </h2>
+                                    </div>
+
+                                    <p className="font-body font-medium text-[#4a3e3e] text-sm sm:text-base leading-relaxed max-w-md my-4">
+                                        Enjoy breathtaking views and a relaxing ambiance perfect for evening gatherings and celebrations.
+                                    </p>
+
+                                    <GoldOrnament />
+
+                                    <button
+                                        onClick={() => setIsReservationOpen(true)}
+                                        className="btn-primary flex items-center gap-2.5 px-8 py-3.5 text-xs font-semibold tracking-wider uppercase cursor-pointer"
+                                    >
+                                        <CalendarDays className="w-4 h-4" />
+                                        Reserve a Table
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* 4. Lawn Sitting Section */}
+            <section className="bg-[#F2EDE4] py-10 md:py-14 relative overflow-hidden z-10">
+                {/* Framing gold leaf on the left edge of screen */}
+                <div className="hidden md:block absolute left-0 top-2/3 -translate-y-1/2 -translate-x-[28%] opacity-80 w-48 sm:w-60 md:w-80 lg:w-[24rem] aspect-square pointer-events-none select-none z-0">
+                    <Image
+                        src="/graphics/event-leaf-left.png"
+                        alt=""
+                        fill
+                        sizes="(max-w-768px) 240px, (max-w-1024px) 320px, 384px"
+                        className="object-contain"
+                    />
+                </div>
+
+                <div className="container-shell relative z-10 px-4 sm:px-6">
+                    <ScrollReveal>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+                            {/* Content (Desktop Left) */}
+                            <div className="order-2 lg:order-1 flex flex-col items-start justify-center text-left px-2 sm:px-6">
+                                <div className="relative z-10 flex flex-col items-start">
+
+                                    {/* Icon & Title Stack (Icon on top, Name below) */}
+                                    <div className="text-left">
+                                        <div className="flex items-center justify-start mb-4">
+                                            <Image
+                                                src="/graphics/event-lawn.png"
+                                                alt="Lawn Sitting Icon"
+                                                width={180}
+                                                height={180}
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <h2 className="font-pinyon text-6xl sm:text-7xl lg:text-8xl text-[#261E1E] leading-none font-normal">
+                                            Lawn Sitting
+                                        </h2>
+                                    </div>
+
+                                    <p className="font-body font-medium text-[#4a3e3e] text-sm sm:text-base leading-relaxed max-w-md my-4">
+                                        Surrounded by greenery, our lawn area offers a serene setting for daytime events.
+                                    </p>
+
+                                    <GoldOrnament />
+
+                                    <button
+                                        onClick={() => setIsReservationOpen(true)}
+                                        className="btn-primary flex items-center gap-2.5 px-8 py-3.5 text-xs font-semibold tracking-wider uppercase cursor-pointer"
+                                    >
+                                        <CalendarDays className="w-4 h-4" />
+                                        Reserve a Table
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Image (Desktop Right) */}
+                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
+                                <Image
+                                    src="/images/lawn.webp"
+                                    alt="Poolside lawn sitting area"
+                                    fill
+                                    sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 550px"
+                                    className="object-cover"
+                                />
+                            </div>
+                        </div>
+                    </ScrollReveal>
+                </div>
+            </section>
+
+            {/* 5. Dining & Planning Section */}
+            <section className="bg-[#FAF6F0] py-10 md:py-14 relative overflow-hidden z-10">
+                {/* Framing gold leaf on the right edge of screen */}
+                <div className="hidden md:block absolute right-0 top-1/3 translate-x-[28%] opacity-80 w-48 sm:w-60 md:w-80 lg:w-[24rem] aspect-square pointer-events-none select-none z-0">
+                    <Image
+                        src="/graphics/event-leaf-right.png"
+                        alt=""
+                        fill
+                        sizes="(max-w-768px) 240px, (max-w-1024px) 320px, 384px"
+                        className="object-contain"
+                    />
+                </div>
+
+                <div className="container-shell relative z-10 px-4 sm:px-6">
+                    {/* Dining Row */}
+                    <ScrollReveal>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+                            {/* Image */}
+                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
+                                <Image
+                                    src="/images/restaurant.webp"
+                                    alt="Elegant dining interior area"
+                                    fill
+                                    sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 550px"
+                                    className="object-cover"
+                                />
+                            </div>
+
+                            {/* Content */}
+                            <div className="order-2 flex flex-col items-start justify-center text-left px-2 sm:px-6">
+                                <div className="relative z-10 flex flex-col items-start">
+
+                                    {/* Icon & Title Row */}
+                                    <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
+                                        <div className="shrink-0 flex items-center justify-start">
+                                            <Image
+                                                src="/graphics/event-dining.png"
+                                                alt="Dining Icon"
+                                                width={160}
+                                                height={160}
+                                                className="object-contain"
+                                            />
+                                        </div>
+                                        <h2 className="font-pinyon text-6xl sm:text-7xl lg:text-8xl text-[#261E1E] leading-none font-normal pt-2">
+                                            Dining
+                                        </h2>
+                                    </div>
+
+                                    <p className="font-body font-medium text-[#4a3e3e] text-sm sm:text-base leading-relaxed max-w-md my-4">
+                                        Savor delicious cuisine in a warm and inviting space designed for memorable dining experiences.
+                                    </p>
+
+                                    <GoldOrnament />
+
+                                    <button
+                                        onClick={() => setIsReservationOpen(true)}
+                                        className="btn-primary flex items-center gap-2.5 px-8 py-3.5 text-xs font-semibold tracking-wider uppercase cursor-pointer"
+                                    >
+                                        <CalendarDays className="w-4 h-4" />
+                                        Reserve a Table
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </ScrollReveal>
+
+                    {/* Planning Special Event Card */}
+                    <ScrollReveal>
+                        <div className="bg-[#f5eedb] border border-[#bda660]/20 rounded-3xl px-6 sm:px-8 md:px-10 py-5 flex flex-col md:flex-row items-center justify-between gap-6 max-w-6xl mx-auto mt-24 sm:mt-32 mb-8 relative z-10 shadow-sm">
+                            <div className="flex flex-col sm:flex-row items-center gap-4 md:gap-6 text-center sm:text-left">
+                                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shrink-0">
+                                    <Image
+                                        src="/graphics/event-plan.png"
+                                        alt="Planning Icon"
+                                        width={72}
+                                        height={72}
+                                        className="object-contain"
+                                    />
+                                </div>
+                                <div className="flex flex-col gap-0.5">
+                                    <h4 className="font-display text-xl sm:text-2xl font-bold text-[#261E1E]">
+                                        Planning a special event?
+                                    </h4>
+                                    <p className="font-body text-[#5c5252] text-sm sm:text-base">
+                                        Let us help you create unforgettable memories.
+                                    </p>
+                                </div>
+                            </div>
                             <Link
                                 href="/contact"
-                                className="btn-primary inline-flex px-8 py-3 text-sm font-semibold"
+                                className="border-2 border-[#a48f4f] text-[#261E1E] hover:bg-[#a48f4f] hover:text-white transition-all duration-300 font-semibold text-xs tracking-wider uppercase px-8 py-3.5 rounded-full hover:-translate-y-0.5 active:scale-95 shrink-0"
                             >
-                                Plan your event
+                                Contact Us
                             </Link>
                         </div>
                     </ScrollReveal>
                 </div>
             </section>
 
-            <section className="section-shell bg-background">
-                <div className="container-shell">
-                    <div className="space-y-20 md:space-y-32">
-                        {eventTypes.map((type, i) => (
-                            <ScrollReveal key={i}>
-                                <div
-                                    className={`flex flex-col items-center gap-10 md:gap-12 lg:flex-row lg:gap-14 ${i % 2 === 1 ? "lg:flex-row-reverse" : ""}`}
-                                >
-                                    <div className="aspect-4/3 w-full overflow-hidden rounded-2xl shadow-premium lg:w-[48%] lg:shrink-0">
-                                        <Image
-                                            src={type.img}
-                                            alt={type.title}
-                                            width={960}
-                                            height={720}
-                                            loading="lazy"
-                                            className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-                                        />
-                                    </div>
-                                    <div className="w-full max-w-xl space-y-4 sm:space-y-5 lg:flex-1">
-                                        <div className="flex items-center gap-3">
-                                            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary-dark">
-                                                <type.icon size={20} />
-                                            </div>
-                                            <p className="eyebrow text-accent">{type.subtitle}</p>
-                                        </div>
-                                        <h3 className="font-display text-3xl font-bold text-text-primary md:text-4xl">
-                                            {type.title}
-                                        </h3>
-                                        <p className="text-base leading-relaxed text-text-body sm:text-lg">
-                                            {type.desc}
-                                        </p>
-                                        <ul className="grid grid-cols-1 gap-2.5 sm:gap-3 sm:grid-cols-2">
-                                            {[
-                                                "Customized Gourmet Menus",
-                                                "Dedicated Event Planner",
-                                                "State-of-the-Art AV",
-                                                "Exclusive Decor Options"
-                                            ].map((f) => (
-                                                <li
-                                                    key={f}
-                                                    className="flex items-center gap-2 text-sm font-medium text-text-primary"
-                                                >
-                                                    <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-primary-dark" />
-                                                    {f}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                        <Link
-                                            href="/contact"
-                                            className="btn-outline inline-flex"
-                                        >
-                                            Inquire now
-                                        </Link>
-                                    </div>
-                                </div>
-                            </ScrollReveal>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section className="section-shell bg-secondary/30">
-                <div className="container-shell">
-                    <div className="section-head text-center">
-                        <ScrollReveal>
-                            <p className="eyebrow mb-2">The Venues</p>
-                            <h2 className="font-display text-2xl font-bold text-text-primary sm:text-3xl md:text-5xl">
-                                Elegant Spaces
-                            </h2>
-                        </ScrollReveal>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-                        {[
-                            { name: "The Grand Ballroom", cap: "500 Guests", img: "/images/restaurant.webp" },
-                            { name: "Hillside Meadows", cap: "1000 Guests", img: "/images/lawn-2.webp" },
-                            { name: "The Heritage Deck", cap: "150 Guests", img: "/images/pool.webp" },
-                            { name: "Orchard Pavilion", cap: "80 Guests", img: "/images/main.webp" }
-                        ].map((venue, i) => (
-                            <ScrollReveal key={i} delay={i * 100}>
-                                <div className="group relative h-[350px] overflow-hidden rounded-2xl shadow-premium">
-                                    <Image src={venue.img} alt={venue.name} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
-                                        <h4 className="text-white font-bold font-display text-xl">{venue.name}</h4>
-                                        <p className="text-white/70 text-xs font-semibold uppercase tracking-widest mt-1">{venue.cap}</p>
-                                    </div>
-                                </div>
-                            </ScrollReveal>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            {/* Table Reservation Modal */}
+            <TableReservationModal
+                isOpen={isReservationOpen}
+                onClose={() => setIsReservationOpen(false)}
+            />
         </div>
     );
 }

@@ -50,7 +50,7 @@ const About = () => {
           <div className="flex flex-col items-center gap-10 md:gap-12 lg:flex-row lg:gap-14">
             <div className="aspect-4/3 w-full overflow-hidden rounded-xl shadow-premium lg:w-[46%] lg:max-w-140 lg:shrink-0">
               <Image
-                src="/images/main.webp"
+                src="/images/our-story.jpeg"
                 alt="Ananta resort pool and pergolas by day"
                 width={960}
                 height={720}

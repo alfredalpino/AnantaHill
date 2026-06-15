@@ -106,8 +106,8 @@ export default function Hero({ onReserveTable }: HeroProps) {
           style={{ background: "var(--gradient-hero-overlay)" }}
         />
         {/* Dark luxury radial/horizontal gradient cover to keep left-aligned text readable */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent md:bg-gradient-to-r" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent md:bg-gradient-to-r" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/10" />
       </div>
 
       {/* Elegant Leaf Corner Decor Images from remote */}
