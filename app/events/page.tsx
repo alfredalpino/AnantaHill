@@ -104,7 +104,7 @@ export default function EventsPage() {
                     <ScrollReveal>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                             {/* Image */}
-                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
+                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
                                 <Image
                                     src="/images/lounge-view.webp"
                                     alt="Rooftop bar lounge view"
@@ -207,7 +207,7 @@ export default function EventsPage() {
                             </div>
 
                             {/* Image (Desktop Right) */}
-                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
+                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
                                 <Image
                                     src="/images/lawn.webp"
                                     alt="Poolside lawn sitting area"
@@ -239,7 +239,7 @@ export default function EventsPage() {
                     <ScrollReveal>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                             {/* Image */}
-                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
+                            <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
                                 <Image
                                     src="/images/restaurant.webp"
                                     alt="Elegant dining interior area"
