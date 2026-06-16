@@ -33,7 +33,7 @@ export default function EventsPage() {
             {/* 1. Header Section */}
             <section className="bg-[#FAF6F0] pt-12 pb-8 md:pt-16 md:pb-10 relative overflow-hidden">
                 {/* Header Framing Leaves */}
-                <div className="absolute left-0 md:top-1/2 top-1/5 -translate-y-[45%] -translate-x-[26%] opacity-80 w-40 sm:w-52 md:w-64 aspect-square pointer-events-none select-none z-0">
+                <div className="absolute left-0 md:top-1/2 top-[30%] -translate-y-[45%] -translate-x-[26%] sm:opacity-80 opacity-25 w-40 sm:w-52 md:w-64 aspect-square pointer-events-none select-none z-0">
                     <Image
                         src="/graphics/event-leaf-left.png"
                         alt=""
@@ -42,7 +42,7 @@ export default function EventsPage() {
                         className="object-contain"
                     />
                 </div>
-                <div className="absolute right-0 md:top-1/2 top-1/5 -translate-y-[45%] translate-x-[26%] opacity-80 w-40 sm:w-52 md:w-64 aspect-square pointer-events-none select-none z-0">
+                <div className="absolute right-0 md:top-1/2 top-[30%] -translate-y-[45%] translate-x-[26%] sm:opacity-80 opacity-25 w-40 sm:w-52 md:w-64 aspect-square pointer-events-none select-none z-0">
                     <Image
                         src="/graphics/event-leaf-right.png"
                         alt=""
@@ -88,7 +88,7 @@ export default function EventsPage() {
             <div className="w-full h-[4px] bg-[#bda660] relative z-10" />
 
             {/* 3. Rooftop Section */}
-            <section className="bg-[#FAF6F0] py-10 md:py-14 relative overflow-hidden z-10">
+            <section className="bg-[#FAF6F0] py-10 md:py-12 relative overflow-hidden z-10">
                 {/* Framing gold leaf on the right edge of screen */}
                 <div className="hidden md:block absolute right-0 top-2/3 -translate-y-1/2 translate-x-[28%] opacity-80 w-48 sm:w-60 md:w-80 lg:w-[24rem] aspect-square pointer-events-none select-none z-0">
                     <Image
@@ -106,7 +106,7 @@ export default function EventsPage() {
                             {/* Image */}
                             <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
                                 <Image
-                                    src="/images/lounge-view.webp"
+                                    src="/images/rooftop.jpeg"
                                     alt="Rooftop bar lounge view"
                                     fill
                                     sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 550px"
@@ -155,7 +155,7 @@ export default function EventsPage() {
             </section>
 
             {/* 4. Lawn Sitting Section */}
-            <section className="bg-[#F2EDE4] py-10 md:py-14 relative overflow-hidden z-10">
+            <section className="bg-[#F2EDE4] py-10 md:py-12 relative overflow-hidden z-10">
                 {/* Framing gold leaf on the left edge of screen */}
                 <div className="hidden md:block absolute left-0 top-2/3 -translate-y-1/2 -translate-x-[28%] opacity-80 w-48 sm:w-60 md:w-80 lg:w-[24rem] aspect-square pointer-events-none select-none z-0">
                     <Image
@@ -209,7 +209,7 @@ export default function EventsPage() {
                             {/* Image (Desktop Right) */}
                             <div className="order-1 w-full h-[240px] sm:h-[350px] md:h-[400px] relative overflow-hidden rounded-[2rem] shadow-[0_15px_40px_rgba(38,30,30,0.1)]">
                                 <Image
-                                    src="/images/lawn.webp"
+                                    src="/images/our-story.jpeg"
                                     alt="Poolside lawn sitting area"
                                     fill
                                     sizes="(max-w-768px) 100vw, (max-w-1024px) 50vw, 550px"
@@ -222,7 +222,7 @@ export default function EventsPage() {
             </section>
 
             {/* 5. Dining & Planning Section */}
-            <section className="bg-[#FAF6F0] py-10 md:py-14 relative overflow-hidden z-10">
+            <section className="bg-[#FAF6F0] py-10 md:py-12 relative overflow-hidden z-10">
                 {/* Framing gold leaf on the right edge of screen */}
                 <div className="hidden md:block absolute right-0 top-1/3 translate-x-[28%] opacity-80 w-48 sm:w-60 md:w-80 lg:w-[24rem] aspect-square pointer-events-none select-none z-0">
                     <Image
