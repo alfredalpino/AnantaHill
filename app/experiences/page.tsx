@@ -7,7 +7,7 @@ import { CalendarDays } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import TableReservationModal from '@/components/TableReservationModal';
 
-export default function EventsPage() {
+export default function ExperiencesPage() {
     const [isReservationOpen, setIsReservationOpen] = useState(false);
 
     // Reusable Ornament Separator

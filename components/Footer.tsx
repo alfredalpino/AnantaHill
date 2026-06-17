@@ -34,7 +34,7 @@ export default function Footer() {
                         <ul className="space-y-4">
                             <li><Link href="/booking" className="text-sm text-text-body transition-colors hover:text-primary-dark">Book a stay</Link></li>
                             <li><Link href="/rooms" className="text-sm text-text-body transition-colors hover:text-primary-dark">Rooms and villas</Link></li>
-                            <li><Link href="/events" className="text-sm text-text-body transition-colors hover:text-primary-dark">Event venues</Link></li>
+                            <li><Link href="/experiences" className="text-sm text-text-body transition-colors hover:text-primary-dark">Experiences</Link></li>
                             <li><Link href="/dining" className="text-sm text-text-body transition-colors hover:text-primary-dark">Dining</Link></li>
                         </ul>
                     </div>
