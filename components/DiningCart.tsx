@@ -2,12 +2,12 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShoppingBag, Plus, Minus, Trash2, CheckCircle2 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 interface CartItem {
   id: number;
-  title: string;
-  price: string;
+  name: string;
+  price: number;
   quantity: number;
 }
 
@@ -15,23 +15,136 @@ interface DiningCartProps {
   isOpen: boolean;
   onClose: () => void;
   items: CartItem[];
+  storeOpen: boolean;
   onUpdateQuantity: (id: number, delta: number) => void;
   onRemove: (id: number) => void;
 }
 
-const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: DiningCartProps) => {
+type VerifyResponse = {
+  success: boolean;
+  order: {
+    posSyncStatus?: string | null;
+  };
+  petpooja?: { synced?: boolean; error?: string | null };
+};
+
+declare global {
+  interface Window {
+    Razorpay?: new (options: Record<string, unknown>) => {
+      open: () => void;
+    };
+  }
+}
+
+const DiningCart = ({ isOpen, onClose, items, storeOpen, onUpdateQuantity, onRemove }: DiningCartProps) => {
   const [roomNo, setRoomNo] = useState("");
   const [isOrdered, setIsOrdered] = useState(false);
+  const [guestName, setGuestName] = useState("");
+  const [guestPhone, setGuestPhone] = useState("");
+  const [orderMessage, setOrderMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const total = items.reduce((sum, item) => {
-    const priceNum = parseInt(item.price.replace(/[^0-9]/g, ''));
-    return sum + (priceNum * item.quantity);
-  }, 0);
+  useEffect(() => {
+    const scriptId = 'razorpay-checkout-js';
+    if (document.getElementById(scriptId)) return;
+    const script = document.createElement('script');
+    script.id = scriptId;
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
-  const handleOrder = (e: React.FormEvent) => {
+  const total = useMemo(
+    () => items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    [items],
+  );
+
+  const handleOrder = async (e: React.FormEvent) => {
     e.preventDefault();
     if (items.length === 0) return;
-    setIsOrdered(true);
+    if (!storeOpen) {
+      setErrorMessage('Store is currently closed.');
+      return;
+    }
+
+    try {
+      setErrorMessage('');
+      setIsSubmitting(true);
+
+      const createRes = await fetch('/api/food-orders/create', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items,
+          roomNumber: roomNo,
+          guestName,
+          guestPhone,
+        }),
+      });
+      const createData = await createRes.json();
+      if (!createRes.ok) {
+        throw new Error(createData?.error || 'Failed to create payment order');
+      }
+
+      if (!window.Razorpay) {
+        throw new Error('Razorpay checkout is not loaded. Refresh and try again.');
+      }
+
+      const razorpay = new window.Razorpay({
+        key: createData.keyId,
+        amount: createData.amount,
+        currency: createData.currency ?? 'INR',
+        name: 'Ananta - By The Hill',
+        description: 'Dining order',
+        order_id: createData.razorpayOrderId,
+        prefill: {
+          name: guestName,
+          contact: guestPhone,
+        },
+        handler: async (response: Record<string, string>) => {
+          try {
+            const verifyRes = await fetch('/api/payments/razorpay/food/verify', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                orderId: createData.orderId,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              }),
+            });
+            const verifyData = (await verifyRes.json()) as VerifyResponse;
+            if (!verifyRes.ok || !verifyData.success) {
+              throw new Error(
+                (verifyData?.petpooja?.error as string) ||
+                  'Payment captured but order verification failed.',
+              );
+            }
+            setOrderMessage(
+              verifyData.order?.posSyncStatus === 'synced'
+                ? 'Order placed successfully and synced to kitchen POS.'
+                : 'Order placed, but POS sync is pending. Our team will process it.',
+            );
+            setIsSubmitting(false);
+            setIsOrdered(true);
+          } catch (err) {
+            setErrorMessage(err instanceof Error ? err.message : 'Payment verification failed');
+            setIsSubmitting(false);
+          }
+        },
+        modal: {
+          ondismiss: () => {
+            setIsSubmitting(false);
+          },
+        },
+      });
+
+      razorpay.open();
+    } catch (err) {
+      setErrorMessage(err instanceof Error ? err.message : 'Checkout failed');
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,8 +183,8 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                     {items.map((item) => (
                       <div key={item.id} className="flex gap-4 pb-6 border-b border-secondary-dark last:border-0">
                         <div className="flex-1">
-                          <h4 className="text-base font-bold text-text-primary mb-1">{item.title}</h4>
-                          <p className="text-primary-dark font-bold text-sm">{item.price}</p>
+                          <h4 className="text-base font-bold text-text-primary mb-1">{item.name}</h4>
+                          <p className="text-primary-dark font-bold text-sm">₹{item.price.toLocaleString('en-IN')}</p>
                         </div>
                         <div className="flex items-center gap-3 bg-secondary-dark rounded-xl px-3 py-1">
                           <button 
@@ -121,7 +234,7 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
                   </div>
                   <h3 className="font-display text-3xl font-bold text-text-primary mb-2">Order Placed!</h3>
                   <p className="text-text-body text-base mb-8">
-                    Your meal is being prepared and will be delivered to Room {roomNo} shortly.
+                    {orderMessage || `Your meal is being prepared and will be delivered to Room ${roomNo} shortly.`}
                   </p>
                   <button 
                     onClick={() => {
@@ -139,6 +252,34 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
             {!isOrdered && items.length > 0 && (
               <div className="p-6 bg-secondary-dark/30 border-t border-secondary-dark space-y-6">
                 <form onSubmit={handleOrder} className="space-y-6">
+                  {!storeOpen && (
+                    <p className="rounded-lg bg-warning/10 p-3 text-xs text-warning">
+                      Store is currently closed. Please try again later.
+                    </p>
+                  )}
+                  {errorMessage && (
+                    <p className="rounded-lg bg-error/10 p-3 text-xs text-error">{errorMessage}</p>
+                  )}
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Guest Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Your name" 
+                      value={guestName}
+                      onChange={(e) => setGuestName(e.target.value)}
+                      className="w-full bg-white border border-secondary-dark px-4 py-3 rounded-xl focus:outline-none focus:border-primary-dark text-sm"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Mobile Number</label>
+                    <input 
+                      type="tel" 
+                      placeholder="10-digit mobile number" 
+                      value={guestPhone}
+                      onChange={(e) => setGuestPhone(e.target.value)}
+                      className="w-full bg-white border border-secondary-dark px-4 py-3 rounded-xl focus:outline-none focus:border-primary-dark text-sm"
+                    />
+                  </div>
                   <div className="space-y-2">
                     <label className="text-[11px] font-bold uppercase tracking-wider text-text-muted">Delivery Room Number</label>
                     <input 
@@ -157,9 +298,10 @@ const DiningCart = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Dini
 
                   <button 
                     type="submit"
-                    className="btn-primary w-full py-4 text-base font-bold"
+                    disabled={isSubmitting || !storeOpen}
+                    className="btn-primary w-full py-4 text-base font-bold disabled:opacity-60 disabled:cursor-not-allowed"
                   >
-                    Place Order
+                    {isSubmitting ? 'Processing...' : 'Pay & Place Order'}
                   </button>
                 </form>
               </div>

@@ -21,6 +21,8 @@ export interface MenuItem {
     isVeg: boolean;
     isAvailable?: boolean;
     image: string;
+    taxInclusive?: boolean;
+    petpoojaItemId?: string;
 }
 
 export interface Booking {

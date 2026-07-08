@@ -4,7 +4,7 @@ import { useState } from 'react';
 import CRMTable from '@/components/admin/CRMTable';
 import { motion } from 'framer-motion';
 import { useAutoRefresh } from '@/hooks/useAutoRefresh';
-import { foodOrders as mockOrders, FoodOrder } from '@/data/crmData';
+import { FoodOrder } from '@/data/crmData';
 
 export default function AdminOrdersPage() {
     const [notification, setNotification] = useState<{ type: 'success' | 'error', message: string } | null>(null);
@@ -38,8 +38,16 @@ export default function AdminOrdersPage() {
 
     const { data: foodOrdersData, isLoading: isLoadingFoodOrders, setOptimisticData } = useAutoRefresh({
         fetchData: async () => {
-            await new Promise(resolve => setTimeout(resolve, 800));
-            return mockOrders;
+            const token = typeof window !== 'undefined' ? window.localStorage.getItem('ananta_admin_api_token') || '' : '';
+            const res = await fetch('/api/admin/orders', {
+                headers: token ? { Authorization: `Bearer ${token}` } : {},
+                cache: 'no-store',
+            });
+            const data = await res.json();
+            if (!res.ok) {
+                throw new Error(data?.error || 'Failed to fetch food orders');
+            }
+            return Array.isArray(data) ? data : [];
         },
         intervalMs: 10000,
         idKey: 'id',
@@ -64,6 +72,32 @@ export default function AdminOrdersPage() {
     const handleFoodOrderStatus = (id: string, newStatus: FoodOrder['status']) => {
         setOptimisticData(prev => prev.map(o => o.id === id ? { ...o, status: newStatus } : o));
         showNotification('success', `Order ${id} status updated to ${newStatus}`);
+    };
+
+    const updateOrderStatus = async (row: Record<string, any>, status: string) => {
+        const token = typeof window !== 'undefined' ? window.localStorage.getItem('ananta_admin_api_token') || '' : '';
+        const res = await fetch(`/api/admin/orders/${row.dbId}/status`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                ...(token ? { Authorization: `Bearer ${token}` } : {}),
+            },
+            body: JSON.stringify({ status }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error || 'Failed to update order status');
+        handleFoodOrderStatus(row.id, status as FoodOrder['status']);
+    };
+
+    const retryPosSync = async (row: Record<string, any>) => {
+        const token = typeof window !== 'undefined' ? window.localStorage.getItem('ananta_admin_api_token') || '' : '';
+        const res = await fetch(`/api/admin/orders/${row.dbId}/retry-pos`, {
+            method: 'POST',
+            headers: token ? { Authorization: `Bearer ${token}` } : {},
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data?.error || 'Failed to retry POS sync');
+        showNotification('success', data?.success ? 'POS sync successful' : 'POS sync failed');
     };
 
     return (
@@ -95,13 +129,15 @@ export default function AdminOrdersPage() {
                 isLoading={isLoadingFoodOrders}
                 columns={[
                     { header: 'Order ID', key: 'id', render: (val) => <span className="font-bold text-primary">{val as React.ReactNode}</span> },
-                    { header: 'Room No.', key: 'roomNo', render: (val) => <span className="font-bold">Room #{val as React.ReactNode}</span> },
+                    { header: 'Room No.', key: 'roomNumber', render: (val) => <span className="font-bold">Room #{(val as React.ReactNode) || 'N/A'}</span> },
                     {
                         header: 'Items',
                         key: 'items',
-                        render: (val) => <span className="text-[11px] font-medium">{val as string}</span>
+                        render: (val) => <span className="text-[11px] font-medium">{Array.isArray(val) ? (val as Array<Record<string, any>>).map(i => `${i.name} x${i.quantity}`).join(', ') : String(val)}</span>
                     },
-                    { header: 'Total', key: 'total', render: (val) => <span className="font-bold">₹{Number(val).toLocaleString()}</span> },
+                    { header: 'Total', key: 'total', render: (val) => <span className="font-bold">₹{Number(val).toLocaleString('en-IN')}</span> },
+                    { header: 'POS Ref', key: 'posOrderId', render: (val) => <span className="text-[10px] font-mono">{(val as string) || '-'}</span> },
+                    { header: 'POS Sync', key: 'posSyncStatus', render: (val) => <span className="text-[10px] uppercase">{String(val || 'pending')}</span> },
                     { 
                         header: 'Status', key: 'status', render: (val) => (
                             <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
@@ -121,7 +157,7 @@ export default function AdminOrdersPage() {
                             <div className="flex gap-2">
                                 {row.status === 'Pending' && (
                                     <button
-                                        onClick={() => handleFoodOrderStatus(row.id, 'Preparing')}
+                                        onClick={() => updateOrderStatus(row, 'Preparing').catch((e) => showNotification('error', e.message))}
                                         className="text-[10px] font-bold text-primary hover:underline"
                                     >
                                         Accept
@@ -129,7 +165,7 @@ export default function AdminOrdersPage() {
                                 )}
                                 {row.status === 'Preparing' && (
                                     <button
-                                        onClick={() => handleFoodOrderStatus(row.id, 'Delivered')}
+                                        onClick={() => updateOrderStatus(row, 'Delivered').catch((e) => showNotification('error', e.message))}
                                         className="text-[10px] font-bold text-success hover:underline"
                                     >
                                         Deliver
@@ -137,10 +173,18 @@ export default function AdminOrdersPage() {
                                 )}
                                 {row.status !== 'Delivered' && (
                                     <button
-                                        onClick={() => handleFoodOrderStatus(row.id, 'Cancelled')}
+                                        onClick={() => updateOrderStatus(row, 'Cancelled').catch((e) => showNotification('error', e.message))}
                                         className="text-[10px] font-bold text-error hover:underline"
                                     >
                                         Cancel
+                                    </button>
+                                )}
+                                {row.posSyncStatus === 'failed' && (
+                                    <button
+                                        onClick={() => retryPosSync(row).catch((e) => showNotification('error', e.message))}
+                                        className="text-[10px] font-bold text-warning hover:underline"
+                                    >
+                                        Retry POS
                                     </button>
                                 )}
                             </div>

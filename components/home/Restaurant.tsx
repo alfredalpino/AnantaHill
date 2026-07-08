@@ -17,7 +17,7 @@ const Restaurant = ({ onReserveTable }: RestaurantProps) => {
         src="/graphics/leaf-graphic.png"
         alt=""
         width={200}
-        height={200}
+        height={195}
          className="absolute -left-8 sm:top-0 -top-16 -scale-x-100 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
@@ -25,7 +25,7 @@ const Restaurant = ({ onReserveTable }: RestaurantProps) => {
         src="/graphics/hero-graphic-1.png"
         alt=""
         width={180}
-        height={180}
+        height={270}
         className="pointer-events-none md:block hidden absolute -bottom-20 -scale-y-100 -scale-x-100 opacity-50 -right-16"
         aria-hidden
       />

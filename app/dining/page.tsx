@@ -1,60 +1,70 @@
 "use client";
 
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Search, ShoppingBag, Utensils } from 'lucide-react';
 import ScrollReveal from '@/components/ScrollReveal';
 import DishCard from '@/components/cards/DishCard';
 import TableReservationModal from '@/components/TableReservationModal';
 import DiningCart from '@/components/DiningCart';
+import type { MenuItem } from '@/types';
 
-const dishes = [
-  { 
-    id: 1,
-    category: "Main Course",
-    title: "Hillside Lamb Shank", 
-    price: "₹1,850", 
-    desc: "Slow-cooked for 12 hours with local spices and mountain herbs."
-  },
-  { 
-    id: 2,
-    category: "Healthy",
-    title: "Organic Harvest Bowl", 
-    price: "₹850", 
-    desc: "A vibrant mix of roasted roots, fresh greens, and hill-honey dressing."
-  },
-  { 
-    id: 3,
-    category: "Traditional",
-    title: "Traditional Dhuska Platter", 
-    price: "₹750", 
-    desc: "Authentic Jharkhand delicacy served with spicy potato curry and farm chutney."
-  },
-  { 
-    id: 4,
-    category: "Main Course",
-    title: "Wild Mushroom Risotto", 
-    price: "₹1,250", 
-    desc: "Foraged mushrooms from the hills, creamy arborio rice, and truffle oil."
-  }
-];
+type CartItem = {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+};
 
 export default function DiningPage() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [activeCategory, setActiveCategory] = useState("All");
-    const [cartItems, setCartItems] = useState<any[]>([]);
+    const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+    const [storeOpen, setStoreOpen] = useState(true);
+    const [menuError, setMenuError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [cartItems, setCartItems] = useState<CartItem[]>([]);
     const [isCartOpen, setIsCartOpen] = useState(false);
 
-    const categories = ["All", "Main Course", "Healthy", "Traditional"];
+    useEffect(() => {
+        let mounted = true;
+        const loadMenu = async () => {
+            try {
+                setIsLoading(true);
+                const res = await fetch('/api/food', { cache: 'no-store' });
+                const data = await res.json();
+                if (!res.ok) throw new Error(data?.error || 'Failed to load menu');
+                if (!mounted) return;
+                setMenuItems(Array.isArray(data.items) ? data.items : []);
+                setStoreOpen(Boolean(data.storeOpen ?? true));
+                setMenuError(null);
+            } catch (error) {
+                if (!mounted) return;
+                setMenuError(error instanceof Error ? error.message : 'Failed to load menu');
+                setMenuItems([]);
+            } finally {
+                if (mounted) setIsLoading(false);
+            }
+        };
+        loadMenu();
+        return () => {
+            mounted = false;
+        };
+    }, []);
 
-    const filteredDishes = dishes.filter(dish => {
-        const matchesSearch = dish.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                             dish.desc.toLowerCase().includes(searchTerm.toLowerCase());
+    const categories = useMemo(
+        () => ['All', ...Array.from(new Set(menuItems.map((dish) => dish.category))).sort()],
+        [menuItems],
+    );
+
+    const filteredDishes = menuItems.filter((dish) => {
+        const matchesSearch = dish.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                             dish.description.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = activeCategory === "All" || dish.category === activeCategory;
-        return matchesSearch && matchesCategory;
+        return matchesSearch && matchesCategory && dish.isAvailable !== false;
     });
 
-    const addToCart = (dish: any, quantity: number = 1) => {
+    const addToCart = (dish: { id: number; title: string; price: string }, quantity: number = 1) => {
         setCartItems(prev => {
             const existing = prev.find(item => item.id === dish.id);
             if (existing) {
@@ -62,7 +72,15 @@ export default function DiningPage() {
                     item.id === dish.id ? { ...item, quantity: item.quantity + quantity } : item
                 );
             }
-            return [...prev, { ...dish, quantity }];
+            return [
+                ...prev,
+                {
+                    id: dish.id,
+                    name: dish.title,
+                    price: Number(dish.price.replace(/[^0-9.]/g, '')) || 0,
+                    quantity,
+                },
+            ];
         });
         setIsCartOpen(true);
     };
@@ -123,19 +141,35 @@ export default function DiningPage() {
 
             <section className="section-shell bg-background">
                 <div className="container-shell">
+                    {!storeOpen && (
+                        <div className="mb-6 rounded-xl border border-warning/40 bg-warning/10 p-4 text-sm text-warning">
+                            Store is currently closed. You can browse menu items, but checkout is disabled.
+                        </div>
+                    )}
+                    {menuError && (
+                        <div className="mb-6 rounded-xl border border-error/30 bg-error/10 p-4 text-sm text-error">
+                            {menuError}
+                        </div>
+                    )}
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {filteredDishes.map((dish, i) => (
                             <ScrollReveal key={dish.id} delay={i * 80}>
                                 <DishCard 
-                                    dish={dish} 
-                                    dishImg="/images/food.webp" 
+                                    dish={{
+                                        id: Number(dish.id),
+                                        category: dish.category,
+                                        title: dish.name,
+                                        price: `₹${Number(dish.price).toLocaleString('en-IN')}`,
+                                        desc: dish.description,
+                                    }}
+                                    dishImg={dish.image || "/images/food.webp"} 
                                     onAddToCart={addToCart} 
                                 />
                             </ScrollReveal>
                         ))}
                     </div>
 
-                    {filteredDishes.length === 0 && (
+                    {!isLoading && filteredDishes.length === 0 && (
                         <div className="py-20 text-center">
                             <p className="text-text-muted font-display text-xl">No dishes found matching your criteria.</p>
                         </div>
@@ -149,6 +183,7 @@ export default function DiningPage() {
                 isOpen={isCartOpen} 
                 onClose={() => setIsCartOpen(false)} 
                 items={cartItems}
+                storeOpen={storeOpen}
                 onUpdateQuantity={(id: number, delta: number) => {
                     setCartItems(prev => prev.map(item => item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item));
                 }}

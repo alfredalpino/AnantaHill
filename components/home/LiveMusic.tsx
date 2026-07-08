@@ -37,7 +37,7 @@ const LiveMusic = () => {
         src="/graphics/hero-graphic-2.png"
         alt=""
         width={160}
-        height={160}
+        height={286}
         className="pointer-events-none md:block hidden absolute -bottom-36 -scale-x-100 opacity-40 -right-8"
         aria-hidden
       />

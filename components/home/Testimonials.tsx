@@ -100,7 +100,7 @@ const Testimonials = () => {
               src="/graphics/leaf-graphic.png"
               alt=""
               width={200}
-              height={200}
+              height={195}
               className="absolute w-[150px] sm:w-[200px] sm:-left-8 right-0 top-0 opacity-50 sm:-scale-x-100 select-none pointer-events-none"
               aria-hidden
             />
@@ -108,7 +108,7 @@ const Testimonials = () => {
               src="/graphics/hero-graphic-2.png"
               alt=""
               width={160}
-              height={160}
+              height={286}
               className="pointer-events-none md:block hidden absolute -bottom-5 -scale-x-100 opacity-50 -right-10"
               aria-hidden
             />

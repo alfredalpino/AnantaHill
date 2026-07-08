@@ -34,7 +34,7 @@ const Experiences = () => {
         src="/graphics/leaf-graphic.png"
         alt=""
         width={220}
-        height={220}
+        height={214}
         className="absolute -left-10 sm:top-0 -top-10 -scale-x-100 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
@@ -42,7 +42,7 @@ const Experiences = () => {
         src="/graphics/leaf-graphic.png"
         alt=""
         width={220}
-        height={220}
+        height={214}
         className="sm:block hidden absolute -right-5 sm:-right-10 top-0 opacity-50 select-none pointer-events-none"
         aria-hidden
       />
@@ -87,7 +87,7 @@ const Experiences = () => {
                       src="/graphics/lotus.png"
                       alt="Lotus Icon"
                       width={36}
-                      height={36}
+                      height={40}
                       className="object-contain"
                     />
                   </div>

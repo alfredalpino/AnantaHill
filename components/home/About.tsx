@@ -18,7 +18,7 @@ const About = () => {
         src="/graphics/hero-graphic-1.png"
         alt=""
         width={160}
-        height={160}
+        height={240}
         className="pointer-events-none absolute -left-6 md:-top-16 -top-20 opacity-60"
         aria-hidden
       />
@@ -26,7 +26,7 @@ const About = () => {
         src="/graphics/leaf-graphic.png"
         alt=""
         width={240}
-        height={240}
+        height={234}
         className="pointer-events-none w-48 md:w-60 absolute sm:top-24 bottom-8 opacity-60 sm:-right-12 -right-8"
         aria-hidden
       />

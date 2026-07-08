@@ -85,6 +85,7 @@ export default function OurStoryPage() {
                                         src="/images/lawn.webp"
                                         alt="Ananta Grounds"
                                         fill
+                                        sizes="(max-width: 1024px) 100vw, 50vw"
                                         className="object-cover"
                                     />
                                     <div className="absolute bottom-8 left-8 right-8 rounded-xl bg-white/90 p-6 backdrop-blur-md shadow-lg border border-white/50 hidden md:block">

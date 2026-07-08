@@ -1,0 +1,13 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    env_file:
+      - docker/postgres.local.env
+    ports:
+      - "5434:5432"
+    volumes:
+      - ananta-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  ananta-postgres-data:

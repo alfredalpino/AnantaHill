@@ -31,6 +31,7 @@ const DishCard = ({ dish, dishImg, onAddToCart }: DishCardProps) => {
           src={dishImg} 
           alt={dish.title} 
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
           className="object-cover transition-transform duration-700 group-hover:scale-105" 
         />
         <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full border border-secondary shadow-sm">

@@ -19,7 +19,7 @@ export default function ExperiencesPage() {
                     src="/graphics/lotus.png"
                     alt=""
                     width={44}
-                    height={44}
+                    height={49}
                     className="object-contain"
                 />
             </div>
@@ -68,7 +68,7 @@ export default function ExperiencesPage() {
                                     src="/graphics/lotus.png"
                                     alt="Lotus symbol"
                                     width={36}
-                                    height={36}
+                                    height={40}
                                     className="object-contain"
                                 />
                             </div>

@@ -27,7 +27,7 @@ const CTA = () => {
         src="/graphics/hero-graphic-1.png"
         alt=""
         width={160}
-        height={160}
+        height={240}
         className="absolute -right-10 -top-8 opacity-50 -scale-x-100 select-none pointer-events-none"
         aria-hidden
       />
@@ -35,7 +35,7 @@ const CTA = () => {
         src="/graphics/leaf-graphic.png"
         alt=""
         width={160}
-        height={160}
+        height={156}
         className="sm:block hidden pointer-events-none absolute bottom-0 scale-x-100 opacity-50 -right-4"
         aria-hidden
       />

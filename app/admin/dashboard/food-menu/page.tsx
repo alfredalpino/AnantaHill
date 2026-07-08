@@ -24,17 +24,38 @@ export default function AdminFoodMenuPage() {
         setTimeout(() => setNotification(null), 3000);
     };
 
-    useEffect(() => {
-        // Mock data
-        setTimeout(() => {
-            setFoodData([
-                { id: '1', name: 'Paneer Tikka', category: 'Starter', price: '350', description: 'Grilled cottage cheese', isAvailable: true, image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&q=80&w=400' },
-                { id: '2', name: 'Dal Makhani', category: 'Main Course', price: '450', description: 'Creamy black lentils', isAvailable: true, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=400' },
-                { id: '3', name: 'Butter Naan', category: 'Main Course', price: '60', description: 'Tandoori bread with butter', isAvailable: true, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&q=80&w=400' },
-                { id: '4', name: 'Secret Dish', category: 'Chef Special', price: '0', description: 'Hidden dish', isAvailable: false, image: '' },
-            ]);
+    const getAdminHeaders = () => {
+        if (typeof window === 'undefined') return {};
+        const token = window.localStorage.getItem('ananta_admin_api_token') || '';
+        return token ? { Authorization: `Bearer ${token}` } : {};
+    };
+
+    const loadFoodItems = async () => {
+        setIsLoadingFood(true);
+        try {
+            const res = await fetch('/api/admin/food-menu', {
+                headers: {
+                    ...getAdminHeaders(),
+                },
+                cache: 'no-store',
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || 'Failed to load menu');
+            setFoodData(Array.isArray(data) ? data : []);
+        } catch (error) {
+            showNotification('error', error instanceof Error ? error.message : 'Failed to load menu');
+            setFoodData([]);
+        } finally {
             setIsLoadingFood(false);
-        }, 800);
+        }
+    };
+
+    useEffect(() => {
+        const timer = window.setTimeout(() => {
+            void loadFoodItems();
+        }, 0);
+        return () => window.clearTimeout(timer);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const filteredData = useMemo(() => {
@@ -64,14 +85,31 @@ export default function AdminFoodMenuPage() {
         e.preventDefault();
         setIsSubmitting(true);
         try {
-            await new Promise(resolve => setTimeout(resolve, 800));
+            const url = editingFoodId ? `/api/admin/food-menu/${editingFoodId}` : '/api/admin/food-menu';
+            const res = await fetch(url, {
+                method: editingFoodId ? 'PATCH' : 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...getAdminHeaders(),
+                },
+                body: JSON.stringify({
+                    name: newFoodData.name,
+                    category: newFoodData.category,
+                    price: Number(newFoodData.price || 0),
+                    description: newFoodData.description,
+                    image: newFoodData.image,
+                    isAvailable: newFoodData.isAvailable,
+                }),
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || 'Failed to save food item');
             showNotification('success', editingFoodId ? 'Food item updated' : 'Food item added');
             setIsAddFoodOpen(false);
             setNewFoodData({ name: '', category: 'Main Course', price: '', description: '', isAvailable: true, image: '' });
             setEditingFoodId(null);
-            // Refresh logic here
+            await loadFoodItems();
         } catch (err) {
-            showNotification('error', 'Failed to save food item');
+            showNotification('error', err instanceof Error ? err.message : 'Failed to save food item');
         } finally {
             setIsSubmitting(false);
         }
@@ -82,11 +120,19 @@ export default function AdminFoodMenuPage() {
     const confirmDeleteFood = async () => {
         if (!foodToDelete) return;
         try {
-            await new Promise(resolve => setTimeout(resolve, 500));
+            const res = await fetch(`/api/admin/food-menu/${foodToDelete}`, {
+                method: 'DELETE',
+                headers: {
+                    ...getAdminHeaders(),
+                },
+            });
+            const data = await res.json();
+            if (!res.ok) throw new Error(data?.error || 'Failed to delete food item');
             showNotification('success', 'Food item deleted successfully');
             setFoodToDelete(null);
+            await loadFoodItems();
         } catch (err) {
-            showNotification('error', 'Failed to delete food item');
+            showNotification('error', err instanceof Error ? err.message : 'Failed to delete food item');
         }
     };
 
@@ -132,6 +178,28 @@ export default function AdminFoodMenuPage() {
                 </div>
                 <button onClick={openAddFoodModal} className="btn-primary px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
                     + Add Item
+                </button>
+                <button
+                    type="button"
+                    onClick={async () => {
+                        try {
+                            const res = await fetch('/api/admin/food-menu/sync', {
+                                method: 'POST',
+                                headers: {
+                                    ...getAdminHeaders(),
+                                },
+                            });
+                            const data = await res.json();
+                            if (!res.ok) throw new Error(data?.error || 'Sync failed');
+                            showNotification('success', 'Synced menu from Petpooja');
+                            await loadFoodItems();
+                        } catch (error) {
+                            showNotification('error', error instanceof Error ? error.message : 'Sync failed');
+                        }
+                    }}
+                    className="btn-outline px-6 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest"
+                >
+                    Sync from Petpooja
                 </button>
             </div>
 
@@ -181,6 +249,7 @@ export default function AdminFoodMenuPage() {
                     { header: 'Item Name', key: 'name' },
                     { header: 'Category', key: 'category' },
                     { header: 'Price', key: 'price', render: (val) => `₹${val as string | number}` },
+                    { header: 'Petpooja ID', key: 'petpoojaItemId', render: (val) => <span className="text-[10px]">{(val as string) || '-'}</span> },
                     { 
                         header: 'Availability', 
                         key: 'isAvailable', 
