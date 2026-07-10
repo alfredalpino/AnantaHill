@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "node scripts/dev.mjs",
+    "build": "node scripts/ensure-database.mjs && next build",
     "start": "next start",
     "lint": "eslint",
+    "db:ensure": "node scripts/ensure-database.mjs",
     "db:push": "drizzle-kit push",
-    "db:local:up": "docker compose -f docker-compose.postgres.yml up -d",
-    "db:local:down": "docker compose -f docker-compose.postgres.yml down",
+    "db:local:up": "docker compose -f docker-compose.postgres.yml --env-file docker/postgres.local.env up -d",
+    "db:local:down": "docker compose -f docker-compose.postgres.yml --env-file docker/postgres.local.env down",
     "db:local:push": "node scripts/with-local-database-url.mjs npx drizzle-kit push --force",
-    "db:local:init": "docker compose -f docker-compose.postgres.yml up -d && node scripts/with-local-database-url.mjs npx drizzle-kit push --force"
+    "db:local:extras": "node scripts/with-local-database-url.mjs node scripts/run-local-db-extras.mjs",
+    "db:local:init": "node scripts/ensure-database.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
