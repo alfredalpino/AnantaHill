@@ -17,10 +17,18 @@ type CreatePayload = {
 export async function POST(req: Request) {
   try {
     const body = (await req.json()) as CreatePayload;
-    const items = Array.isArray(body.items) ? body.items : [];
-    if (items.length === 0) {
+    const rawItems = Array.isArray(body.items) ? body.items : [];
+    if (rawItems.length === 0) {
       return NextResponse.json({ error: 'Items required' }, { status: 400 });
     }
+
+    // Cart sends numeric ids; normalize to FoodLineItem (string id).
+    const items: FoodLineItem[] = rawItems.map((item) => ({
+      id: String((item as FoodLineItem & { id: string | number })?.id ?? '').trim(),
+      name: String((item as FoodLineItem)?.name ?? '').trim(),
+      quantity: Number((item as FoodLineItem)?.quantity),
+      price: Number((item as FoodLineItem)?.price),
+    }));
 
     const storeState = await db.select().from(petpoojaStoreState).limit(1);
     if (storeState[0] && !storeState[0].storeOpen) {
@@ -29,15 +37,12 @@ export async function POST(req: Request) {
 
     const invalidItem = items.find(
       (item) =>
-        !item ||
-        typeof item.id !== 'string' ||
-        !item.id.trim() ||
-        typeof item.name !== 'string' ||
-        !item.name.trim() ||
-        !Number.isFinite(Number(item.quantity)) ||
-        Number(item.quantity) <= 0 ||
-        !Number.isFinite(Number(item.price)) ||
-        Number(item.price) < 0,
+        !item.id ||
+        !item.name ||
+        !Number.isFinite(item.quantity) ||
+        item.quantity <= 0 ||
+        !Number.isFinite(item.price) ||
+        item.price < 0,
     );
     if (invalidItem) {
       return NextResponse.json({ error: 'Invalid items payload' }, { status: 400 });
