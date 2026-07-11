@@ -3,8 +3,11 @@ import { config } from 'dotenv';
 import postgres from 'postgres';
 import { applyDatabaseExtras } from './apply-database-extras.mjs';
 
-config({ path: '.env' });
-config({ path: '.env.local' });
+// On Vercel, only use platform env vars — never a bundled .env file.
+if (!process.env.VERCEL) {
+  config({ path: '.env' });
+  config({ path: '.env.local' });
+}
 
 export const DEFAULT_LOCAL_DATABASE_URL =
   'postgresql://postgres:postgres@127.0.0.1:5434/ananta?sslmode=disable';
@@ -47,12 +50,38 @@ function quoteIdent(identifier) {
   return `"${identifier.replace(/"/g, '""')}"`;
 }
 
-async function withClient(url, callback) {
-  const sql = postgres(url, {
+function isLocalDatabaseHost(hostname) {
+  const host = hostname.toLowerCase();
+  return host === 'localhost' || host === '127.0.0.1' || host === '::1' || host === '0.0.0.0';
+}
+
+function isLocalDatabaseUrl(url) {
+  try {
+    return isLocalDatabaseHost(new URL(url).hostname);
+  } catch {
+    return false;
+  }
+}
+
+function resolvePostgresClientOptions(url) {
+  const parsed = new URL(url);
+  const sslmode = parsed.searchParams.get('sslmode')?.toLowerCase();
+
+  return {
     prepare: false,
     connect_timeout: 10,
     max: 1,
-  });
+    ssl:
+      sslmode === 'require' || sslmode === 'verify-full' || sslmode === 'verify-ca'
+        ? 'require'
+        : process.env.VERCEL && !isLocalDatabaseHost(parsed.hostname)
+          ? 'require'
+          : undefined,
+  };
+}
+
+async function withClient(url, callback) {
+  const sql = postgres(url, resolvePostgresClientOptions(url));
 
   try {
     return await callback(sql);
@@ -180,20 +209,26 @@ export async function ensureLocalDatabase(databaseUrl = resolveDatabaseUrl()) {
 }
 
 export async function ensureCloudDatabase(databaseUrl) {
-  console.log('[db] Preparing cloud database schema...');
+  console.log('[db] Verifying cloud database (schema is managed via Supabase MCP)...');
+
+  if (isLocalDatabaseUrl(databaseUrl)) {
+    throw new Error(
+      'DATABASE_URL on Vercel points to localhost. Replace it with a cloud Postgres URL (Supabase).',
+    );
+  }
 
   const connected = await canConnect(databaseUrl);
   if (!connected) {
     throw new Error(
-      'Could not connect to DATABASE_URL. Add a valid Postgres connection string in Vercel environment variables.',
+      'Could not connect to DATABASE_URL on Vercel. Check the connection string (URL-encode special characters in the password), and use the Supabase transaction pooler URI with sslmode=require.',
     );
   }
 
-  pushSchema(databaseUrl);
-  await applyDatabaseExtras(databaseUrl);
+  // Never run drizzle-kit push on Vercel — it hangs against Supabase poolers.
+  // Schema is applied via Supabase MCP / migrations.
   await verifySchema(databaseUrl);
 
-  console.log('[db] Cloud schema ready.');
+  console.log('[db] Cloud database verified.');
   return databaseUrl;
 }
 

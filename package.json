@@ -13,7 +13,11 @@
     "db:local:down": "docker compose -f docker-compose.postgres.yml --env-file docker/postgres.local.env down",
     "db:local:push": "node scripts/with-local-database-url.mjs npx drizzle-kit push --force",
     "db:local:extras": "node scripts/with-local-database-url.mjs node scripts/run-local-db-extras.mjs",
-    "db:local:init": "node scripts/ensure-database.mjs"
+    "db:local:init": "node scripts/ensure-database.mjs",
+    "vercel:setup": "node scripts/setup-vercel-production.mjs",
+    "vercel:setup:env": "node scripts/setup-vercel-production.mjs env",
+    "vercel:setup:db": "node scripts/setup-vercel-production.mjs db",
+    "vercel:deploy": "node scripts/setup-vercel-production.mjs deploy"
   },
   "dependencies": {
     "clsx": "^2.1.1",
